@@ -3,12 +3,12 @@ import './GlobalSearch.scss'
 import CloseIcon from "../svg/CloseIcon"
 import SearchIcon from "../svg/SearchIcon"
 
-interface GlobalSearchProps {
+interface TGlobalSearchProps {
     activeInput: boolean
     toggleFocusInput: (event: FocusEventHandler<HTMLInputElement> | any) => void
 }
 
-const GlobalSearch: FC<GlobalSearchProps> = ({ activeInput, toggleFocusInput }) => {
+const GlobalSearch: FC<TGlobalSearchProps> = ({ activeInput, toggleFocusInput }) => {
     return (
         <div className="header__global_search">
             <div className={ !activeInput ? 'reset__icon_wrapper' : 'reset__icon_wrapper-active' }>

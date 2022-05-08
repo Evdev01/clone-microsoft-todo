@@ -5,7 +5,7 @@ import EntryBarTask from "../EntryBarTask/EntryBarTask"
 
 const AddTaskPanel: FC = () => {
 
-    const [addTask, setAddTask] = useState(false)
+    const [addTask, setAddTask] = useState<boolean>(false)
 
     return (
         <div className="add__panel-wrapper">

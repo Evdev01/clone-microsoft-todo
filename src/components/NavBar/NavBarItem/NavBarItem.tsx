@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import './NavBarItem.scss'
 
-interface NavBarItemProps {
+interface TNavBarItemProps {
     title: string
 }
 
-const NavBarItem: FC<NavBarItemProps> = ({ children, title }) => {
+const NavBarItem: FC<TNavBarItemProps> = ({ children, title }) => {
     return (
         <li>
             <div className="nav__link" title={ title }>

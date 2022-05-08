@@ -3,13 +3,13 @@ import './TaskItem.scss'
 import IconStar from "../svg/IconStar"
 import ChevronDown from "../svg/ChevronDown"
 
-interface TaskItemProps {
+interface TTaskItemProps {
     title: string
     category: string
 }
 
 
-const TaskItem: FC<TaskItemProps> = ({ title, category }) => {
+const TaskItem: FC<TTaskItemProps> = ({ title, category }) => {
 
     const [isShowChevron, setIsShowChevron] = useState<boolean>(false)
 
