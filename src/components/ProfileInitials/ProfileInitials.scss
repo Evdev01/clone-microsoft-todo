@@ -1,0 +1,11 @@
+@import './src/assets/scss/utils/vars';
+
+.profile__initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.09em solid $white-color;
+  border-radius: 50%;
+  height: 2em;
+  width: 2em;
+}

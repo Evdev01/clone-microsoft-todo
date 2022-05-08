@@ -1,0 +1,41 @@
+@import './src/assets/scss/utils/vars';
+
+.add__task-panel-entrybar {
+  height: 42px;
+  padding: 8px 16px 8px 58px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #F3F2F1;
+  border-radius: 0 0 5px 5px;
+  margin-bottom: 1px;
+
+
+  & button {
+    font-size: 13px;
+    background-color: transparent;
+    color: #A19F9D;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+.add__task-panel-entrybar-icons {
+  display: flex;
+
+  & svg {
+    color: $gray-color;
+    width: 24px;
+    height: 24px;
+    margin-right: 14px;
+    padding: 2px;
+    border-radius: 3px;
+
+    &:hover {
+      background-color: #e3e3e3;
+    }
+
+    & :last-child {
+      margin-right: 0;
+    }
+  }
+}

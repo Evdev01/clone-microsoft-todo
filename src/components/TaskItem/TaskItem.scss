@@ -1,0 +1,58 @@
+@import './src/assets/scss/utils/vars';
+
+.task__item {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 18px 0 -16px #edebe9;
+
+  &:hover {
+    background-color: #F3F2F1;
+    cursor: pointer;
+    box-shadow: 0 17px 12px -16px #edebe9;
+  }
+
+  & svg {
+    color: $gray-color;
+  }
+}
+
+.task__info-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.task__info {
+  flex-direction: column;
+}
+
+.task__title {
+  font-size: 14px;
+}
+
+.task__category {
+  font-size: 12px;
+  color: $gray-color;
+}
+
+.task__icon-favorite svg:hover {
+  cursor: pointer;
+  color: $black-color;
+}
+
+.add__task-icon-blue {
+  margin-right: 20px;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.1em solid $header-color;
+  border-radius: 50%;
+  height: 1.3em;
+  width: 1.3em;
+
+  & svg {
+    color: $header-color;
+  }
+}

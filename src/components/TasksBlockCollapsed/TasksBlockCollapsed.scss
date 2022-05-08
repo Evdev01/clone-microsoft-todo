@@ -1,0 +1,39 @@
+
+.tasks__block-wrapper {
+  padding: 0 10px 0 6px;
+}
+
+.tasks__block-collapsed {
+  font-size: 13px;
+  margin-top: 10px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  box-shadow: 0 18px 0 -16px #edebe9;
+
+  & span {
+    font-weight: 600;
+    margin: 0 12px 0 14px;
+  }
+
+  & svg {
+    transform: rotate(-90deg);
+    transition: transform 200ms;
+  }
+
+  & svg:hover {
+    cursor: pointer;
+  }
+
+}
+
+.open__close-arrow {
+  transform: rotate(90deg);
+  transition: transform 200ms;
+
+  &.closed {
+    transform: rotate(180deg);
+    transition: transform 200ms;
+  }
+}

@@ -1,0 +1,42 @@
+@import './src/assets/scss/utils/vars';
+
+.nav__header {
+  display: flex;
+  align-items: center;
+}
+
+.nav__menu {
+  height: 50px;
+  width: 50px;
+  margin-right: 8px;
+  color: $white-color;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #005A9E;
+    -webkit-transition: background-color .1s linear;
+    -ms-transition: background-color .1s linear;
+    transition: background-color .1s linear;
+  }
+
+  & svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.header__logo {
+  color: $white-color;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}

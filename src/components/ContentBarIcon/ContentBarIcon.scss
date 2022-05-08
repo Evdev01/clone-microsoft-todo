@@ -1,0 +1,32 @@
+@import './src/assets/scss/utils/vars';
+
+.content__bar-icon {
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  transition: background-color 100ms;
+  padding: 0 6px;
+  height: 28px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #EDEBE9;
+  }
+
+  &:first-child {
+    margin-right: 20px;
+  }
+
+  & p {
+    height: auto;
+    font-size: 13px;
+    margin-left: 5px;
+    color: $gray-color;
+  }
+
+  & svg {
+    width: 20px;
+    height: 20px;
+    color: $gray-color;
+  }
+}

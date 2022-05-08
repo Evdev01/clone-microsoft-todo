@@ -1,0 +1,28 @@
+@import './src/assets/scss/utils/vars';
+
+.nav__link {
+  height: 50px;
+  width: 50px;
+  margin-left: 35px;
+  color: $white-color;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #005A9E;
+    -webkit-transition: background-color .1s linear;
+    -ms-transition: background-color .1s linear;
+    transition: background-color .1s linear;
+  }
+
+  &:first-child {
+    margin: 0;
+  }
+
+  & svg {
+    width: 20px;
+    height: 20px;
+  }
+}

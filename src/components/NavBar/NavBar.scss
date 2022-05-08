@@ -1,0 +1,18 @@
+@import './src/assets/scss/utils/vars';
+
+.nav {
+  display: flex;
+
+  & ul {
+    & li {
+      & svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+.nav__bar-wrapper {
+  display: flex;
+}
