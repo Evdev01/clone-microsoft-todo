@@ -1,3 +1,5 @@
+@import './src/assets/scss/utils/vars';
+
 .side__bar-item {
   display: flex;
   align-items: center;
@@ -9,6 +11,10 @@
     background-color: #FAFAFA;
     cursor: pointer;
     transition: background-color .06s linear;
+  }
+
+  & p {
+    color: $black-color;
   }
 }
 
@@ -22,10 +28,22 @@
     & svg {
       height: 20px;
       width: 24px;
+      color: $gray-color;
     }
   }
 
   & p {
     font-size: 14px;
+    color: $black-color;
+  }
+}
+
+.side__bar-item-link {
+  color: #F3F2F1;
+}
+
+.side__bar-item-link-active {
+  & .side__bar-item {
+    background-color: #eaeaea;
   }
 }

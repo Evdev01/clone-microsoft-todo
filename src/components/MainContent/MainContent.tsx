@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react'
 import './MainContent.scss'
-import MainContentTop from "../MainContentTop"
-import SideBar from "../SideBar/SideBar"
-import TasksContent from "../TasksContent/TasksContent"
+import MainContentTop from '../MainContentTop'
+import SideBar from '../SideBar/SideBar'
+import TasksContent from '../TasksContent/TasksContent'
 
 interface TMainContentProps {
 }
@@ -15,13 +15,15 @@ const MainContent: FC = () => {
 
     return (
         <div className="main__content-wrapper">
-            <MainContentTop openBurgerMenu={ openBurgerMenu } isShowSideBar={ isShowSideBar }/>
 
             <div className="content__wrapper">
                 { isShowSideBar
-                    ? <SideBar openBurgerMenu={ openBurgerMenu } isShowSideBar={ isShowSideBar }/>
+                    ? <SideBar openBurgerMenu={ openBurgerMenu }/>
                     : null }
-                <TasksContent/>
+                <div className="content__wrapper-content-sidebar">
+                    <MainContentTop openBurgerMenu={ openBurgerMenu } isShowSideBar={ isShowSideBar }/>
+                    <TasksContent/>
+                </div>
             </div>
         </div>
     )

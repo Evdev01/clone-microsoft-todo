@@ -1,0 +1,22 @@
+.side__bar-add-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px 0 7px;
+  min-height: 36px;
+  box-shadow: 0 -1px 0 #edebe9;
+}
+
+.side__bar-add-list-wrapper {
+  display: flex;
+  align-items: center;
+
+  & svg {
+    margin-right: 8px;
+  }
+
+  & p {
+    color: #2564CF;
+    font-size: 14px;
+  }
+}

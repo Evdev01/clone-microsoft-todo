@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 const SunnyIcon:FC = () => {
     return <svg width='24px' height='24px' version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                viewBox="0 0 60 60">
+                viewBox="0 0 60 60" fill="currentColor">
 <g>
 	<path d="M30,8c0.552,0,1-0.448,1-1V1c0-0.552-0.448-1-1-1s-1,0.448-1,1v6C29,7.552,29.448,8,30,8z"/>
     <path d="M30,52c-0.552,0-1,0.448-1,1v6c0,0.552,0.448,1,1,1s1-0.448,1-1v-6C31,52.448,30.552,52,30,52z"/>

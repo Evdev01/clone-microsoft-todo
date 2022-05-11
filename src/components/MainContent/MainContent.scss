@@ -7,4 +7,9 @@
 .content__wrapper {
   display: flex;
   flex-wrap: nowrap;
+  width: 100%;
+}
+
+.content__wrapper-content-sidebar {
+  width: 100%;
 }

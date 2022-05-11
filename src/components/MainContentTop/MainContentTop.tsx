@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, {FC} from 'react'
 import './MainContentTop.scss'
 import BurgerMenu from "../BurgerMenu/BurgerMenu"
 import SortIcon from "../svg/SortIcon"
@@ -10,7 +10,7 @@ interface TMainContentTopProps {
     isShowSideBar: boolean
 }
 
-const MainContentTop: FC<TMainContentTopProps> = ({ openBurgerMenu, isShowSideBar }) => {
+const MainContentTop: FC<TMainContentTopProps> = ({openBurgerMenu, isShowSideBar}) => {
 
     return (
         <div className="content__header">
@@ -18,7 +18,7 @@ const MainContentTop: FC<TMainContentTopProps> = ({ openBurgerMenu, isShowSideBa
                 <div className="content__left-menu">
                     {
                         !isShowSideBar
-                            ? <BurgerMenu openBurgerMenu={ openBurgerMenu }/>
+                            ? <BurgerMenu openBurgerMenu={openBurgerMenu}/>
                             : null
                     }
                     <p className="content__left-my-day">Мой день</p>
@@ -26,14 +26,14 @@ const MainContentTop: FC<TMainContentTopProps> = ({ openBurgerMenu, isShowSideBa
                 </div>
 
                 <div className="content__right-menu">
-                    <ContentBarIcon children={ <SortIcon/> } title={ 'Сортировка' }/>
-                    <ContentBarIcon children={ <LightIcon/> } title={ 'Предложения' }/>
+                    <ContentBarIcon children={<SortIcon/>} title={'Сортировка'}/>
+                    <ContentBarIcon children={<LightIcon/>} title={'Предложения'}/>
                 </div>
             </div>
-            <span className="content__left-current-date">среда, 4 мая (дата)</span>
+            <span className={!isShowSideBar ? 'content__left-current-date' : 'content__left-current-date-subline'}>среда, 4 мая (дата)</span>
         </div>
     )
 }
 
-export type { TMainContentTopProps }
+export type {TMainContentTopProps}
 export default MainContentTop
