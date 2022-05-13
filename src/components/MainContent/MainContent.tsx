@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react'
 import './MainContent.scss'
-import MainContentTop from '../MainContentTop'
 import SideBar from '../SideBar/SideBar'
-import TasksContent from '../TasksContent/TasksContent'
+import { Route, Switch } from "react-router-dom"
+import MainContentWrapper from "../MainContentWrapper/MainContentWrapper"
 
 interface TMainContentProps {
 }
@@ -21,8 +21,14 @@ const MainContent: FC = () => {
                     ? <SideBar openBurgerMenu={ openBurgerMenu }/>
                     : null }
                 <div className="content__wrapper-content-sidebar">
-                    <MainContentTop openBurgerMenu={ openBurgerMenu } isShowSideBar={ isShowSideBar }/>
-                    <TasksContent/>
+
+                    <Switch>
+                        <Route exact path="/myday"
+                               component={ () => <MainContentWrapper openBurgerMenu={ openBurgerMenu } isShowSideBar={ isShowSideBar } title={'Мой день'}/> }/>
+
+                        <Route path="/important"
+                               component={ () => <MainContentWrapper openBurgerMenu={ openBurgerMenu } isShowSideBar={ isShowSideBar } title={'Важно'}/>}/>
+                    </Switch>
                 </div>
             </div>
         </div>

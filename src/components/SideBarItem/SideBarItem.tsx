@@ -13,6 +13,7 @@ interface TSideBarItemProps {
 const SideBarItem: FC<TSideBarItemProps> = ({ icon, title, route }) => {
     return (
         <NavLink to={ route }
+
                  exact={ true }
                  className="side__bar-item-link"
                  activeClassName="side__bar-item-link-active">

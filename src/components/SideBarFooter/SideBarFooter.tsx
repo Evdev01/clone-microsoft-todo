@@ -9,11 +9,11 @@ import DoneIcon from '../svg/DoneIcon'
 const SideBarFooter: FC = () => {
     return (
         <div className="side__bar-footer">
-            <EmailIcon/>
-            <CalendarIcon/>
-            <PeopleIcon/>
-            <AttachIcon/>
-            <DoneIcon/>
+            <div className='side__bar-footer-item'><EmailIcon/></div>
+            <div className='side__bar-footer-item'><CalendarIcon/></div>
+            <div className='side__bar-footer-item'><PeopleIcon/></div>
+            <div className='side__bar-footer-item'><AttachIcon/></div>
+            <div className='side__bar-footer-item'><DoneIcon/></div>
         </div>
     )
 }
