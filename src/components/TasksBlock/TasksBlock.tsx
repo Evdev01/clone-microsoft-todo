@@ -4,6 +4,7 @@ import TaskItem from "../TaskItem/TaskItem"
 import TasksBlockCollapsed from "../TasksBlockCollapsed/TasksBlockCollapsed"
 
 const TasksBlock: FC = () => {
+
     return (
         <div className="tasks__block">
             <div className="tasks__block-wrapper">

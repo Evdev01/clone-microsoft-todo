@@ -12,7 +12,7 @@ interface TMainContentWrapperProps {
 const MainContentWrapper: FC<TMainContentWrapperProps> = ({ openBurgerMenu, isShowSideBar, title }) => {
 
     return (
-        <div>
+        <div className='main__content-wrapper-wrap'>
             <MainContentTop openBurgerMenu={ openBurgerMenu } isShowSideBar={ isShowSideBar } title={ title }/>
             <TasksContent/>
         </div>

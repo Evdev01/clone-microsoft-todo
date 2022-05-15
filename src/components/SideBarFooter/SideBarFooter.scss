@@ -4,7 +4,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 
   & .side__bar-footer-item {
     width: 50px;

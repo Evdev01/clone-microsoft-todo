@@ -1,5 +1,3 @@
-import cards from './card'
+import sideBar from './side-bar'
 
-export default {
-    cards
-}
+export default { sideBar }

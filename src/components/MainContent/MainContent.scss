@@ -2,14 +2,17 @@
   flex-direction: column;
   display: flex;
   height: 100vh;
+  margin-top: 50px;
 }
 
 .content__wrapper {
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
+  height: 100%;
 }
 
 .content__wrapper-content-sidebar {
   width: 100%;
+  overflow: hidden;
 }

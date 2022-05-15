@@ -1,0 +1,34 @@
+@import './src/assets/scss/utils/vars';
+
+.task__info-block-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  min-height: 52px;
+
+  &:hover {
+    background-color: #edebe9;
+  }
+
+  &-icon {
+    color: $gray-color;
+    margin: 0 15px;
+  }
+
+  &:nth-child(4) {
+    & svg {
+      margin: 10px 0 0 6px;
+    }
+  }
+
+  &-title {
+    font-size: 13px;
+    color: $gray-color;
+
+    &.blue {
+      color: $header-color;
+    }
+  }
+}
