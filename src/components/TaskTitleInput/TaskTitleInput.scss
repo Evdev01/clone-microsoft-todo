@@ -1,0 +1,72 @@
+@import './src/assets/scss/utils/vars';
+
+.task__info-block-header {
+  flex-direction: column;
+  background-color: #fff;
+
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 0 4px;
+
+    & svg {
+      color: $gray-color;
+      font-size: 14px;
+      font-weight: 600;
+
+      &:hover {
+        color: #323130;
+        cursor: pointer;
+        transition: all linear .1s;
+      }
+    }
+
+    .input__task_edit {
+      padding: 4px 0 4px 5px;
+      border-radius: 2px;
+      border: 1px solid transparent;
+
+      &:hover {
+        background-color: #ddd;
+        border-radius: 2px;
+      }
+
+      &.active {
+        border-radius: 2px;
+        border: 1px solid #323130;
+        background-color: #ffffff;
+      }
+    }
+  }
+
+}
+
+.task__info-block-header-info {
+  display: flex;
+  align-items: center;
+}
+
+.task__item-wrapper {
+  height: 25px;
+  padding: 3px 0 3px 5px;
+
+  &:hover {
+    background-color: #edebe9;
+  }
+}
+
+.add__note-task {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background-color: #fff;
+
+
+  & .task__time-update {
+    font-size: 12px;
+    color: $gray-color;
+    margin: 20px 0 12px 10px;
+    text-align: left;
+  }
+}

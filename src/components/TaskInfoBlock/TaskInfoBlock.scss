@@ -1,23 +1,11 @@
+@import './src/assets/scss/utils/vars';
+
 .task__info-block {
   background-color: #F3F2F1;
-  width: 30%;
+  width: 27%;
+  position: relative;
 }
 
 .task__info-block-wrapper {
   padding: 6px 10px 0 10px;
-}
-
-.task__info-block-header {
-  flex-direction: column;
-  background-color: #fff;
-
-  &-wrapper {
-    padding-top: 15px;
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-.task__info-block-header-info {
-  display: flex;
 }

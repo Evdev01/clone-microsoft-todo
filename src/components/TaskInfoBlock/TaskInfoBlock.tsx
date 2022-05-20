@@ -2,14 +2,15 @@ import React, { FC, useState } from 'react'
 import './TaskInfoBlock.scss'
 import TaskInfoBlockItem from "../TaskInfoBlockItem/TaskInfoBlockItem"
 import SunnyIcon from "../svg/SunnyIcon"
-import ChevronDown from "../svg/ChevronDown"
-import IconStar from "../svg/IconStar"
 import NotificationIcon from "../svg/NotificationIcon"
 import CalendarIcon from "../svg/CalendarIcon"
 import RecurringIcon from "../svg/RecurringIcon"
 import CategoryIcon from "../svg/CategoryIcon"
 import AddIcon from "../svg/AddIcon"
 import AttachIcon from "../svg/AttachIcon"
+import TaskTitleInput from "../TaskTitleInput/TaskTitleInput"
+import TaskAddNoteArea from "../TaskAddNoteArea/TaskAddNoteArea"
+import TaskInfoBlockFooter from "../TaskInfoBlockFooter/TaskInfoBlockFooter"
 
 const TaskInfoBlock: FC = () => {
 
@@ -21,17 +22,8 @@ const TaskInfoBlock: FC = () => {
         <div className="task__info-block">
             <div className="task__info-block-wrapper">
                 <div className="task__info-block-header">
-                    <div className="task__info-block-header-wrapper">
-                        <div className="task__info-block-header-info">
-                        <span className="add__task-icon-blue" onMouseEnter={ toggleShowChevron }
-                              onMouseLeave={ toggleShowChevron }>
-                                            { isShowChevron ? <ChevronDown/> : null }
-                        </span>
-                            <p>Task name</p>
-                        </div>
-                        <IconStar/>
-                    </div>
-                    <TaskInfoBlockItem icon={ <AddIcon/> } title={ 'Добавить шаг' } titleBlue/>
+                    <TaskTitleInput isShowChevron={ isShowChevron } toggleShowChevron={ toggleShowChevron }/>
+                    <TaskInfoBlockItem icon={ <AddIcon/> } title={ 'Добавить шаг' } titleBlue unHover/>
                 </div>
                 {/*<span className="add__task-icon"/>*/ }
 
@@ -46,9 +38,13 @@ const TaskInfoBlock: FC = () => {
                 </div>
                 <TaskInfoBlockItem icon={ <CategoryIcon/> } title={ 'Выберите категорию' }/>
                 <TaskInfoBlockItem icon={ <AttachIcon/> } title={ 'Добавить файл' }/>
-                <TaskInfoBlockItem title={ 'Добавить заметку' }/>
+                <div className="add__note-task">
+                     <TaskAddNoteArea/>
+                    <div className="task__time-update">Обновлено: несколько секунд назад</div>
+                </div>
 
             </div>
+            <TaskInfoBlockFooter/>
         </div>
     )
 }

@@ -8,8 +8,10 @@
   border-radius: 2px;
   min-height: 52px;
 
-  &:hover {
-    background-color: #edebe9;
+  &.hover {
+    &:hover {
+      background-color: #edebe9;
+    }
   }
 
   &-icon {

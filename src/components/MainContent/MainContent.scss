@@ -2,7 +2,7 @@
   flex-direction: column;
   display: flex;
   height: 100vh;
-  margin-top: 50px;
+  padding-top: 50px;
 }
 
 .content__wrapper {
@@ -13,6 +13,7 @@
 }
 
 .content__wrapper-content-sidebar {
+  margin-top: 20px;
   width: 100%;
   overflow: hidden;
 }
