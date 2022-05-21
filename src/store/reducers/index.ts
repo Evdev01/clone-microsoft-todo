@@ -1,3 +1,6 @@
 import sideBar from './side-bar'
+import tasks from './tasks'
 
-export default { sideBar }
+export default { sideBar, tasks }
+
+

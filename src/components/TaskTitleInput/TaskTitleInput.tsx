@@ -1,7 +1,10 @@
-import React, { FC, FocusEventHandler, useState } from 'react'
+import React, { FC, FocusEventHandler, useEffect, useState } from 'react'
 import './TaskTitleInput.scss'
 import ChevronDown from "../svg/ChevronDown"
 import IconStar from "../svg/IconStar"
+import { useTypedSelector } from "../../hooks/useTypedSelector"
+import { useDispatch } from "react-redux"
+import { changeInfoTask } from "../../store/reducers/tasks/action-creators"
 
 interface TTaskTitleInput {
     isShowChevron: boolean
@@ -10,8 +13,26 @@ interface TTaskTitleInput {
 
 const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron }) => {
 
+    const dispatch = useDispatch()
+    const [taskTitle, setTaskTitle] = useState('')
+    const { taskInfo }: any = useTypedSelector(state => state.tasks)
+
+    useEffect(() => {
+        setTaskTitle(taskInfo[0].title)
+    },[taskInfo])
+
+
     const [isActiveInput, setIsActiveInput] = useState(false)
-    const toggleFocusInput = (event: FocusEventHandler<HTMLInputElement> | any) => setIsActiveInput(!isActiveInput)
+    const onFocusInput = (event: FocusEventHandler<HTMLInputElement> | any) => {
+        setIsActiveInput(!isActiveInput)
+    }
+
+    const onBlurInput = (event: FocusEventHandler<HTMLInputElement> | any) => {
+        setIsActiveInput(!isActiveInput)
+        let taskItem = {...taskInfo[0]}
+        taskItem.title = taskTitle
+            dispatch(changeInfoTask(taskItem))
+    }
 
 
     return (
@@ -22,10 +43,12 @@ const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron 
                               onMouseLeave={ toggleShowChevron }>
                                             { isShowChevron ? <ChevronDown/> : null }
                         </span>
-                    <input onFocus={ toggleFocusInput }
-                           onBlur={ toggleFocusInput }
+                    <input onFocus={ onFocusInput }
+                           value={taskTitle}
+                           onChange={(e) => setTaskTitle(e.target.value)}
+                           onBlur={ onBlurInput }
                            className={ !isActiveInput ? 'input__task_edit' : 'input__task_edit active' } type="text"
-                           placeholder="placeholder"/>
+                           placeholder={taskTitle}/>
                 </div>
             </div>
             <IconStar/>

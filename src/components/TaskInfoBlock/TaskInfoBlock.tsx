@@ -16,6 +16,7 @@ const TaskInfoBlock: FC = () => {
 
     const [isShowChevron, setIsShowChevron] = useState<boolean>(false)
 
+
     const toggleShowChevron = () => setIsShowChevron(!isShowChevron)
 
     return (

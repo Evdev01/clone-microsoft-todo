@@ -16,6 +16,10 @@
     color: #A19F9D;
     font-weight: 600;
     cursor: pointer;
+
+    &.active {
+      color: $header-color;
+    }
   }
 }
 

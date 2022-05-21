@@ -1,15 +1,18 @@
 import React, { FC } from 'react'
 import './TasksBlock.scss'
-import TaskItem from "../TaskItem/TaskItem"
+import TaskItem from "../TaskItem"
 import TasksBlockCollapsed from "../TasksBlockCollapsed/TasksBlockCollapsed"
+import { useTypedSelector } from "../../hooks/useTypedSelector"
+import { Task } from "../../types/task"
 
 const TasksBlock: FC = () => {
+
+    const { all_tasks }: any = useTypedSelector(state => state.tasks)
 
     return (
         <div className="tasks__block">
             <div className="tasks__block-wrapper">
-                <TaskItem title={ 'Купить хлеб' } category={ 'Временно отложенные задачи' }/>
-                <TaskItem title={ 'Купить молоко' } category={ 'Покупки' }/>
+                { all_tasks.map((task: Task) => <TaskItem key={ task.id } task={ task }/>) }
             </div>
             <TasksBlockCollapsed/>
         </div>

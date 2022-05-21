@@ -13,6 +13,7 @@ const MainContent: FC = () => {
 
 
     const { title } = useTypedSelector(state => state.sideBar)
+    const { isShowBlock } = useTypedSelector(state => state.tasks)
     const [isShowSideBar, setIsShowSideBar] = useState<boolean>(false)
 
     const openBurgerMenu = () => setIsShowSideBar(!isShowSideBar)
@@ -40,7 +41,7 @@ const MainContent: FC = () => {
                         <Redirect to="/"/>
                     </Switch>
                 </div>
-                <TaskInfoBlock/>
+                { isShowBlock ? <TaskInfoBlock/> : null }
             </div>
         </div>
     )
