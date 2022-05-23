@@ -1,0 +1,46 @@
+.microsoft__programs {
+  width: 50%;
+  display: flex;
+
+  &:last-child {
+    margin-bottom: 20px;
+  }
+
+  &-item {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    overflow: hidden;
+
+
+    & p {
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    & div {
+      width: 26px;
+      height: 26px;
+      margin-right: 10px;
+
+
+      & img {
+        width: 26px;
+        height: 26px;
+      }
+    }
+  }
+
+  &:hover {
+    border-color: #f4f4f4;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.10);
+    transition: border-color .167s linear,box-shadow .167s linear;
+    transition-duration: 0.167s, 0.167s;
+    transition-timing-function: linear, linear;
+    transition-delay: 0s, 0s;
+  }
+}

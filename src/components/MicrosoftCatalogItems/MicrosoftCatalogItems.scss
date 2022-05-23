@@ -1,0 +1,16 @@
+.microsoft__catalog-wrapper-items {
+  flex-wrap: wrap;
+  display: flex;
+
+  &-items {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  & h2 {
+    margin: 30px 0 20px 10px;
+    color: #252423;
+    font-weight: 700;
+    font-size: 25px;
+  }
+}

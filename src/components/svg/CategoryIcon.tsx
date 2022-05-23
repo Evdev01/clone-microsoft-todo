@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
 
+
+// todo check later
 const CategoryIcon: FC = () => {
     return <svg viewBox="0 0 24 24" width="24" height="24">
         <path

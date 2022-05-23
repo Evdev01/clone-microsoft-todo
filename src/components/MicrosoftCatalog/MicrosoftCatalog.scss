@@ -1,0 +1,83 @@
+@import './src/assets/scss/utils/vars';
+
+.microsoft__catalog {
+  height: 100vh;
+  background-color: #fff;
+  width: 20%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: rgba(0, 0, 0 , 0.22) 0px 25.6px 57.6px 0px, rgba(0, 0, 0 , 0.18) 0px 4.8px 14.4px 0px;
+
+
+  &-wrapper {
+    flex-direction: column;
+    padding: 1px 13px 15px 9.5px;
+
+    & h2 {
+      margin: 25px 0 15px 10px;
+      color: #252423;
+      font-weight: 700;
+      font-size: 22px;
+    }
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & svg {
+      width: 24px;
+      height: 24px;
+      color: $gray-color;
+    }
+  }
+
+  &-menu-icon {
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #EDEBE9;
+      -webkit-transition: background-color .15s linear;
+      transition: background-color .15s linear;
+    }
+  }
+
+  &-office {
+    display: flex;
+    align-items: center;
+
+    & span {
+      color: #005A9E;
+      margin-right: 10px;
+      font-weight: 600;
+      font-size: 13px;
+
+      &:hover {
+        border-bottom: 1px solid;
+        padding-bottom: 1px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-arrow {
+    & svg {
+      color: #005A9E;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+  }
+
+}
+
+
+
