@@ -1,13 +1,26 @@
 @import './src/assets/scss/utils/vars';
 
 .nav__link {
-  height: 50px;
+  height: 48px;
   width: 50px;
   margin-left: 35px;
   color: $white-color;
   align-items: center;
   justify-content: center;
   display: flex;
+
+  &-active {
+    background-color: #F3F2F1;
+
+    & svg {
+      color: $gray-color;
+    }
+
+    & .profile__initials {
+      color: $gray-color;
+      border: 0.09em solid $gray-color;
+    }
+  }
 
   &:hover {
     cursor: pointer;

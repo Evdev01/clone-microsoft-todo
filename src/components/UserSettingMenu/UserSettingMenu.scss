@@ -1,0 +1,76 @@
+@import './src/assets/scss/utils/vars';
+
+.user__settings {
+  background-color: #FAF9F8;
+  width: 35%;
+  border-color: #EDEBE9;
+  border-top-color: rgb(237, 235, 233);
+  border-right-color: rgb(237, 235, 233);
+  border-bottom-color: rgb(237, 235, 233);
+  border-left-color: rgb(237, 235, 233);
+  border-style: solid;
+  overflow: hidden;
+  border-right: 0;
+}
+
+.user__settings-wrapper {
+  padding: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.user__settings-wrapper::-webkit-scrollbar {
+  background-color: rgba(234, 233, 233, 0.7);
+  width: 7px;
+}
+
+.user__settings-wrapper::-webkit-scrollbar-thumb {
+  background-color: #b0afac;
+  border-radius: 20px;
+}
+
+.user__settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+
+  & h3 {
+    color: $black-color;
+    font-weight: 700;
+    font-size: 18px;
+
+  }
+
+  & svg {
+    height: 24px;
+    width: 24px;
+    color: $gray-color;
+  }
+
+  & div {
+    cursor: pointer;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

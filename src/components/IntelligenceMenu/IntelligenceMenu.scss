@@ -1,0 +1,38 @@
+@import './src/assets/scss/utils/vars';
+
+.intelligence-menu {
+
+  &-wrapper {
+    padding: 15px;
+  }
+
+  & h4 {
+    color: $black-color;
+    font-weight: 700;
+    margin: 35px 0 15px 0;
+    font-size: 17px;
+  }
+
+}
+
+.intelligence__menu-rights {
+  & img {
+    height: 80px;
+    width: 80px;
+  }
+
+  & p {
+    font-size: 14px;
+    margin-bottom: 5px;
+
+    & span {
+      font-weight: 700;
+    }
+  }
+}
+
+.intelligence__menu-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 15px 0;
+}

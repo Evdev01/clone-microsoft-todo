@@ -1,0 +1,34 @@
+@import './src/assets/scss/utils/vars';
+
+.intelligence__menu-item {
+  margin-bottom: 10px;
+}
+
+.intelligence__item {
+  color: #2564cf;
+  font-size: 14px;
+
+  &-bold {
+    font-weight: 700;
+    color: #2564cf;
+
+  }
+
+  & span {
+    font-weight: 700;
+    color: $black-color;
+    margin-left: 5px;
+  }
+}
+
+.intelligence__menu-item-wrapper {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.intelligence__menu-item-icon-svg {
+  margin-right: 15px;
+  height: 24px;
+  width: 24px;
+}

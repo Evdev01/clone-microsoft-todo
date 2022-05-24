@@ -1,0 +1,12 @@
+@import './src/assets/scss/utils/vars';
+
+.user__setting-menu {
+  flex-direction: column;
+
+  & h4 {
+    color: $black-color;
+    font-weight: 700;
+    margin: 35px 0 15px 0;
+    font-size: 17px;
+  }
+}

@@ -5,6 +5,7 @@ import { Redirect, Route, Switch } from "react-router-dom"
 import MainContentWrapper from "../MainContentWrapper/MainContentWrapper"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 import TaskInfoBlock from "../TaskInfoBlock/TaskInfoBlock"
+import UserSettingMenu from "../UserSettingMenu/UserSettingMenu"
 
 interface TMainContentProps {
 }
@@ -14,6 +15,8 @@ const MainContent: FC = () => {
 
     const { title } = useTypedSelector(state => state.sideBar)
     const { isShowBlock } = useTypedSelector(state => state.tasks)
+    const { isShowSidebarMenu } = useTypedSelector(state => state.sideBar)
+
     const [isShowSideBar, setIsShowSideBar] = useState<boolean>(false)
 
     const openBurgerMenu = () => setIsShowSideBar(!isShowSideBar)
@@ -42,6 +45,7 @@ const MainContent: FC = () => {
                     </Switch>
                 </div>
                 { isShowBlock ? <TaskInfoBlock/> : null }
+                { isShowSidebarMenu === 'openUserSettings' ? <UserSettingMenu/> : null }
             </div>
         </div>
     )
