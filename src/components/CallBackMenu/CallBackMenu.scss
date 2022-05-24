@@ -1,0 +1,68 @@
+@import './src/assets/scss/utils/vars';
+
+.call__back-menu {
+  background-color: #FAF9F8;
+  width: 35%;
+  border-color: #EDEBE9;
+  border-top-color: rgb(237, 235, 233);
+  border-right-color: rgb(237, 235, 233);
+  border-bottom-color: rgb(237, 235, 233);
+  border-left-color: rgb(237, 235, 233);
+  border-style: solid;
+  overflow: hidden;
+  border-right: 0;
+
+  &-wrapper {
+    padding: 15px;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & h4 {
+      color: $black-color;
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-size: 17px;
+    }
+
+    & svg {
+      height: 24px;
+      width: 24px;
+      color: $gray-color;
+    }
+  }
+
+  &-sync-block {
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+
+    & p {
+      color: $gray-color;
+      font-weight: 700;
+    }
+  }
+
+  &-close {
+    cursor: pointer;
+  }
+}
+
+.call__back-menu-sync-button {
+  display: flex;
+  align-items: center;
+  background-color: $header-color;
+  color: #fff;
+  font-size: 13px;
+  padding: 10px 13px;
+  margin-right: 10px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #015da8;
+    transition: background-color linear .1s;
+  }
+}

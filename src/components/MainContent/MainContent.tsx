@@ -6,6 +6,8 @@ import MainContentWrapper from "../MainContentWrapper/MainContentWrapper"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 import TaskInfoBlock from "../TaskInfoBlock/TaskInfoBlock"
 import UserSettingMenu from "../UserSettingMenu/UserSettingMenu"
+import CallBackMenu from "../CallBackMenu/CallBackMenu"
+import NewsPanelMenu from "../NewsPanelMenu/NewsPanelMenu"
 
 interface TMainContentProps {
 }
@@ -46,6 +48,8 @@ const MainContent: FC = () => {
                 </div>
                 { isShowBlock ? <TaskInfoBlock/> : null }
                 { isShowSidebarMenu === 'openUserSettings' ? <UserSettingMenu/> : null }
+                { isShowSidebarMenu === 'openFeedBack' ? <CallBackMenu/> : null }
+                { isShowSidebarMenu === 'newPossibilities' ? <NewsPanelMenu/> : null }
             </div>
         </div>
     )

@@ -1,0 +1,5 @@
+export const samsungContact = 'https://techcommunity.microsoft.com/t5/microsoft-to-do-blog/remember-it-all-with-microsoft-to-do-and-samsung-reminder/ba-p/1925893'
+export const classification = 'https://support.microsoft.com/en-us/office/add-steps-importance-notes-tags-and-categories-to-your-tasks-bf9fdff6-f85f-4e03-9534-c587eb32515c#ID0EFBBAAA=Web'
+export const apple = 'https://apps.apple.com/app/id1212616790?mt=8'
+export const microsoft = 'https://go.microsoft.com/fwlink/?linkid=2135655'
+export const android = 'https://go.microsoft.com/fwlink/?linkid=2135656'

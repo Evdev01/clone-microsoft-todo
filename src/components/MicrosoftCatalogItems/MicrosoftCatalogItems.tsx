@@ -12,20 +12,33 @@ import ToDoIcon from "../svg/MicrosoftCatalog/ToDoIcon/ToDoIcon"
 import FamilySafetyIcon from "../svg/MicrosoftCatalog/FamilySafetyIcon/FamilySafetyIcon"
 import MicrosoftCalendarIcon from "../svg/MicrosoftCatalog/MicrosoftCalendarIcon/MicrosoftCalendarIcon"
 import SkypeIcon from "../svg/MicrosoftCatalog/SkypeIcon/SkypeIcon"
+import {
+    outLook,
+    oneDrive,
+    teams,
+    word,
+    exel,
+    powerPoint,
+    oneNote,
+    toDo,
+    familySafety,
+    calendar,
+    skype
+} from './MicrosoftCatalogLinks'
 
-const MicrosoftCatalogItems:FC = () => {
+const MicrosoftCatalogItems: FC = () => {
     return <div className="microsoft__catalog-wrapper-items">
-        <MicrosoftItem icon={<OutLookIcon/>} text={'Outlook'}/>
-        <MicrosoftItem icon={<OneDriveIcon/>} text={'OneDrive'}/>
-        <MicrosoftItem icon={<Teams/>} text={'Teams'}/>
-        <MicrosoftItem icon={<WordIcon/>} text={'Word'}/>
-        <MicrosoftItem icon={<ExelIcon/>} text={'Exel'}/>
-        <MicrosoftItem icon={<PowerPointIcon/>} text={'PowerPoint'}/>
-        <MicrosoftItem icon={<OneNoteIcon/>} text={'OneNote'}/>
-        <MicrosoftItem icon={<ToDoIcon/>} text={'To do'}/>
-        <MicrosoftItem icon={<FamilySafetyIcon/>} text={'FamilySafetyIcon'}/>
-        <MicrosoftItem icon={<MicrosoftCalendarIcon/>} text={'Calendar'}/>
-        <MicrosoftItem icon={<SkypeIcon/>} text={'Skype'}/>
+        <MicrosoftItem icon={ <OutLookIcon/> } text={ 'Outlook' } link={ outLook }/>
+        <MicrosoftItem icon={ <OneDriveIcon/> } text={ 'OneDrive' } link={ oneDrive }/>
+        <MicrosoftItem icon={ <Teams/> } text={ 'Teams' } link={ teams }/>
+        <MicrosoftItem icon={ <WordIcon/> } text={ 'Word' } link={ word }/>
+        <MicrosoftItem icon={ <ExelIcon/> } text={ 'Exel' } link={ exel }/>
+        <MicrosoftItem icon={ <PowerPointIcon/> } text={ 'PowerPoint' } link={ powerPoint }/>
+        <MicrosoftItem icon={ <OneNoteIcon/> } text={ 'OneNote' } link={ oneNote }/>
+        <MicrosoftItem icon={ <ToDoIcon/> } text={ 'To do' } link={ toDo }/>
+        <MicrosoftItem icon={ <FamilySafetyIcon/> } text={ 'FamilySafetyIcon' } link={ familySafety }/>
+        <MicrosoftItem icon={ <MicrosoftCalendarIcon/> } text={ 'Calendar' } link={ calendar }/>
+        <MicrosoftItem icon={ <SkypeIcon/> } text={ 'Skype' } link={ skype }/>
     </div>
 }
 
