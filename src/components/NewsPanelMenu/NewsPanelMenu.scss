@@ -3,7 +3,7 @@
 
 .news__panel {
   background-color: #FAF9F8;
-  width: 35%;
+  width: 40%;
   border-color: #EDEBE9;
   border-top-color: rgb(237, 235, 233);
   border-right-color: rgb(237, 235, 233);
@@ -71,6 +71,19 @@
     justify-content: space-between;
     border: 1px solid #eaeaea;
     padding: 3px 14px;
+
+    & p {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    & a {
+      margin-right: 5px;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
   }
 }
 
