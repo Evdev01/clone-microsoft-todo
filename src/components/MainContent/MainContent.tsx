@@ -8,6 +8,7 @@ import TaskInfoBlock from "../TaskInfoBlock/TaskInfoBlock"
 import UserSettingMenu from "../UserSettingMenu/UserSettingMenu"
 import CallBackMenu from "../CallBackMenu/CallBackMenu"
 import NewsPanelMenu from "../NewsPanelMenu/NewsPanelMenu"
+import ProfilePanelMenu from "../ProfilePanelMenu/ProfilePanelMenu"
 
 interface TMainContentProps {
 }
@@ -50,6 +51,7 @@ const MainContent: FC = () => {
                 { isShowSidebarMenu === 'openUserSettings' ? <UserSettingMenu/> : null }
                 { isShowSidebarMenu === 'openFeedBack' ? <CallBackMenu/> : null }
                 { isShowSidebarMenu === 'newPossibilities' ? <NewsPanelMenu/> : null }
+                { isShowSidebarMenu === 'openProfile' ? <ProfilePanelMenu/> : null }
             </div>
         </div>
     )
