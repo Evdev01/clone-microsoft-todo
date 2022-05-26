@@ -24,6 +24,22 @@ const MainContent: FC = () => {
 
     const openBurgerMenu = () => setIsShowSideBar(!isShowSideBar)
 
+    const renderComponent = () => {
+        let renderComponent = null
+
+        if (isShowSidebarMenu === 'openUserSettings') {
+            renderComponent = <UserSettingMenu/>
+        } else if (isShowSidebarMenu === 'openFeedBack') {
+            renderComponent = <CallBackMenu/>
+        } else if (isShowSidebarMenu === 'newPossibilities') {
+            renderComponent = <NewsPanelMenu/>
+        } else if (isShowSidebarMenu === 'openProfile') {
+            renderComponent = <ProfilePanelMenu/>
+        }
+
+        return renderComponent
+    }
+
 
     return (
         <div className="main__content-wrapper">
@@ -48,10 +64,7 @@ const MainContent: FC = () => {
                     </Switch>
                 </div>
                 { isShowBlock ? <TaskInfoBlock/> : null }
-                { isShowSidebarMenu === 'openUserSettings' ? <UserSettingMenu/> : null }
-                { isShowSidebarMenu === 'openFeedBack' ? <CallBackMenu/> : null }
-                { isShowSidebarMenu === 'newPossibilities' ? <NewsPanelMenu/> : null }
-                { isShowSidebarMenu === 'openProfile' ? <ProfilePanelMenu/> : null }
+                { renderComponent() }
             </div>
         </div>
     )
