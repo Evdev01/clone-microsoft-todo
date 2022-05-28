@@ -1,0 +1,50 @@
+@import './src/assets/scss/utils/vars';
+
+.contextMenu__inner {
+  position: absolute;
+  left: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 600px;
+  width: 80%;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, .13) 0px 3.2px 7.2px 0px, rgba(0, 0, 0, .11) 0px 0.6px 1.8px 0px;
+
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #A19F9D;
+    border-radius: 20px;
+  }
+
+  &-item {
+    padding: 0 10px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & svg {
+      height: 22px;
+      width: 22px;
+      margin-right: 5px;
+    }
+
+    & span {
+      height: 1em;
+      width: 1em;
+      border: 0.1em solid $gray-color;
+    }
+
+    &:hover {
+      background-color: #edebe9;
+      cursor: pointer;
+    }
+  }
+
+}

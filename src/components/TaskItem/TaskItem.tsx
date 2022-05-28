@@ -5,6 +5,9 @@ import ChevronDown from "../svg/ChevronDown"
 import { useDispatch } from "react-redux"
 import { getInfoCurrentTask, openTaskInfoAbout } from "../../store/reducers/tasks/action-creators"
 import { Task } from "../../types/task"
+import CustomContextMenu from "../CustomContextmenu/CustomContextMenu"
+import contextMenuItems from './ContextMenuItems'
+import contextMenuInnerItems from './ContextMenuItems'
 
 interface TTaskItemProps {
     task: Task
@@ -23,11 +26,22 @@ const TaskItem: FC<TTaskItemProps> = ({ task }) => {
         dispatch(openTaskInfoAbout(true))
         dispatch(getInfoCurrentTask(task.id))
     }
+
+
     const toggleShowChevron = () => setIsShowChevron(!isShowChevron)
 
 
     return (
-        <div className="task__item" onClick={ () => toggleShowTaskInfo(task) }>
+        <div id='customContextmenuArea1' className="task__item" onClick={ () => toggleShowTaskInfo(task) } >
+                <CustomContextMenu
+                    targetId='customContextmenuArea1'
+                    options={contextMenuItems.contextMenuItems}
+                    innerOptions={contextMenuInnerItems.contextMenuInnerItems}
+                    classes={{
+                        listWrapper: 'customContextmenuArea1ListWrapper',
+                        listItem: 'customContextmenuArea1ListItem'
+                    }}
+                />
             <div className="task__info-wrapper">
 
                 <span className="add__task-icon-blue" onMouseEnter={ toggleShowChevron }

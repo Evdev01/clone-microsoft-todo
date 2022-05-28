@@ -19,13 +19,7 @@
     }
 
     & p {
-      cursor: pointer;
       font-size: 15px;
-
-      &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-      }
     }
 
     &-exit {
@@ -37,6 +31,11 @@
 
       &:hover {
         background-color: rgba(0,0,0,.08);
+        cursor: pointer;
+
+        & p {
+            text-decoration: underline;
+        }
       }
     }
   }
