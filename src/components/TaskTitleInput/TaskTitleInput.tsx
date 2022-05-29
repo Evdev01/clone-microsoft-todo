@@ -17,8 +17,10 @@ const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron 
     const [taskTitle, setTaskTitle] = useState('')
     const { taskInfo }: any = useTypedSelector(state => state.tasks)
 
+    console.log('taskInfo', taskInfo)
+
     useEffect(() => {
-        setTaskTitle(taskInfo[0].title)
+        setTaskTitle(taskInfo.title)
     },[taskInfo])
 
 
@@ -29,7 +31,7 @@ const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron 
 
     const onBlurInput = (event: FocusEventHandler<HTMLInputElement> | any) => {
         setIsActiveInput(!isActiveInput)
-        let taskItem = {...taskInfo[0]}
+        let taskItem = {...taskInfo}
         taskItem.title = taskTitle
             dispatch(changeInfoTask(taskItem))
     }

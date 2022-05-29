@@ -22,9 +22,13 @@ const TaskItem: FC<TTaskItemProps> = ({ task }) => {
     const dispatch = useDispatch()
     const [isShowChevron, setIsShowChevron] = useState<boolean>(false)
 
-    const toggleShowTaskInfo = (task: Task) => {
-        dispatch(openTaskInfoAbout(true))
-        dispatch(getInfoCurrentTask(task.id))
+
+    const toggleShowTaskInfo = (e: any) => {
+        if (e.target.id) {
+            dispatch(openTaskInfoAbout(true))
+            dispatch(getInfoCurrentTask(task.id))
+        }
+
     }
 
 
@@ -32,9 +36,10 @@ const TaskItem: FC<TTaskItemProps> = ({ task }) => {
 
 
     return (
-        <div id='customContextmenuArea1' className="task__item" onClick={ () => toggleShowTaskInfo(task) } >
+        <div id={`customContextmenuArea${task.id}`} className="task__item" onClick={ (e) => toggleShowTaskInfo(e) } >
                 <CustomContextMenu
-                    targetId='customContextmenuArea1'
+                    taskId={task.id}
+                    targetId={`customContextmenuArea${task.id}`}
                     options={contextMenuItems.contextMenuItems}
                     innerOptions={contextMenuInnerItems.contextMenuInnerItems}
                     classes={{

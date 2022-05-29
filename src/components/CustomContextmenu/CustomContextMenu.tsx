@@ -2,13 +2,20 @@ import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import './CustomContextMenu.scss';
 import ContextMenuItem from "../ContextMenuItem.tsx/ContextMenuItem"
 import ContextMenuInnerItem from "../ContextMenuInnerItem/ContextMenuInnerItem"
+import { useDispatch } from "react-redux"
+import { deleteTaskById } from "../../store/reducers/tasks/action-creators"
 
 // @ts-ignore
-const MyCustomContextMenu= ({ targetId, options, classes, innerOptions }) => {
-    console.log(innerOptions)
+const MyCustomContextMenu= ({ targetId, options, classes, innerOptions, taskId }) => {
     const [contextData, setContextData]= useState({ visible:false, posX: 0, posY: 0});
     const contextRef= useRef(null);
     const [isShowInnerMenu, setIsShowInnerMenu] = useState(false)
+
+    const dispatch = useDispatch()
+
+    const x = (id: number) => {
+        dispatch(deleteTaskById(id))
+    }
 
     useEffect(() => {
         {/*
@@ -70,7 +77,7 @@ const MyCustomContextMenu= ({ targetId, options, classes, innerOptions }) => {
                 <div className={ `optionsList ${ classes?.listWrapper }` }>
                     {/*
  // @ts-ignore */ }
-                    { options.map(option => <ContextMenuItem option={ option } classes={ classes } key={option.id} setIsShowInnerMenu={setIsShowInnerMenu}/>) }
+                    { options.map(option => <ContextMenuItem taskId={taskId} option={ option } classes={ classes } key={option.id} setIsShowInnerMenu={setIsShowInnerMenu}/>) }
                 </div>
 
                 {isShowInnerMenu

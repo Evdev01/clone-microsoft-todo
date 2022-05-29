@@ -13,11 +13,13 @@ const AddTaskPanel: FC = () => {
     const [addTask, setAddTask] = useState<boolean>(false)
     const [isActiveAddTaskButton, setIsActiveAddTaskButton] = useState<boolean>(false)
 
+
     useEffect(() => {
         setIsActiveAddTaskButton(!!newTaskValue ?? false)
     }, [newTaskValue])
 
     const creatTask = () => {
+        console.log('creatTask')
         dispatch(createNewTask({
             id: new Date().getUTCMilliseconds(),
             title: newTaskValue

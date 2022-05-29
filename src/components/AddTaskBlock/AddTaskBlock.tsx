@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import './AddTaskBlock.scss'
-import AddTaskPanel from "../AddTaskPanel/AddTaskPanel"
+import AddTaskPanel from "../AddTaskPanel/index"
 
 const AddTaskBlock: FC = () => {
     return (
