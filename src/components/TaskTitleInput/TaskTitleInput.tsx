@@ -17,7 +17,6 @@ const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron 
     const [taskTitle, setTaskTitle] = useState('')
     const { taskInfo }: any = useTypedSelector(state => state.tasks)
 
-    console.log('taskInfo', taskInfo)
 
     useEffect(() => {
         setTaskTitle(taskInfo.title)

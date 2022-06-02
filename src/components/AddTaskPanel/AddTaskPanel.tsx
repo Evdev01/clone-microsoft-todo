@@ -19,7 +19,6 @@ const AddTaskPanel: FC = () => {
     }, [newTaskValue])
 
     const creatTask = () => {
-        console.log('creatTask')
         dispatch(createNewTask({
             id: new Date().getUTCMilliseconds(),
             title: newTaskValue

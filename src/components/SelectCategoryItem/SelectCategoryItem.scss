@@ -1,0 +1,44 @@
+@import './src/assets/scss/utils/vars';
+
+
+.repeat__task-item {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 10px 15px;
+
+  &:hover {
+    background-color: #F3F2F1;
+    cursor: context-menu;
+  }
+
+  & p {
+    color: #34373d;
+    font-size: 14px;
+  }
+
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 12px;
+  }
+
+  &-info {
+    display: flex;
+    align-items: center;
+  }
+
+  & svg {
+    margin-right: 18px;
+    color: $gray-color;
+    width: 22px;
+    height: 22px;
+  }
+
+  & span {
+    color: #34373d;
+    font-size: 14px;
+  }
+}

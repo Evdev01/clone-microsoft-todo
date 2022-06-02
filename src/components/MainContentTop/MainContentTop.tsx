@@ -1,9 +1,11 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import './MainContentTop.scss'
 import BurgerMenu from "../BurgerMenu/BurgerMenu"
 import SortIcon from "../svg/SortIcon"
 import LightIcon from "../svg/LightIcon"
 import ContentBarIcon from "../ContentBarIcon/ContentBarIcon"
+import SortMenu from "../SortMenu/SortMenu"
+import MenuWrapper from "../MenuWrapper/MenuWrapper"
 
 interface TMainContentTopProps {
     openBurgerMenu: () => void
@@ -13,6 +15,12 @@ interface TMainContentTopProps {
 
 const MainContentTop: FC<TMainContentTopProps> = ({ openBurgerMenu, isShowSideBar, title }) => {
 
+
+    const [isShowSortMenu, setIsShowSortMenu] = useState<boolean>(false)
+
+    const toggleSortMenu = () => {
+        setIsShowSortMenu(!isShowSortMenu)
+    }
 
     return (
         <div className="content__header">
@@ -28,9 +36,13 @@ const MainContentTop: FC<TMainContentTopProps> = ({ openBurgerMenu, isShowSideBa
                 </div>
 
                 <div className="content__right-menu">
-                    <ContentBarIcon children={ <SortIcon/> } title={ 'Сортировка' }/>
+                    <div className='content__right-sort-menu'>
+                        <ContentBarIcon children={ <SortIcon/> } title={ 'Сортировка' } toggleSortMenu={toggleSortMenu}/>
+                        {isShowSortMenu ?  <MenuWrapper headerTitle={'Порядок сортировки'} children={<SortMenu/>}/>  : null}
+                    </div>
                     <ContentBarIcon children={ <LightIcon/> } title={ 'Предложения' }/>
                 </div>
+
             </div>
             <span className={ !isShowSideBar ? 'content__left-current-date' : 'content__left-current-date-subline' }>среда, 4 мая (дата)</span>
         </div>
