@@ -2,7 +2,7 @@
 
 .user__settings {
   background-color: #FAF9F8;
-  width: 35%;
+  width: 100%;
   border-color: #EDEBE9;
   border-top-color: rgb(237, 235, 233);
   border-right-color: rgb(237, 235, 233);
@@ -18,16 +18,6 @@
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
-}
-
-.user__settings-wrapper::-webkit-scrollbar {
-  background-color: rgba(234, 233, 233, 0.7);
-  width: 7px;
-}
-
-.user__settings-wrapper::-webkit-scrollbar-thumb {
-  background-color: #b0afac;
-  border-radius: 20px;
 }
 
 .user__settings-header {
@@ -51,6 +41,16 @@
 
   & div {
     cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: #E1DFDD;
+      transition: background-color linear .1s;
+    }
   }
 }
 

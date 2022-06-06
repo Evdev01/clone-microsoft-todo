@@ -8,7 +8,8 @@ const Main:FC = () => {
     return (
         <div>
             <Header/>
-            <MainContent/>
+            <
+                MainContent/>
         </div>
     )
 }

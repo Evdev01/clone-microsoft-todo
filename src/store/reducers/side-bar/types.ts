@@ -1,10 +1,14 @@
+import { MutableRefObject } from "react"
+
 export type SideBarItem = {
     isShowSidebarMenu: string
     title?: string
+    isShowProfileMenu: boolean
 }
 
 export enum SideBarItemEnum {
     GET_SIDE_BAR_ITEM_TITLE = "GET_SIDE_BAR_ITEM_TITLE",
+    IS_SHOW_PROFILE_MENU = "IS_SHOW_PROFILE_MENU",
     OPEN_SIDEBAR_ITEM = "OPEN_SIDEBAR_ITEM"
 }
 
@@ -18,4 +22,9 @@ export interface OpenUserSetting {
     payload: string
 }
 
-export type SideBarItemAction = GetItemTitle | OpenUserSetting
+export interface IsShowProfileMenu {
+    type: SideBarItemEnum.IS_SHOW_PROFILE_MENU
+    payload: MutableRefObject<any>
+}
+
+export type SideBarItemAction = GetItemTitle | OpenUserSetting | IsShowProfileMenu

@@ -5,12 +5,13 @@ interface TMenuWrapperProps {
     headerTitle?: string
     children: any
     footerComponent?: any
-    checkClickOutSide?: any
+    checkClickOutSide: any
 }
 
 const MenuWrapper: FC<TMenuWrapperProps> = ({ headerTitle, children, footerComponent, checkClickOutSide }) => {
 
     const wrapperRef = useRef(null);
+
     useOutsideAlerter(wrapperRef);
     const [chekOutSideClick, setChekOutSideClick] = useState('')
 

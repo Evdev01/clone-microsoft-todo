@@ -17,3 +17,23 @@
   width: 100%;
   overflow: hidden;
 }
+
+.main__content-wrapper-menus {
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  right: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 25%;
+
+}
+.main__content-wrapper-menus::-webkit-scrollbar {
+  background-color: rgba(234, 233, 233, 0.7);
+  width: 7px;
+}
+
+.main__content-wrapper-menus::-webkit-scrollbar-thumb {
+  background-color: #b0afac;
+  border-radius: 20px;
+}

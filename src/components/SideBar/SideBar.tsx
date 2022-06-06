@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useRef } from 'react'
 import './SideBar.scss'
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
 import SideBarSortableItem from '../SideBarSortable/SideBarSortableItem'
@@ -9,9 +9,12 @@ import SideBarFooter from '../SideBarFooter/SideBarFooter'
 
 interface TSideBarProps {
     openBurgerMenu: () => void
+    setIsShowSideBar: any
 }
 
-const SideBar: FC<TSideBarProps> = ({ openBurgerMenu }) => {
+const SideBar: FC<TSideBarProps> = ({ openBurgerMenu, setIsShowSideBar }) => {
+
+
     return (
         <div className="side__bar">
             <BurgerMenu openBurgerMenu={ openBurgerMenu }/>

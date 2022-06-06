@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useRef } from 'react'
 import './NavBar.scss'
 import SettingIcon from "../svg/SettingIcon"
 import QuestionIcon from "../svg/QuestionIcon"
@@ -6,15 +6,26 @@ import GramophoneIcon from "../svg/GramophoneIcon"
 import ProfileInitials from "../ProfileInitials/ProfileInitials"
 import NavBarItem from "./NavBarItem/NavBarItem"
 import { useDispatch } from "react-redux"
-import { openSideBarMenu } from "../../store/reducers/side-bar/action-creators"
+import { openSideBarMenu, refProfileMenuAction } from "../../store/reducers/side-bar/action-creators"
+import { useTypedSelector } from "../../hooks/useTypedSelector"
 
 const NavBar: FC = () => {
 
+    const navItemRef = useRef()
     const dispatch = useDispatch()
+    useEffect( () => {
+        dispatch(refProfileMenuAction(navItemRef))
+    }, [])
+
+    const { isShowSidebarMenu } = useTypedSelector(state => state.sideBar)
 
 
     const openSideMenu = (sideMenuName:string) => {
-      dispatch(openSideBarMenu(sideMenuName))
+        if (isShowSidebarMenu === sideMenuName) {
+            dispatch(openSideBarMenu(''))
+        } else {
+            dispatch(openSideBarMenu(sideMenuName))
+        }
     }
 
     return (
@@ -23,7 +34,7 @@ const NavBar: FC = () => {
                 <NavBarItem children={ <SettingIcon/> } title={ 'Параметры '} nameActiveSideBarMenu={'openUserSettings'} openSideMenu={openSideMenu} />
                 <NavBarItem children={ <QuestionIcon/> } title={ 'Справка и обратная связь '} nameActiveSideBarMenu={'openFeedBack'} openSideMenu={openSideMenu}/>
                 <NavBarItem children={ <GramophoneIcon/> } title={ 'Новые возможности '} nameActiveSideBarMenu={'newPossibilities'} openSideMenu={openSideMenu}/>
-                <NavBarItem children={ <ProfileInitials/> } title={ 'Диспечер учетных записей пользователя Здесь Имя '} nameActiveSideBarMenu={'openProfile'} openSideMenu={openSideMenu}/>
+                <NavBarItem children={ <ProfileInitials/> } title={ 'Диспечер учетных записей пользователя Здесь Имя '} nameActiveSideBarMenu={'openProfile'} openSideMenu={openSideMenu} navItemRef={navItemRef}/>
             </ul>
         </nav>
     )

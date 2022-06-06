@@ -20,11 +20,13 @@ import DateCompletion from "../DateCompletion/DateCompletion"
 import RepeatTaskMenu from "../RepeatTaskMenu/RepeatTaskMenu"
 import CustomRepeatIcon from "../svg/CustomRepeatIcon"
 import SelectCategory from "../SelectCategory/SelectCategory"
+import { useTypedSelector } from "../../hooks/useTypedSelector"
 
 const TaskInfoBlock: FC = () => {
 
     const [isShowChevron, setIsShowChevron] = useState<boolean>(false)
     const [isShowSomeTaskMenu, setIsShowSomeTaskMenu] = useState<string>('')
+
 
     const isShowTaskMenu = (nameMenu: string) => {
         setIsShowSomeTaskMenu(nameMenu)

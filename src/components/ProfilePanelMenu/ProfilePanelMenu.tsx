@@ -1,25 +1,47 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useRef } from 'react'
 import './ProfilePanelMenu.scss'
 import ProfileInitials from "../ProfileInitials/ProfileInitials"
 import MicrosoftIcon from "../svg/MicrosoftIcon"
 import { useDispatch } from "react-redux"
 import { openSideBarMenu } from "../../store/reducers/side-bar/action-creators"
+import { useTypedSelector } from "../../hooks/useTypedSelector"
 
 const ProfilePanelMenu: FC = () => {
 
-    const dispatch = useDispatch()
 
-    const showUserSetting = () => {
-        dispatch(openSideBarMenu(''))
+    const wrapperRef = useRef(null);
+    const dispatch = useDispatch()
+    const { isShowProfileMenu } = useTypedSelector(state => state.sideBar)
+
+
+
+    useOutsideAlerter(wrapperRef);
+    function useOutsideAlerter(ref: any) {
+        useEffect(() => {
+            function handleClickOutside(event: any) {
+                // @ts-ignore
+                if (ref.current && !ref.current.contains(event.target) && !isShowProfileMenu.current.contains(event.target)) {
+                    dispatch(openSideBarMenu(''))
+                    console.log()
+                }
+            }
+
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
     }
 
+
+
     return (
-        <div className="profile__panel">
+        <div className="profile__panel" ref={wrapperRef}>
             <div className="profile__panel-wrapper">
                 <div className="profile__panel-header">
                     <MicrosoftIcon/>
                     <div className="profile__panel-header-exit">
-                        <p onClick={ showUserSetting }>Выйти</p>
+                        <p>Выйти</p>
                     </div>
                 </div>
                 <div className="profile__panel-content">

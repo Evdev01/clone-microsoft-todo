@@ -1,5 +1,6 @@
 import { Dispatch } from "redux"
 import { SideBarItemAction, SideBarItemEnum } from "./types"
+import { MutableRefObject } from "react"
 
 
 export const getSideBarItemName = (title: string) => async (dispatch: Dispatch<SideBarItemAction>) => {
@@ -8,4 +9,8 @@ export const getSideBarItemName = (title: string) => async (dispatch: Dispatch<S
 
 export const openSideBarMenu = (isShowSidebarMenu: string) => async (dispatch: Dispatch<SideBarItemAction>) => {
     dispatch({ type: SideBarItemEnum.OPEN_SIDEBAR_ITEM, payload: isShowSidebarMenu })
+}
+
+export const refProfileMenuAction = (ref: MutableRefObject<any>) => async (dispatch: Dispatch<SideBarItemAction>) => {
+    dispatch({ type: SideBarItemEnum.IS_SHOW_PROFILE_MENU, payload: ref })
 }

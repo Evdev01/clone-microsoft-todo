@@ -1,4 +1,5 @@
 import MainContent, { TMainContentProps } from './MainContent'
+import * as React from "react"
 
 export type { TMainContentProps }
-export default MainContent
+export default  React.memo(MainContent)

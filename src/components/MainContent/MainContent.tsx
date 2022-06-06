@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import './MainContent.scss'
 import SideBar from '../SideBar/SideBar'
 import { Redirect, Route, Switch } from "react-router-dom"
@@ -24,6 +24,8 @@ const MainContent: FC = () => {
 
     const openBurgerMenu = () => setIsShowSideBar(!isShowSideBar)
 
+
+
     const renderComponent = () => {
         let renderComponent = null
 
@@ -38,15 +40,15 @@ const MainContent: FC = () => {
         }
 
         return renderComponent
-    }
 
+    }
 
     return (
         <div className="main__content-wrapper">
 
             <div className="content__wrapper">
                 { isShowSideBar
-                    ? <SideBar openBurgerMenu={ openBurgerMenu }/>
+                    ? <SideBar openBurgerMenu={ openBurgerMenu } setIsShowSideBar={ setIsShowSideBar }/>
                     : null }
                 <div className="content__wrapper-content-sidebar">
 
@@ -64,7 +66,14 @@ const MainContent: FC = () => {
                     </Switch>
                 </div>
                 { isShowBlock ? <TaskInfoBlock/> : null }
-                { renderComponent() }
+                {isShowSidebarMenu
+                    ?
+                        <div className="main__content-wrapper-menus">
+                            { renderComponent() }
+                    </div>
+                    : null
+                }
+
             </div>
         </div>
     )

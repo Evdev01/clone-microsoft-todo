@@ -5,13 +5,13 @@ import NewsSamsungIcon from "../svg/NewsSamsungIcon"
 import CellPhoneIcon from "../svg/CellPhoneIcon"
 import NewCategoriesIcon from "../svg/NewCategoriesIcon"
 import CategoryPanelMenuIcon from "../svg/CategoryPanelMenuIcon"
-import { classification, samsungContact, apple, microsoft, android } from './NewsPanelMenuLinks'
+import { android, apple, classification, microsoft, samsungContact } from './NewsPanelMenuLinks'
 import NewsPanelMenuItem from "../NewsPanelMenuItem/NewsPanelMenulItem"
 import { useDispatch } from "react-redux"
 import { openSideBarMenu } from "../../store/reducers/side-bar/action-creators"
 import AppleIcon from "../svg/AppleIcon"
-import MicrosoftIcon from "../svg/MicrosoftIcon"
 import AndroidIcon from "../svg/AndroidIcon"
+import MicrosoftBlackIcon from "../svg/MicrosoftBlackIcon"
 
 const NewsPanelMenu: FC = () => {
 
@@ -56,7 +56,7 @@ const NewsPanelMenu: FC = () => {
                             <AppleIcon/>
                         </a>
                         <a href={microsoft} target="_blank">
-                            <MicrosoftIcon/>
+                            <MicrosoftBlackIcon/>
                         </a>
                         <a href={android} target="_blank">
                             <AndroidIcon/>

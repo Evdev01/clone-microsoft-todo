@@ -22,6 +22,12 @@ const MainContentTop: FC<TMainContentTopProps> = ({ openBurgerMenu, isShowSideBa
         setIsShowSortMenu(!isShowSortMenu)
     }
 
+    const checkClickOutSide = (str: string) => {
+        if (str === 'outside') {
+            setIsShowSortMenu(!isShowSortMenu)
+        }
+    }
+
     return (
         <div className="content__header">
             <div className="content__header-wrapper">
@@ -38,7 +44,7 @@ const MainContentTop: FC<TMainContentTopProps> = ({ openBurgerMenu, isShowSideBa
                 <div className="content__right-menu">
                     <div className='content__right-sort-menu'>
                         <ContentBarIcon children={ <SortIcon/> } title={ 'Сортировка' } toggleSortMenu={toggleSortMenu}/>
-                        {isShowSortMenu ?  <MenuWrapper headerTitle={'Порядок сортировки'} children={<SortMenu/>}/>  : null}
+                        {isShowSortMenu ?  <MenuWrapper checkClickOutSide={checkClickOutSide} headerTitle={'Порядок сортировки'} children={<SortMenu/>}/>  : null}
                     </div>
                     <ContentBarIcon children={ <LightIcon/> } title={ 'Предложения' }/>
                 </div>
