@@ -1,32 +1,46 @@
-import React, { FC, FocusEventHandler } from 'react'
+import React, { FC, useState } from 'react'
 import './GlobalSearch.scss'
-import CloseIcon from "../svg/CloseIcon"
 import SearchIcon from "../svg/SearchIcon"
+import useFocus from "../../hooks/useFocus"
 
 interface TGlobalSearchProps {
     activeInput: boolean
-    toggleFocusInput: (event: FocusEventHandler<HTMLInputElement> | any) => void
+    toggleFocusInput: any
+    // toggleFocusInput: (event: FocusEventHandler<HTMLInputElement> | any) => void
 }
 
 const GlobalSearch: FC<TGlobalSearchProps> = ({ activeInput, toggleFocusInput }) => {
+
+
+    const [inputRef, setInputFocus] = useFocus()
+    const [isMobileVersion, setIsMobileVersion] = useState<boolean>(false)
+    const [globalSearchValue, setGlobalSearchValue] = useState<string>('')
+
+    const inputIsMobile = () => {
+            setInputFocus()
+        setIsMobileVersion(true)
+    }
+
+
+const x = () => {
+    setIsMobileVersion(false)
+    toggleFocusInput()
+}
+
     return (
-        <div className="header__global_search">
-            <div className={ !activeInput ? 'reset__icon_wrapper' : 'reset__icon_wrapper-active' }>
-                {
-                    activeInput
-                        ? <i className="header__reset_icon">
-                            <CloseIcon/>
-                        </i>
-                        : null
-                }
-            </div>
+        <div className={ !activeInput ? 'header__global_search' : 'header__global_search-active' }>
             <input type="text"
-                   onFocus={ toggleFocusInput }
-                   onBlur={ toggleFocusInput }
+                   value={ globalSearchValue }
+                   onChange={ e => setGlobalSearchValue(e.target.value) }
+                   ref={ inputRef }
+                   onFocus={toggleFocusInput }
+                   onBlur={ x }
             />
-            <i className="header__search_icon">
+
+            {!isMobileVersion ? <i className="header__search_icon" onClick={inputIsMobile}>
                 <SearchIcon/>
-            </i>
+            </i> : null}
+
         </div>
     )
 }

@@ -14,18 +14,43 @@ interface TSideBarProps {
 
 const SideBar: FC<TSideBarProps> = ({ openBurgerMenu, setIsShowSideBar }) => {
 
+    const wrapperRef = useRef(null);
 
+
+    useOutsideAlerter(wrapperRef);
+    function useOutsideAlerter(ref: any) {
+        useEffect(() => {
+            function handleClickOutside(event: any) {
+                // @ts-ignore
+                if (ref.current && !ref.current.contains(event.target) && window.screen.width < 769) {
+                    setIsShowSideBar(false)
+                }
+            }
+
+            document.addEventListener("mousedown", handleClickOutside);
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [ref]);
+    }
+    
     return (
-        <div className="side__bar">
-            <BurgerMenu openBurgerMenu={ openBurgerMenu }/>
-            <div className="side__bar-wrapper">
-                <SideBarMain/>
+
+        <div className='side__bar-wrapper-fullscreen'>
+            <div className="side__bar" ref={wrapperRef}>
+                <BurgerMenu openBurgerMenu={ openBurgerMenu }/>
+                <div className="side__bar-wrapper fullscreen">
+                    <SideBarMain/>
                     <SideBarSortableItem/>
-                    <SideBarItem title={'tile'} route={'some'}/>
-                    <SideBarItem title={'tile'} route={'some'}/>
+                    <SideBarItem title={ 'tile' } route={ 'some' }/>
+                    <SideBarItem title={ 'tile' } route={ 'some' }/>
+                </div>
+                <SideBarCreateList/>
+                <SideBarFooter/>
             </div>
-            <SideBarCreateList/>
-            <SideBarFooter/>
+            <div className='side__bar-full-background'>
+
+            </div>
         </div>
 
     )

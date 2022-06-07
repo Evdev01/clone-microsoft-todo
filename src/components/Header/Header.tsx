@@ -8,7 +8,7 @@ const Header: FC = () => {
 
     const [activeInput, setActiveInput] = useState(false)
 
-    const toggleFocusInput = (event: FocusEventHandler<HTMLInputElement> | any) => setActiveInput(!activeInput)
+    const toggleFocusInput = (event: FocusEventHandler<HTMLInputElement> | any) => (setActiveInput(!activeInput))
 
     return (
         <header className="header">

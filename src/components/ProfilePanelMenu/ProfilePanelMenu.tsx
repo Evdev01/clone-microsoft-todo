@@ -22,7 +22,6 @@ const ProfilePanelMenu: FC = () => {
                 // @ts-ignore
                 if (ref.current && !ref.current.contains(event.target) && !isShowProfileMenu.current.contains(event.target)) {
                     dispatch(openSideBarMenu(''))
-                    console.log()
                 }
             }
 

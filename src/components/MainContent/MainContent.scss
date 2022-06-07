@@ -37,3 +37,23 @@
   background-color: #b0afac;
   border-radius: 20px;
 }
+
+@media (max-width: 768px) {
+  .content__wrapper {
+    display: block;
+  }
+
+  .main__content-wrapper-menus {
+    width: 40%;
+  }
+
+  .news__panel-footer {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .main__content-wrapper-menus {
+    width: 75%;
+  }
+}
