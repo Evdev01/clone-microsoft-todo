@@ -14,10 +14,12 @@ const TasksBlock: FC = () => {
 
     const routerPath = useRouterPath()
 
-    const findFromMainTasksGroup = user.mainTasksGroup.find((el: any) => el.groupName === routerPath || 'myday')
-    const findFromCreatedTasksGroup = user.createdTasksGroup.find((el: any) => el.groupName === routerPath || 'myday')
+    const checkRoutePath = user.mainTasksGroup
 
-    const getItemsFromGroup = findFromMainTasksGroup || findFromCreatedTasksGroup
+    const findFromMainTasksGroup = user.mainTasksGroup.find((el: any) => el.groupName === routerPath)
+    const findFromCreatedTasksGroup = user.createdTasksGroup.find((el: any) => el.groupName === routerPath)
+
+    const getItemsFromGroup = findFromMainTasksGroup || findFromCreatedTasksGroup || checkRoutePath
 
     return (
         <div className="tasks__block">

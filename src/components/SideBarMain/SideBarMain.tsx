@@ -11,10 +11,10 @@ const SideBarMain: FC = () => {
     return (
         <div className="side__bar-main">
             <SideBarItem id={'1'} icon={ <SunnyIcon/> } title={ 'Мой день' } route='myday'/>
-            <SideBarItem id={'2'} icon={ <IconStar/> } title={ 'Важно' } route='important'/>
-            <SideBarItem id={'3'} icon={ <CalendarIcon/> } title={ 'Запланировано' } route='planned'/>
-            <SideBarItem id={'4'} icon={ <AccountIcon/> } title={ 'Назначен мне' } route='assigned_to_me'/>
-            <SideBarItem id={'5'} icon={ <HomeIcon/> } title={ 'Задачи' } route='inbox'/>
+            <SideBarItem id={'1'} icon={ <IconStar/> } title={ 'Важно' } route='important'/>
+            <SideBarItem id={'1'} icon={ <CalendarIcon/> } title={ 'Запланировано' } route='planned'/>
+            <SideBarItem id={'1'} icon={ <AccountIcon/> } title={ 'Назначен мне' } route='assigned_to_me'/>
+            <SideBarItem id={'1'} icon={ <HomeIcon/> } title={ 'Задачи' } route='inbox'/>
         </div>
     )
 }
