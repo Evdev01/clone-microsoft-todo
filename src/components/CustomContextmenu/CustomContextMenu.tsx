@@ -1,21 +1,13 @@
-import { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import './CustomContextMenu.scss';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import './CustomContextMenu.scss'
 import ContextMenuItem from "../ContextMenuItem.tsx/ContextMenuItem"
 import ContextMenuInnerItem from "../ContextMenuInnerItem/ContextMenuInnerItem"
-import { useDispatch } from "react-redux"
-import { deleteTaskById } from "../../store/reducers/tasks/action-creators"
 
 // @ts-ignore
 const MyCustomContextMenu= ({ targetId, options, classes, innerOptions, taskId }) => {
     const [contextData, setContextData]= useState({ visible:false, posX: 0, posY: 0});
     const contextRef= useRef(null);
     const [isShowInnerMenu, setIsShowInnerMenu] = useState(false)
-
-    const dispatch = useDispatch()
-
-    const x = (id: number) => {
-        dispatch(deleteTaskById(id))
-    }
 
     useEffect(() => {
         {/*
@@ -81,7 +73,7 @@ const MyCustomContextMenu= ({ targetId, options, classes, innerOptions, taskId }
                 </div>
 
                 {isShowInnerMenu
-                    ? <div className="contextMenu__inner">{innerOptions.map((item: any) => <ContextMenuInnerItem title={item.title} key={item.id} classes={classes}/>)}</div>
+                    ? <div className="contextMenu__inner">{innerOptions.map((item: any) => <ContextMenuInnerItem taskId={taskId} groupId={item.id} title={item.groupName} key={item.id} classes={classes}/>)}</div>
                     : null
                 }
             </div>

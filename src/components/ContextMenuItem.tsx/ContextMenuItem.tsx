@@ -2,7 +2,9 @@ import React, { FC } from 'react'
 import './ContextMenuItem.scss'
 import ChevronRight from "../svg/ChevronRight"
 import { useDispatch } from "react-redux"
-import { deleteTaskById, openTaskInfoAbout } from "../../store/reducers/tasks/action-creators"
+import { openTaskInfoAbout } from "../../store/reducers/tasks/action-creators"
+import { deleteTask } from "../../store/reducers/profile/action-creators"
+import useRouterPath from "../../hooks/UseRouterPath"
 
 interface IContextMenuItemProps {
     option: {
@@ -30,10 +32,15 @@ const ContextMenuItem: FC<IContextMenuItemProps> = ({ option: {innerItem, icon, 
         }
     }
 
+    const routerPath = useRouterPath()
+
+
+
 
     const getContextMenuItemId = (id: number) => {
+        // id 11 - deletes the task
         if (id === 11) {
-            dispatch(deleteTaskById(taskId))
+            dispatch(deleteTask({taskId, groupName: routerPath}))
             dispatch(openTaskInfoAbout(false))
         }
     }

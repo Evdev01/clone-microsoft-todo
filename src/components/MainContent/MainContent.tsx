@@ -15,18 +15,18 @@ interface TMainContentProps {
 
 const MainContent: FC = () => {
 
-
     const { title } = useTypedSelector(state => state.sideBar)
     const { isShowBlock } = useTypedSelector(state => state.tasks)
     const { isShowSidebarMenu } = useTypedSelector(state => state.sideBar)
 
     const [isShowSideBar, setIsShowSideBar] = useState<boolean>(false)
 
-    const openBurgerMenu = () => setIsShowSideBar(!isShowSideBar)
+    const openBurgerMenu = useCallback(() => {
+        setIsShowSideBar(!isShowSideBar)
+    }, [isShowSideBar])
 
 
-
-    const renderComponent = () => {
+    const renderComponent = useCallback(() => {
         let renderComponent = null
 
         if (isShowSidebarMenu === 'openUserSettings') {
@@ -40,8 +40,7 @@ const MainContent: FC = () => {
         }
 
         return renderComponent
-
-    }
+    }, [isShowSidebarMenu])
 
     return (
         <div className="main__content-wrapper">

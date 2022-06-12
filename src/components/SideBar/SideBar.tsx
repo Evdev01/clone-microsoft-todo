@@ -6,6 +6,7 @@ import SideBarMain from '../SideBarMain/SideBarMain'
 import SideBarItem from '../SideBarItem/SideBarItem'
 import SideBarCreateList from '../SideBarCreateList/SideBarCreateList'
 import SideBarFooter from '../SideBarFooter/SideBarFooter'
+import { useTypedSelector } from "../../hooks/useTypedSelector"
 
 interface TSideBarProps {
     openBurgerMenu: () => void
@@ -14,10 +15,17 @@ interface TSideBarProps {
 
 const SideBar: FC<TSideBarProps> = ({ openBurgerMenu, setIsShowSideBar }) => {
 
-    const wrapperRef = useRef(null);
+    const wrapperRef = useRef(null)
+
+    const { user }: any = useTypedSelector(state => state.profile)
 
 
-    useOutsideAlerter(wrapperRef);
+    const getGroupTasks = user.createdTasksGroup
+
+
+
+    useOutsideAlerter(wrapperRef)
+
     function useOutsideAlerter(ref: any) {
         useEffect(() => {
             function handleClickOutside(event: any) {
@@ -27,28 +35,32 @@ const SideBar: FC<TSideBarProps> = ({ openBurgerMenu, setIsShowSideBar }) => {
                 }
             }
 
-            document.addEventListener("mousedown", handleClickOutside);
+            document.addEventListener("mousedown", handleClickOutside)
             return () => {
-                document.removeEventListener("mousedown", handleClickOutside);
-            };
-        }, [ref]);
+                document.removeEventListener("mousedown", handleClickOutside)
+            }
+        }, [ref])
     }
-    
+
     return (
 
-        <div className='side__bar-wrapper-fullscreen'>
-            <div className="side__bar" ref={wrapperRef}>
+        <div className="side__bar-wrapper-fullscreen">
+            <div className="side__bar" ref={ wrapperRef }>
                 <BurgerMenu openBurgerMenu={ openBurgerMenu }/>
                 <div className="side__bar-wrapper fullscreen">
                     <SideBarMain/>
                     <SideBarSortableItem/>
-                    <SideBarItem title={ 'tile' } route={ 'some' }/>
-                    <SideBarItem title={ 'tile' } route={ 'some' }/>
+                    {
+                        getGroupTasks.map((taskGroup: any) => <SideBarItem key={ taskGroup.id }
+                                                                           id={taskGroup.id}
+                                                                                                title={ taskGroup.groupName }
+                                                                                                route={ taskGroup.route }/>)
+                    }
                 </div>
                 <SideBarCreateList/>
                 <SideBarFooter/>
             </div>
-            <div className='side__bar-full-background'>
+            <div className="side__bar-full-background">
 
             </div>
         </div>

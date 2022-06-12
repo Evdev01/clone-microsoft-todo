@@ -3,7 +3,8 @@ import { SideBarItem, SideBarItemAction, SideBarItemEnum } from "./types"
 const initialState: SideBarItem = {
     title: '',
     isShowSidebarMenu: '',
-    isShowProfileMenu: false
+    isShowProfileMenu: false,
+    currentSideBarItem: {}
 }
 
 export default function authReducer(state = initialState, action: SideBarItemAction) {
@@ -14,6 +15,8 @@ export default function authReducer(state = initialState, action: SideBarItemAct
             return { ...state, isShowSidebarMenu: action.payload }
         case SideBarItemEnum.IS_SHOW_PROFILE_MENU:
             return { ...state, isShowProfileMenu: action.payload }
+        case SideBarItemEnum.GET_SIDE_BAR_ITEM_INF0:
+            return { ...state, currentSideBarItem: action.payload }
         default:
             return state
     }

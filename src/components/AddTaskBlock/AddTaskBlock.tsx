@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
 import './AddTaskBlock.scss'
-import AddTaskPanel from "../AddTaskPanel/index"
+import AddTaskPanel from "../AddTaskPanel"
 
 const AddTaskBlock: FC = () => {
+
+
     return (
         <div className='add__task-block'>
             <AddTaskPanel/>

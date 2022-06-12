@@ -1,6 +1,7 @@
-import sideBar from './side-bar'
+import profile from './profile'
 import tasks from './tasks'
+import sideBar from './side-bar'
 
-export default { sideBar, tasks }
+export default { profile, tasks, sideBar }
 
 

@@ -5,6 +5,8 @@ import MainContent from "../MainContent"
 interface TMainProps {}
 
 const Main:FC = () => {
+
+
     return (
         <div>
             <Header/>

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import './MainContentWrapper.scss'
 import MainContentTop from "../MainContentTop"
-import TasksContent from "../TasksContent/TasksContent"
+import TasksContent from "../TasksContent"
 
 interface TMainContentWrapperProps {
     openBurgerMenu: () => void
@@ -10,6 +10,7 @@ interface TMainContentWrapperProps {
 }
 
 const MainContentWrapper: FC<TMainContentWrapperProps> = ({ openBurgerMenu, isShowSideBar, title }) => {
+
 
     return (
         <div className='main__content-wrapper-wrap'>

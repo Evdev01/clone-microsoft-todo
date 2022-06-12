@@ -4,7 +4,8 @@ import ChevronDown from "../svg/ChevronDown"
 import IconStar from "../svg/IconStar"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 import { useDispatch } from "react-redux"
-import { changeInfoTask } from "../../store/reducers/tasks/action-creators"
+import { changeInfoTask } from "../../store/reducers/profile/action-creators"
+import useRouterPath from "../../hooks/UseRouterPath"
 
 interface TTaskTitleInput {
     isShowChevron: boolean
@@ -15,12 +16,14 @@ const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron 
 
     const dispatch = useDispatch()
     const [taskTitle, setTaskTitle] = useState('')
-    const { taskInfo }: any = useTypedSelector(state => state.tasks)
+    const { user: { currentTask } }: any = useTypedSelector(state => state.profile)
+
+    const routerPath = useRouterPath()
 
 
     useEffect(() => {
-        setTaskTitle(taskInfo.title)
-    },[taskInfo])
+        setTaskTitle(currentTask.title)
+    }, [currentTask])
 
 
     const [isActiveInput, setIsActiveInput] = useState(false)
@@ -30,9 +33,9 @@ const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron 
 
     const onBlurInput = (event: FocusEventHandler<HTMLInputElement> | any) => {
         setIsActiveInput(!isActiveInput)
-        let taskItem = {...taskInfo}
+        let taskItem = { ...currentTask }
         taskItem.title = taskTitle
-            dispatch(changeInfoTask(taskItem))
+        dispatch(changeInfoTask({groupName: routerPath, taskId: currentTask.id, title: taskTitle}))
     }
 
 
@@ -45,11 +48,11 @@ const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron 
                                             { isShowChevron ? <ChevronDown/> : null }
                         </span>
                     <input onFocus={ onFocusInput }
-                           value={taskTitle}
-                           onChange={(e) => setTaskTitle(e.target.value)}
+                           value={ taskTitle }
+                           onChange={ (e) => setTaskTitle(e.target.value) }
                            onBlur={ onBlurInput }
                            className={ !isActiveInput ? 'input__task_edit' : 'input__task_edit active' } type="text"
-                           placeholder={taskTitle}/>
+                           placeholder={ taskTitle }/>
                 </div>
             </div>
             <IconStar/>
