@@ -14,7 +14,7 @@ const TasksBlock: FC = () => {
 
     const routerPath = useRouterPath()
 
-    const checkRoutePath = user.mainTasksGroup
+    const checkRoutePath = routerPath || user.mainTasksGroup[0]
 
     const findFromMainTasksGroup = user.mainTasksGroup.find((el: any) => el.groupName === routerPath)
     const findFromCreatedTasksGroup = user.createdTasksGroup.find((el: any) => el.groupName === routerPath)
