@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react'
 import './TaskInfoBlock.scss'
-import TaskInfoBlockItem from "../TaskInfoBlockItem/TaskInfoBlockItem"
+import TaskInfoBlockItem from "../TaskInfoBlockItem"
 import SunnyIcon from "../svg/SunnyIcon"
 import NotificationIcon from "../svg/NotificationIcon"
 import CalendarIcon from "../svg/CalendarIcon"
@@ -8,45 +8,49 @@ import RecurringIcon from "../svg/RecurringIcon"
 import CategoryIcon from "../svg/CategoryIcon"
 import AddIcon from "../svg/AddIcon"
 import AttachIcon from "../svg/AttachIcon"
-import TaskTitleInput from "../TaskTitleInput/TaskTitleInput"
-import TaskAddNoteArea from "../TaskAddNoteArea/TaskAddNoteArea"
-import TaskInfoBlockFooter from "../TaskInfoBlockFooter/TaskInfoBlockFooter"
+import TaskTitleInput from "../TaskTitleInput"
+import TaskAddNoteArea from "../TaskAddNoteArea"
+import TaskInfoBlockFooter from "../TaskInfoBlockFooter"
 import ReminderMenu from "../ReminderMenu/ReminderMenu"
-import MenuWrapper from "../MenuWrapper/MenuWrapper"
+import MenuWrapper from "../MenuWrapper"
 import DateTimeIcon from "../svg/DateTimeIcon"
 import ChevronRight from "../svg/ChevronRight"
-import MenuWrapperItem from "../MenuWrapperItem/MenuWrapperItem"
-import DateCompletion from "../DateCompletion/DateCompletion"
-import RepeatTaskMenu from "../RepeatTaskMenu/RepeatTaskMenu"
+import MenuWrapperItem from "../MenuWrapperItem"
+import DateCompletion from "../DateCompletion"
+import RepeatTaskMenu from "../RepeatTaskMenu"
 import CustomRepeatIcon from "../svg/CustomRepeatIcon"
-import SelectCategory from "../SelectCategory/SelectCategory"
+import SelectCategory from "../SelectCategory"
 import { openTaskInfoAbout } from "../../store/reducers/tasks/action-creators"
 import { useDispatch } from "react-redux"
 
 const TaskInfoBlock: FC = () => {
 
     const dispatch = useDispatch()
-    const wrapperRef = useRef(null);
+    const wrapperRef = useRef(null)
     const [isShowChevron, setIsShowChevron] = useState<boolean>(false)
     const [isShowSomeTaskMenu, setIsShowSomeTaskMenu] = useState<string>('')
 
 
-    const isShowTaskMenu = (nameMenu: string) => {
+    const isShowTaskMenu = useCallback((nameMenu: string) => {
         setIsShowSomeTaskMenu(nameMenu)
-    }
+    }, [isShowSomeTaskMenu])
 
 
-    const checkClickOutSide = (str: string) => {
+    const checkClickOutSide = useCallback((str: string) => {
         if (str === 'outside') {
             setIsShowSomeTaskMenu('')
         }
-    }
-
-    const toggleShowChevron = () => setIsShowChevron(!isShowChevron)
+    }, [isShowSomeTaskMenu])
 
 
 
-    useOutsideAlerter(wrapperRef);
+    const toggleShowChevron = useCallback(() => {
+        setIsShowChevron(!isShowChevron)
+        }, [isShowChevron])
+
+
+    useOutsideAlerter(wrapperRef)
+
     function useOutsideAlerter(ref: any) {
         useEffect(() => {
             function handleClickOutside(event: any) {
@@ -56,26 +60,24 @@ const TaskInfoBlock: FC = () => {
                 }
             }
 
-            document.addEventListener("mousedown", handleClickOutside);
+            document.addEventListener("mousedown", handleClickOutside)
             return () => {
-                document.removeEventListener("mousedown", handleClickOutside);
-            };
-        }, [ref]);
+                document.removeEventListener("mousedown", handleClickOutside)
+            }
+        }, [ref])
     }
 
     return (
-        <div className='task__info-block-fullscreen'>
-            <div className='task__info-block-full-background'>
+        <div className="task__info-block-fullscreen">
+            <div className="task__info-block-full-background">
 
             </div>
-            <div className="task__info-block" ref={wrapperRef}>
+            <div className="task__info-block" ref={ wrapperRef }>
                 <div className="task__info-block-wrapper">
                     <div className="task__info-block-header">
                         <TaskTitleInput isShowChevron={ isShowChevron } toggleShowChevron={ toggleShowChevron }/>
                         <TaskInfoBlockItem icon={ <AddIcon/> } title={ 'Добавить шаг' } titleBlue unHover/>
                     </div>
-                    {/*<span className="add__task-icon"/>*/ }
-
 
                     <TaskInfoBlockItem icon={ <SunnyIcon/> } title={ 'Добавлено в представление "Мой день"' }
                                        titleBlue={ true }/>

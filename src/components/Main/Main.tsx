@@ -1,7 +1,7 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import Header from "../Header"
 import MainContent from "../MainContent"
-import AuthPage from "../../pages/AuthPage/AuthPage"
+import AuthPage from "../../pages/AuthPage"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 
 interface TMainProps {

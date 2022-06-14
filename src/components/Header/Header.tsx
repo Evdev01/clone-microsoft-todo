@@ -1,14 +1,19 @@
-import React, { FC, FocusEventHandler, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import './Header.scss'
-import GlobalSearch from "../GlobalSearch/GlobalSearch"
-import NavBar from "../NavBar/NavBar"
-import HeaderMenu from "../HeaderMenu/HeaderMenu"
+import GlobalSearch from "../GlobalSearch"
+import NavBar from "../NavBar"
+import HeaderMenu from "../HeaderMenu"
 
 const Header: FC = () => {
 
+
+
     const [activeInput, setActiveInput] = useState(false)
 
-    const toggleFocusInput = (event: FocusEventHandler<HTMLInputElement> | any) => (setActiveInput(!activeInput))
+
+    const toggleFocusInput = useCallback(() => {
+        setActiveInput(!activeInput)
+        }, [])
 
     return (
         <header className="header">

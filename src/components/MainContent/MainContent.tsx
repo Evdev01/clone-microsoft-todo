@@ -1,19 +1,20 @@
 import React, { FC, useCallback, useState } from 'react'
 import './MainContent.scss'
-import SideBar from '../SideBar/SideBar'
+import SideBar from '../SideBar'
 import { Redirect, Route, Switch } from "react-router-dom"
-import MainContentWrapper from "../MainContentWrapper/MainContentWrapper"
+import MainContentWrapper from "../MainContentWrapper"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
-import TaskInfoBlock from "../TaskInfoBlock/TaskInfoBlock"
-import UserSettingMenu from "../UserSettingMenu/UserSettingMenu"
-import CallBackMenu from "../CallBackMenu/CallBackMenu"
-import NewsPanelMenu from "../NewsPanelMenu/NewsPanelMenu"
-import ProfilePanelMenu from "../ProfilePanelMenu/ProfilePanelMenu"
+import TaskInfoBlock from "../TaskInfoBlock"
+import UserSettingMenu from "../UserSettingMenu"
+import CallBackMenu from "../CallBackMenu"
+import NewsPanelMenu from "../NewsPanelMenu"
+import ProfilePanelMenu from "../ProfilePanelMenu"
 
 interface TMainContentProps {
 }
 
 const MainContent: FC = () => {
+
 
     const { title } = useTypedSelector(state => state.sideBar)
     const { isShowBlock } = useTypedSelector(state => state.tasks)

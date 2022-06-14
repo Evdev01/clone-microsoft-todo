@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import './AuthPage.scss'
-import AuthPopUp from "../../components/AuthPopUp/AuthPopUp"
+import AuthPopUp from "../../components/AuthPopUp"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 import { useDispatch } from "react-redux"
 import {
@@ -14,6 +14,7 @@ interface TAuthPageProps {
 }
 
 const AuthPage: FC<TAuthPageProps> = ({}) => {
+
 
     const [entryAllowed, setEntryAllowed] = useState<boolean>(false)
     const [typePopUpAuth, setTypePopUpAuth] = useState<string>('signIn')
@@ -29,7 +30,8 @@ const AuthPage: FC<TAuthPageProps> = ({}) => {
     }, [isEmailExists, isNewUser])
 
 
-    const popUpAction = () => {
+
+    const popUpAction = useCallback(() => {
         if (popUpInputValue.length) {
             if (typePopUpAuth === 'signIn') {
                 dispatch(checkEmail(popUpInputValue))
@@ -59,11 +61,12 @@ const AuthPage: FC<TAuthPageProps> = ({}) => {
                 console.error('error')
             }
         }
-    }
+        }, [typePopUpAuth])
 
-    const createNewUser = () => {
+
+    const createNewUser = useCallback(() => {
         setTypePopUpAuth('createAccount')
-    }
+    }, [typePopUpAuth])
 
     return (
         <div className="auth__page">

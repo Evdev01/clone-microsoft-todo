@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import './GlobalSearch.scss'
 import SearchIcon from "../svg/SearchIcon"
 import useFocus from "../../hooks/useFocus"
@@ -11,35 +11,37 @@ interface TGlobalSearchProps {
 
 const GlobalSearch: FC<TGlobalSearchProps> = ({ activeInput, toggleFocusInput }) => {
 
-
     const [inputRef, setInputFocus] = useFocus()
     const [isMobileVersion, setIsMobileVersion] = useState<boolean>(false)
     const [globalSearchValue, setGlobalSearchValue] = useState<string>('')
 
     const inputIsMobile = () => {
-            setInputFocus()
+        setInputFocus()
         setIsMobileVersion(true)
     }
 
+    const addTaskValue = useCallback((e) => {
+         setGlobalSearchValue(e.target.value)
+    }, [])
 
-const x = () => {
-    setIsMobileVersion(false)
-    toggleFocusInput()
-}
+    const checkClickOutSide = useCallback(() => {
+        setIsMobileVersion(false)
+        toggleFocusInput()
+    }, [isMobileVersion])
 
     return (
         <div className={ !activeInput ? 'header__global_search' : 'header__global_search-active' }>
             <input type="text"
                    value={ globalSearchValue }
-                   onChange={ e => setGlobalSearchValue(e.target.value) }
+                   onChange={ addTaskValue }
                    ref={ inputRef }
-                   onFocus={toggleFocusInput }
-                   onBlur={ x }
+                   onFocus={ toggleFocusInput }
+                   onBlur={ checkClickOutSide }
             />
 
-            {!isMobileVersion ? <i className="header__search_icon" onClick={inputIsMobile}>
+            { !isMobileVersion ? <i className="header__search_icon" onClick={ inputIsMobile }>
                 <SearchIcon/>
-            </i> : null}
+            </i> : null }
 
         </div>
     )

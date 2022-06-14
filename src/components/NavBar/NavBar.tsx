@@ -1,9 +1,10 @@
-import React, { FC, useEffect, useRef } from 'react'
+import React, { FC, useCallback, useEffect, useRef } from 'react'
 import './NavBar.scss'
 import SettingIcon from "../svg/SettingIcon"
 import QuestionIcon from "../svg/QuestionIcon"
 import GramophoneIcon from "../svg/GramophoneIcon"
 import ProfileInitials from "../ProfileInitials/ProfileInitials"
+// todo import NavBarItem
 import NavBarItem from "./NavBarItem/NavBarItem"
 import { useDispatch } from "react-redux"
 import { openSideBarMenu, refProfileMenuAction } from "../../store/reducers/side-bar/action-creators"
@@ -20,13 +21,13 @@ const NavBar: FC = () => {
     const { isShowSidebarMenu } = useTypedSelector(state => state.sideBar)
 
 
-    const openSideMenu = (sideMenuName:string) => {
+    const openSideMenu = useCallback((sideMenuName) => {
         if (isShowSidebarMenu === sideMenuName) {
             dispatch(openSideBarMenu(''))
         } else {
             dispatch(openSideBarMenu(sideMenuName))
         }
-    }
+        }, [isShowSidebarMenu])
 
     return (
         <nav>

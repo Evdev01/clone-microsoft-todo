@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import './TaskInfoBlockFooter.scss'
 import ClosePane from "../svg/ClosePane"
 import BinIcon from "../svg/BinIcon"
@@ -11,19 +11,21 @@ import useRouterPath from "../../hooks/UseRouterPath"
 const TaskInfoBlockFooter: FC = () => {
 
     const dispatch = useDispatch()
-    const {user: {currentTask}} : any = useTypedSelector(state => state.profile)
+    const { user: { currentTask } }: any = useTypedSelector(state => state.profile)
 
     const routerPath = useRouterPath()
 
-    const deleteCurrentTask = () => {
+
+    const deleteCurrentTask = useCallback(() => {
         dispatch(deleteTask({ taskId: currentTask.id, groupName: routerPath }))
         toggleShowTaskInfo()
-    }
+    }, [currentTask])
 
 
-    const toggleShowTaskInfo = () => {
+
+    const toggleShowTaskInfo = useCallback(() => {
         dispatch(openTaskInfoAbout(false))
-    }
+    }, [])
 
     return (
         <div className="task__info-block-footer">

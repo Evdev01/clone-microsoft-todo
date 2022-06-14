@@ -1,4 +1,4 @@
-import React, { FC, FocusEventHandler, useEffect, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import './TaskTitleInput.scss'
 import ChevronDown from "../svg/ChevronDown"
 import IconStar from "../svg/IconStar"
@@ -27,16 +27,18 @@ const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron 
 
 
     const [isActiveInput, setIsActiveInput] = useState(false)
-    const onFocusInput = (event: FocusEventHandler<HTMLInputElement> | any) => {
-        setIsActiveInput(!isActiveInput)
-    }
 
-    const onBlurInput = (event: FocusEventHandler<HTMLInputElement> | any) => {
+
+    const onFocusInput = useCallback(() => {
+        setIsActiveInput(!isActiveInput)
+    }, [isActiveInput])
+
+    const onBlurInput = useCallback(() => {
         setIsActiveInput(!isActiveInput)
         let taskItem = { ...currentTask }
         taskItem.title = taskTitle
-        dispatch(changeInfoTask({groupName: routerPath, taskId: currentTask.id, title: taskTitle}))
-    }
+        dispatch(changeInfoTask({ groupName: routerPath, taskId: currentTask.id, title: taskTitle }))
+    }, [currentTask])
 
 
     return (
