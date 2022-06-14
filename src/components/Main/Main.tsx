@@ -9,13 +9,12 @@ interface TMainProps {
 
 const Main: FC = () => {
 
-    // const [isAuth, setIsAuth] = useState<boolean>(false)
     const {isAuth}: any = useTypedSelector(state => state.auth)
 
 
     return (
         <div>
-            {isAuth
+            {!isAuth
                 ? <div>
                     <Header/>
                     <MainContent/>
