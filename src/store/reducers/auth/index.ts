@@ -8,13 +8,22 @@ const initialState: AuthState = {
     isNewUser: false,
     isNewUserEmail: '',
     currentEmail: '',
-    imitationDb: [
-        {
-            email: '1',
-            password: '2'
-        }
-    ]
+    imitationDb: [{
+        email: '1',
+        password: '2'
+    }]
 }
+
+const getImitationDbFromLocalStorage = () => {
+    // @ts-ignore
+    if (initialState.imitationDb.length > 2) {
+        initialState.imitationDb = JSON.parse(<string>localStorage.getItem('imitationDb'))
+    }
+    console.log('initialState', initialState)
+
+}
+
+getImitationDbFromLocalStorage()
 
 const authReducer = (state = initialState, action: AuthStateAction) => {
     switch (action.type) {
@@ -25,8 +34,10 @@ const authReducer = (state = initialState, action: AuthStateAction) => {
                 password: action.payload
             }
 
-            console.log('newUser', newUser)
+            const saveInLocalStorage = [...state.imitationDb, {...newUser}]
 
+
+            localStorage.setItem('imitationDb', JSON.stringify(saveInLocalStorage))
 
             // @ts-ignore
             return {
@@ -34,10 +45,16 @@ const authReducer = (state = initialState, action: AuthStateAction) => {
                 imitationDb: [...state.imitationDb, {...newUser}],
                 isAuth: true
             }
+
         case AuthStateEnum.CHECK_EMAIL_IN_DB:
 
             // @ts-ignore
-            const checkEmailInDb = state.imitationDb.find((el: any) => el.email === action.payload)
+
+            let checkEmailInDb = {}
+
+            if (state.imitationDb.length) {
+                checkEmailInDb = state.imitationDb.find((el: any) => el.email === action.payload)
+            }
 
 
             if (checkEmailInDb) {
@@ -50,7 +67,6 @@ const authReducer = (state = initialState, action: AuthStateAction) => {
         case AuthStateEnum.CHECK_USER_EMAIL:
 
             const checkUserInDb = state.imitationDb.find((el: any) => el.email === action.payload)
-
 
             if (checkUserInDb) {
                 return { ...state, isEmailExists: true, isError: false, currentEmail: checkUserInDb.email}

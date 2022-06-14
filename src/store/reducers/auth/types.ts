@@ -1,3 +1,8 @@
+export type TAuthData = {
+    email: string
+    password: string
+}
+
 export type AuthState = {
     isAuth: boolean,
     isEmailExists: boolean,
@@ -5,10 +10,7 @@ export type AuthState = {
     isNewUser: boolean,
     isNewUserEmail: string,
     currentEmail: string,
-    imitationDb: [{
-        email: string
-        password: string
-    }]
+    imitationDb: any
 }
 
 export enum AuthStateEnum {

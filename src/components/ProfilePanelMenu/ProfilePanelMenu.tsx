@@ -50,7 +50,7 @@ const ProfilePanelMenu: FC = () => {
                 <div className="profile__panel-content">
                     <ProfileInitials/>
                     <div className="profile__panel-info-user">
-                        <h6>Фролов Сергей</h6>
+                        <h6>Name Surname</h6>
                         <span>mail@mail.ru</span>
                         <p>
                             <a href={ 'https://account.microsoft.com/?ref=MeControl&refd=login.live.com' }

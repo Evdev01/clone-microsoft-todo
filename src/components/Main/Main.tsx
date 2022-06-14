@@ -14,7 +14,7 @@ const Main: FC = () => {
 
     return (
         <div>
-            {!isAuth
+            {isAuth
                 ? <div>
                     <Header/>
                     <MainContent/>
