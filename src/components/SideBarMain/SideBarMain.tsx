@@ -6,15 +6,20 @@ import IconStar from "../svg/IconStar"
 import CalendarIcon from "../svg/CalendarIcon"
 import AccountIcon from "../svg/AccountIcon"
 import HomeIcon from "../svg/HomeIcon"
+import { useTypedSelector } from "../../hooks/useTypedSelector"
+import useRouterPath from "../../hooks/UseRouterPath"
 
 const SideBarMain: FC = () => {
+
+    const { user: {mainTasksGroup} }: any = useTypedSelector(state => state.profile)
+
     return (
         <div className="side__bar-main">
-            <SideBarItem id={'1'} icon={ <SunnyIcon/> } title={ 'Мой день' } route='myday'/>
-            <SideBarItem id={'1'} icon={ <IconStar/> } title={ 'Важно' } route='important'/>
-            <SideBarItem id={'1'} icon={ <CalendarIcon/> } title={ 'Запланировано' } route='planned'/>
-            <SideBarItem id={'1'} icon={ <AccountIcon/> } title={ 'Назначен мне' } route='assigned_to_me'/>
-            <SideBarItem id={'1'} icon={ <HomeIcon/> } title={ 'Задачи' } route='inbox'/>
+            <SideBarItem taskGroup={mainTasksGroup[0]} id={'1'} icon={ <SunnyIcon/> } title={ 'Мой день' } route='myday'/>
+            <SideBarItem taskGroup={mainTasksGroup[1]} id={'2'} icon={ <IconStar/> } title={ 'Важно' } route='important'/>
+            <SideBarItem taskGroup={mainTasksGroup[2]} id={'3'} icon={ <CalendarIcon/> } title={ 'Запланировано' } route='planned'/>
+            <SideBarItem taskGroup={mainTasksGroup[3]} id={'4'} icon={ <AccountIcon/> } title={ 'Назначен мне' } route='assigned_to_me'/>
+            <SideBarItem taskGroup={mainTasksGroup[4]} id={'5'} icon={ <HomeIcon/> } title={ 'Задачи' } route='inbox'/>
         </div>
     )
 }

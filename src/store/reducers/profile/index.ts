@@ -18,7 +18,10 @@ const defineTasksGroup = (action: any) => {
         },
         {
             groupName: 'inbox',
-        }
+        },
+        {
+            groupName: 'go-work',
+        },
     ]
 
     let defineCurrentTaskGroup = ''
@@ -71,6 +74,12 @@ const initialState: ProfileState = {
                 id: 5,
                 groupName: 'inbox',
                 route: 'inbox',
+                tasksItems: []
+            },
+            {
+                id: 6,
+                groupName: 'go-work',
+                route: 'go-work',
                 tasksItems: []
             },
 

@@ -51,7 +51,7 @@ const SideBar: FC<TSideBarProps> = ({ openBurgerMenu, setIsShowSideBar }) => {
                     <SideBarMain/>
                     <SideBarSortableItem/>
                     {
-                        getGroupTasks.map((taskGroup: any) => <SideBarItem key={ taskGroup.id }
+                        getGroupTasks.map((taskGroup: any) => <SideBarItem taskGroup={taskGroup} key={ taskGroup.id }
                                                                            id={taskGroup.id}
                                                                                                 title={ taskGroup.groupName }
                                                                                                 route={ taskGroup.route }/>)

@@ -11,7 +11,6 @@ const TasksBlock: FC = () => {
     const { user }: any = useTypedSelector(state => state.profile)
 
 
-
     const routerPath = useRouterPath()
 
     const checkRoutePath = routerPath || user.mainTasksGroup[0]
@@ -20,6 +19,7 @@ const TasksBlock: FC = () => {
     const findFromCreatedTasksGroup = user.createdTasksGroup.find((el: any) => el.groupName === routerPath)
 
     const getItemsFromGroup = findFromMainTasksGroup || findFromCreatedTasksGroup || checkRoutePath
+
 
     return (
         <div className="tasks__block">

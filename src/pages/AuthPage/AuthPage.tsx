@@ -31,7 +31,7 @@ const AuthPage: FC<TAuthPageProps> = ({}) => {
 
 
 
-    const popUpAction = useCallback(() => {
+    const popUpAction = () => {
         if (popUpInputValue.length) {
             if (typePopUpAuth === 'signIn') {
                 dispatch(checkEmail(popUpInputValue))
@@ -61,7 +61,7 @@ const AuthPage: FC<TAuthPageProps> = ({}) => {
                 console.error('error')
             }
         }
-        }, [typePopUpAuth])
+    }
 
 
     const createNewUser = useCallback(() => {
