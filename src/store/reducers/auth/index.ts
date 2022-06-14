@@ -19,7 +19,7 @@ const getImitationDbFromLocalStorage = () => {
     if (initialState.imitationDb.length > 2) {
         initialState.imitationDb = JSON.parse(<string>localStorage.getItem('imitationDb'))
     }
-    console.log('initialState', initialState)
+    initialState.isAuth = JSON.parse(<string>localStorage.getItem('isAuth'))
 
 }
 
@@ -38,6 +38,7 @@ const authReducer = (state = initialState, action: AuthStateAction) => {
 
 
             localStorage.setItem('imitationDb', JSON.stringify(saveInLocalStorage))
+            localStorage.setItem('isAuth', 'true')
 
             // @ts-ignore
             return {
@@ -78,11 +79,14 @@ const authReducer = (state = initialState, action: AuthStateAction) => {
             const checkUserPassword = state.imitationDb.find((el: any) => el.password === action.payload)
 
             if (checkUserPassword && state.isEmailExists) {
+                localStorage.setItem('isAuth', 'true')
                 return {...state, isAuth: true}
             } else {
                 return {...state, isError: true}
             }
         case AuthStateEnum.LOG_OUT_PROFILE:
+
+            localStorage.setItem('isAuth', 'false')
 
             return {...state, isAuth: false, isError: false}
 

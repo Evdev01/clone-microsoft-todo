@@ -1,4 +1,4 @@
-import React, { FC, FocusEventHandler, useState } from 'react'
+import React, { FC, FocusEventHandler, useEffect, useState } from 'react'
 import './SideBarCreateList.scss'
 import AddIcon from '../svg/AddIcon'
 import AddGroupIcon from '../svg/AddGroupIcon'
@@ -16,6 +16,7 @@ const SideBarCreateList: FC = () => {
     const dispatch = useDispatch()
 
     // todo e: React.KeyboardEvent<HTMLInputElement> | MouseEventHandler<HTMLDivElement>
+
 
     const handleKeyDown = (e: any) => {
         const createNewTaskList = {

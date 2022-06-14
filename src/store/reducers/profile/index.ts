@@ -1,4 +1,5 @@
 import { ProfileState, ProfileStateEnum, TTaskGroup } from "./types"
+import { statSync } from "fs"
 
 const defineTasksGroup = (action: any) => {
 
@@ -35,6 +36,7 @@ const defineTasksGroup = (action: any) => {
 
 }
 
+
 const initialState: ProfileState = {
     user: {
         name: 'Jon',
@@ -46,87 +48,53 @@ const initialState: ProfileState = {
                 id: 1,
                 groupName: 'myday',
                 route: 'mydaymyday',
-                tasksItems: [
-                    {
-                        id: 4,
-                        title: 'mydayTitle'
-                    },
-                    {
-                        id: 14,
-                        title: 'mydayTitle14'
-                    },
-                ]
+                tasksItems: []
             },
             {
                 id: 2,
                 groupName: 'important',
                 route: 'important',
-                tasksItems: [{
-                    id: 5,
-                    title: 'importantTitle'
-                }]
+                tasksItems: []
             },
             {
                 id: 3,
                 groupName: 'planned',
                 route: 'planned',
-                tasksItems: [{
-                    id: 6,
-                    title: 'plannedTitle'
-                }]
+                tasksItems: []
             },
             {
                 id: 4,
                 groupName: 'assigned_to_me',
                 route: 'assigned_to_me',
-                tasksItems: [{
-                    id: 7,
-                    title: 'assignedTitle'
-                }]
+                tasksItems: []
             }, {
                 id: 5,
                 groupName: 'inbox',
                 route: 'inbox',
-                tasksItems: [{
-                    id: 7,
-                    title: 'inboxTitle'
-                }]
+                tasksItems: []
             },
 
         ],
-        createdTasksGroup: [
-            {
-                id: 6,
-                groupName: 'test',
-                route: 'test',
-                tasksItems: [{
-                    id: 10,
-                    title: 'testTitle'
-                },
-                    {
-                        id: 16,
-                        title: 'testTitle223'
-                    }
-                ]
-            },
-            {
-                id: 7,
-                groupName: 'test2',
-                route: 'test2',
-                tasksItems: [{
-                    id: 11,
-                    title: 'testTitle2'
-                }]
-            }
-        ],
+        createdTasksGroup: [],
     }
 }
+
+const getLocalStorageInfoUser = () => {
+    const localStorageInfo = JSON.parse(<string>localStorage.getItem('user'))
+    if (localStorageInfo) {
+        initialState.user = localStorageInfo.user
+    }
+}
+
+getLocalStorageInfoUser()
 
 const profileReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case ProfileStateEnum.GET_PROFILE_INFO:
             return { ...state }
         case ProfileStateEnum.REMOVE_TASK_BY_ID:
+
+
 
 
             const copyUser = { ...state.user }
@@ -144,6 +112,7 @@ const profileReducer = (state = initialState, action: any) => {
 
             // @ts-ignore
             copyUser[defineTasksGroup(action)][findIndexGroupTask].tasksItems = [...deleteTaskById]
+            localStorage.setItem('user', JSON.stringify({ ...state }))
 
             return {
                 ...state,
@@ -159,6 +128,7 @@ const profileReducer = (state = initialState, action: any) => {
 
             findTaskGroup.tasksItems.push({ id: action.payload.id, title: action.payload.title })
 
+            localStorage.setItem('user', JSON.stringify({ ...state }))
             return {
                 ...state,
                 user: { ...copyStore }
@@ -191,18 +161,24 @@ const profileReducer = (state = initialState, action: any) => {
 
             changeTitleTask.title = action.payload.title
 
+            localStorage.setItem('user', JSON.stringify({ ...state }))
 
             return {
                 ...state,
                 user: { ...copyState }
             }
         case ProfileStateEnum.CREATE_NEW_GROUP_TASK:
+
+
+            const copyStat = {...state.user}
+
+            copyStat.createdTasksGroup = [...state.user.createdTasksGroup, { ...action.payload }]
+
+            localStorage.setItem('user', JSON.stringify({ ...state }))
+
             return {
                 ...state,
-                user: {
-                    ...state.user,
-                    createdTasksGroup: [...state.user.createdTasksGroup, { ...action.payload }]
-                }
+                user: { ...copyStat }
             }
         case ProfileStateEnum.MOVE_TASK_GROUP:
 
@@ -220,6 +196,8 @@ const profileReducer = (state = initialState, action: any) => {
             copy.createdTasksGroup[findCurrentGroupIndex].tasksItems = [...removeTask]
 
             findMoveGroup.tasksItems.push(findTask[0])
+
+            localStorage.setItem('user', JSON.stringify({ ...state }))
 
             return {
                 ...state,
