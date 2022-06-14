@@ -1,40 +1,62 @@
-import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import './AuthPage.scss'
 import AuthPopUp from "../../components/AuthPopUp/AuthPopUp"
+import { useTypedSelector } from "../../hooks/useTypedSelector"
+import { useDispatch } from "react-redux"
+import {
+    checkEmail,
+    checkEmailInDb,
+    checkPassword,
+    createNewUserAction,
+} from "../../store/reducers/auth/action-creators"
 
 interface TAuthPageProps {
-    setIsAuth: Dispatch<SetStateAction<boolean>>
 }
 
-const AuthPage: FC<TAuthPageProps> = ({setIsAuth}) => {
+const AuthPage: FC<TAuthPageProps> = ({}) => {
 
-    const [signInError, setSignInError] = useState<boolean>(false)
     const [entryAllowed, setEntryAllowed] = useState<boolean>(false)
     const [typePopUpAuth, setTypePopUpAuth] = useState<string>('signIn')
 
     const [popUpInputValue, setPopUpInputValue] = useState<string>('')
 
-    const user = {
-        email: '1',
-        password: '2'
-    }
+    const dispatch = useDispatch()
+
+    const { isEmailExists, isError, isNewUser }: any = useTypedSelector(state => state.auth)
+
+    useEffect(() => {
+        popUpAction()
+    }, [isEmailExists, isNewUser])
+
 
     const popUpAction = () => {
         if (popUpInputValue.length) {
-            if (typePopUpAuth === 'signIn' && popUpInputValue === user.email) {
-                setTypePopUpAuth('checkPassword')
-                setSignInError(false)
-                setPopUpInputValue('')
-            } else if (typePopUpAuth === 'checkPassword' && popUpInputValue === user.password) {
-                setIsAuth(true)
-            } else if (typePopUpAuth === 'createAccount' && user.email !== popUpInputValue) {
-                const copyUser = {...user}
-                copyUser.email = popUpInputValue
-                setTypePopUpAuth('checkPassword')
-                setSignInError(false)
-                setPopUpInputValue('')
+            if (typePopUpAuth === 'signIn') {
+                dispatch(checkEmail(popUpInputValue))
+
+                if (isEmailExists) {
+                    setTypePopUpAuth('checkPassword')
+                    setPopUpInputValue('')
+                }
+            } else if (typePopUpAuth === 'checkPassword') {
+
+                if (isEmailExists) {
+                    dispatch(checkPassword(popUpInputValue))
+                } else if (isNewUser) {
+                    dispatch(createNewUserAction(popUpInputValue))
+                }
+
+            } else if (typePopUpAuth === 'createAccount') {
+
+                dispatch(checkEmailInDb(popUpInputValue))
+
+                if (isNewUser) {
+                    setTypePopUpAuth('checkPassword')
+                    setPopUpInputValue('')
+                }
+
             } else {
-                setSignInError(true)
+                console.error('error')
             }
         }
     }
@@ -45,8 +67,9 @@ const AuthPage: FC<TAuthPageProps> = ({setIsAuth}) => {
 
     return (
         <div className="auth__page">
-            <AuthPopUp signInError={ signInError } entryAllowed={ entryAllowed } typePopUpAuth={ typePopUpAuth }
-                       popUpInputValue={ popUpInputValue } setPopUpInputValue={ setPopUpInputValue } popUpAction={popUpAction} createNewUser={createNewUser}/>
+            <AuthPopUp signInError={ isError } entryAllowed={ entryAllowed } typePopUpAuth={ typePopUpAuth }
+                       popUpInputValue={ popUpInputValue } setPopUpInputValue={ setPopUpInputValue }
+                       popUpAction={ popUpAction } createNewUser={ createNewUser }/>
             <div className="auth__page-footer">
                 <p>Условия использования</p>
                 <p>Конфиденциальность и файлы cookie</p>

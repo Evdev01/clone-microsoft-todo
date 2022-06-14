@@ -2,13 +2,16 @@ import React, { FC, useState } from 'react'
 import Header from "../Header"
 import MainContent from "../MainContent"
 import AuthPage from "../../pages/AuthPage/AuthPage"
+import { useTypedSelector } from "../../hooks/useTypedSelector"
 
 interface TMainProps {
 }
 
 const Main: FC = () => {
 
-    const [isAuth, setIsAuth] = useState<boolean>(false)
+    // const [isAuth, setIsAuth] = useState<boolean>(false)
+    const {isAuth}: any = useTypedSelector(state => state.auth)
+
 
     return (
         <div>
@@ -17,7 +20,7 @@ const Main: FC = () => {
                     <Header/>
                     <MainContent/>
                 </div>
-                : <AuthPage setIsAuth={setIsAuth}/>
+                : <AuthPage/>
             }
         </div>
     )

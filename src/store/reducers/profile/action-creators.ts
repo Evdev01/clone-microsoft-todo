@@ -27,7 +27,6 @@ export const createNewTaskGroup = (newGroup: {}) => (dispatch: Dispatch<ProfileS
 }
 
 export const moveTaskGroup = (taskGroup: {}) => (dispatch: Dispatch<ProfileStateAction>) => {
-    console.log('taskGroup', taskGroup)
     dispatch({ type: ProfileStateEnum.MOVE_TASK_GROUP, payload: taskGroup })
 }
 

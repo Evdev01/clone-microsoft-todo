@@ -5,17 +5,18 @@ import MicrosoftIcon from "../svg/MicrosoftIcon"
 import { useDispatch } from "react-redux"
 import { openSideBarMenu } from "../../store/reducers/side-bar/action-creators"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
+import { logOutProfile } from "../../store/reducers/auth/action-creators"
 
 const ProfilePanelMenu: FC = () => {
 
 
-    const wrapperRef = useRef(null);
+    const wrapperRef = useRef(null)
     const dispatch = useDispatch()
     const { isShowProfileMenu } = useTypedSelector(state => state.sideBar)
 
 
+    useOutsideAlerter(wrapperRef)
 
-    useOutsideAlerter(wrapperRef);
     function useOutsideAlerter(ref: any) {
         useEffect(() => {
             function handleClickOutside(event: any) {
@@ -25,21 +26,24 @@ const ProfilePanelMenu: FC = () => {
                 }
             }
 
-            document.addEventListener("mousedown", handleClickOutside);
+            document.addEventListener("mousedown", handleClickOutside)
             return () => {
-                document.removeEventListener("mousedown", handleClickOutside);
-            };
-        }, [ref]);
+                document.removeEventListener("mousedown", handleClickOutside)
+            }
+        }, [ref])
     }
 
-
+    const logOut = () => {
+        dispatch(logOutProfile(false))
+        dispatch(openSideBarMenu(''))
+    }
 
     return (
-        <div className="profile__panel" ref={wrapperRef}>
+        <div className="profile__panel" ref={ wrapperRef }>
             <div className="profile__panel-wrapper">
                 <div className="profile__panel-header">
                     <MicrosoftIcon/>
-                    <div className="profile__panel-header-exit">
+                    <div className="profile__panel-header-exit" onClick={ logOut }>
                         <p>Выйти</p>
                     </div>
                 </div>

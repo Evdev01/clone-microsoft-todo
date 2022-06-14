@@ -1,4 +1,4 @@
-import { ProfileState, ProfileStateEnum } from "./types"
+import { ProfileState, ProfileStateEnum, TTaskGroup } from "./types"
 
 const defineTasksGroup = (action: any) => {
 

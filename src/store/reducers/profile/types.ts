@@ -1,5 +1,17 @@
 // todo add correct type
 
+export type TTask = {
+    id?: number
+    title?: string
+}
+
+export type TTaskGroup = {
+    id?: number
+    groupName?: string
+    route?: string
+    tasksItems?: TTask[]
+}
+
 export type ProfileState = {
     user: {
         name: string,
