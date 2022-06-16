@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import './TasksBlock.scss'
 import TaskItem from "../TaskItem/TaskItem"
 import TasksBlockCollapsed from "../TasksBlockCollapsed/TasksBlockCollapsed"
@@ -7,6 +7,8 @@ import { Task } from "../../types/task"
 import useRouterPath from "../../hooks/UseRouterPath"
 
 const TasksBlock: FC = () => {
+
+    const [isShowCollapsed, setIsShowCollapsed] = useState(false)
 
     const { user }: any = useTypedSelector(state => state.profile)
 
@@ -26,7 +28,12 @@ const TasksBlock: FC = () => {
             <div className="tasks__block-wrapper">
                 { getItemsFromGroup.tasksItems.map((task: Task) => <TaskItem key={ task.id } task={ task }/>) }
             </div>
-            <TasksBlockCollapsed/>
+            <TasksBlockCollapsed completedTaskLength={ getItemsFromGroup.completedTasks.length }
+                                 isShowCollapsed={ isShowCollapsed } setIsShowCollapsed={ setIsShowCollapsed }/>
+            { isShowCollapsed ? <div className="collapsed__block-wrapper">
+                { getItemsFromGroup.completedTasks.map((task: Task) => <TaskItem key={ task.id } task={ task }/>) }
+            </div> : null }
+
         </div>
     )
 }

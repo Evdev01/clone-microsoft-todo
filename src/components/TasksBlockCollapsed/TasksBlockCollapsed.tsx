@@ -2,9 +2,14 @@ import React, { FC, useState } from 'react'
 import './TasksBlockCollapsed.scss'
 import ChevronRight from "../svg/ChevronRight"
 
-const TasksBlockCollapsed:FC = () => {
+interface ITasksBlockCollapsedProps {
+    completedTaskLength: string
+    setIsShowCollapsed: any
+    isShowCollapsed: boolean
+}
 
-    const [isShowCollapsed, setIsShowCollapsed] = useState(false)
+const TasksBlockCollapsed:FC<ITasksBlockCollapsedProps> = ({completedTaskLength, setIsShowCollapsed, isShowCollapsed}) => {
+
 
     return (
         <div className="tasks__block-collapsed">
@@ -13,7 +18,7 @@ const TasksBlockCollapsed:FC = () => {
                         <ChevronRight/>
                 </span>
             <span>Завершенные</span>
-            <h3>13</h3>
+            <h3>{completedTaskLength}</h3>
         </div>
     )
 }

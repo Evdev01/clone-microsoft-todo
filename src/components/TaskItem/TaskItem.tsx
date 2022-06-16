@@ -3,7 +3,7 @@ import './TaskItem.scss'
 import IconStar from "../svg/IconStar"
 import ChevronDown from "../svg/ChevronDown"
 import { useDispatch } from "react-redux"
-import { getInfoCurrentTask } from "../../store/reducers/profile/action-creators"
+import { getInfoCurrentTask, toggleCompletedTask } from "../../store/reducers/profile/action-creators"
 import { Task } from "../../types/task"
 import CustomContextMenu from "../CustomContextmenu/CustomContextMenu"
 import contextMenuItems from './ContextMenuItems'
@@ -19,6 +19,7 @@ interface TTaskItemProps {
 const TaskItem: FC<TTaskItemProps> = ({ task }) => {
 
     const { title, category } = task
+
 
     const dispatch = useDispatch()
     const [isShowChevron, setIsShowChevron] = useState<boolean>(false)
@@ -38,6 +39,10 @@ const TaskItem: FC<TTaskItemProps> = ({ task }) => {
 
     const toggleShowChevron = () => setIsShowChevron(!isShowChevron)
 
+    const taskIsDone = () => {
+      dispatch(toggleCompletedTask({ groupName: routerPath, taskId: task.id }))
+    }
+
 
     return (
         <div id={ `customContextmenuArea${ task.id }` } className="task__item" onClick={ (e) => toggleShowTaskInfo(e) }>
@@ -54,7 +59,7 @@ const TaskItem: FC<TTaskItemProps> = ({ task }) => {
             <div className="task__info-wrapper">
 
                 <span className="add__task-icon-blue" onMouseEnter={ toggleShowChevron }
-                      onMouseLeave={ toggleShowChevron }>
+                      onMouseLeave={ toggleShowChevron } onClick={taskIsDone}>
                     { isShowChevron ? <ChevronDown/> : null }
                 </span>
 

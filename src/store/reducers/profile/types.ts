@@ -31,6 +31,7 @@ export enum ProfileStateEnum {
     CHANGE_INFO_TASK = "CHANGE_INFO_TASK",
     CREATE_NEW_GROUP_TASK = "CREATE_NEW_GROUP_TASK",
     MOVE_TASK_GROUP = "MOVE_TASK_GROUP",
+    TASK_IS_DONE = "TASK_IS_DONE",
 }
 
 export interface GetInfoAboutProfile {
@@ -69,6 +70,11 @@ export interface MoveTaskGroup {
     payload?: {}
 }
 
+export interface CompleteTask {
+    type: ProfileStateEnum.TASK_IS_DONE
+    payload?: {}
+}
+
 
 export type ProfileStateAction =
     GetInfoAboutProfile
@@ -78,3 +84,4 @@ export type ProfileStateAction =
     | ChangeTaskInfo
     | CreateNewGroupTask
     | MoveTaskGroup
+    | CompleteTask

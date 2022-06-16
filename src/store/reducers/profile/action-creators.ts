@@ -30,3 +30,8 @@ export const moveTaskGroup = (taskGroup: {}) => (dispatch: Dispatch<ProfileState
     dispatch({ type: ProfileStateEnum.MOVE_TASK_GROUP, payload: taskGroup })
 }
 
+
+export const toggleCompletedTask = (task: {}) => (dispatch: Dispatch<ProfileStateAction>) => {
+    dispatch({ type: ProfileStateEnum.TASK_IS_DONE, payload: task })
+}
+

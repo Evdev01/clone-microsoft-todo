@@ -4,3 +4,27 @@
   margin-top: 2px;
   padding: 0 16px;
 }
+
+.collapsed__block-wrapper {
+
+  & .task__title {
+    text-decoration: line-through;
+  }
+
+  & span {
+    background-color: #0078D7;
+    position: relative;
+
+    & svg {
+      display: none;
+    }
+
+    &:before {
+      position: absolute;
+      bottom: 0;
+      content: '✔';
+      color: #ffffff;
+      font-size: 11px;
+    }
+  }
+}

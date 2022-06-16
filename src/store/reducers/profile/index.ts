@@ -51,7 +51,12 @@ const initialState: ProfileState = {
                 id: 1,
                 groupName: 'myday',
                 route: 'mydaymyday',
-                tasksItems: []
+                tasksItems: [
+                    { id: 1, title: 'title' }
+                ],
+                completedTasks: [
+                    { id: 2, title: 'titlecompletedtasks' }
+                ]
             },
             {
                 id: 2,
@@ -104,8 +109,6 @@ const profileReducer = (state = initialState, action: any) => {
         case ProfileStateEnum.REMOVE_TASK_BY_ID:
 
 
-
-
             const copyUser = { ...state.user }
 
             const findInMainTasksGroup = copyUser.mainTasksGroup.find((el: any) => el.groupName === action.payload.groupName)
@@ -118,6 +121,7 @@ const profileReducer = (state = initialState, action: any) => {
 
             // @ts-ignore
             const findIndexGroupTask = copyUser[defineTasksGroup(action)].findIndex((el: any) => el.groupName === action.payload.groupName)
+
 
             // @ts-ignore
             copyUser[defineTasksGroup(action)][findIndexGroupTask].tasksItems = [...deleteTaskById]
@@ -176,10 +180,40 @@ const profileReducer = (state = initialState, action: any) => {
                 ...state,
                 user: { ...copyState }
             }
+        case ProfileStateEnum.TASK_IS_DONE:
+
+            const copyStr = { ...state.user }
+
+            // @ts-ignore
+            const getTskGroup = copyStr[defineTasksGroup(action)]
+
+
+            const getGpName = getTskGroup.find((el: any) => el.groupName === action.payload.groupName)
+
+            const findNeedTask = getGpName.tasksItems.find((el: any) => el.id === action.payload.taskId)
+
+
+            if (findNeedTask) {
+                getGpName.tasksItems = getGpName.tasksItems.filter((el: any) => el.id !== action.payload.taskId)
+                getGpName.completedTasks.unshift(findNeedTask)
+            } else {
+                const findNeedTask = getGpName.completedTasks.find((el: any) => el.id === action.payload.taskId)
+                getGpName.completedTasks = getGpName.completedTasks.filter((el: any) => el.id !== findNeedTask.id)
+                getGpName.tasksItems.unshift(findNeedTask)
+            }
+
+
+            localStorage.setItem('user', JSON.stringify({ ...state }))
+
+
+            return {
+                ...state,
+                user: { ...copyStr }
+            }
         case ProfileStateEnum.CREATE_NEW_GROUP_TASK:
 
 
-            const copyStat = {...state.user}
+            const copyStat = { ...state.user }
 
             copyStat.createdTasksGroup = [...state.user.createdTasksGroup, { ...action.payload }]
 
