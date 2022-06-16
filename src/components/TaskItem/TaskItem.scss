@@ -36,9 +36,21 @@
   color: $gray-color;
 }
 
-.task__icon-favorite svg:hover {
-  cursor: pointer;
-  color: $black-color;
+.task__icon-favorite {
+  & svg {
+
+    &:hover {
+      cursor: pointer;
+      color: $black-color;
+    }
+  }
+}
+
+.task__icon-favorite-active {
+  & svg {
+    color: $header-color;
+  }
+
 }
 
 .add__task-icon-blue {

@@ -35,3 +35,8 @@ export const toggleCompletedTask = (task: {}) => (dispatch: Dispatch<ProfileStat
     dispatch({ type: ProfileStateEnum.TASK_IS_DONE, payload: task })
 }
 
+
+export const addTaskImportant = (task: {}) => (dispatch: Dispatch<ProfileStateAction>) => {
+    dispatch({ type: ProfileStateEnum.ADD_TASK_IN_IMPORTANT, payload: task })
+}
+

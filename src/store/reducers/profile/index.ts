@@ -52,40 +52,45 @@ const initialState: ProfileState = {
                 groupName: 'myday',
                 route: 'mydaymyday',
                 tasksItems: [
-                    { id: 1, title: 'title' }
+                    { id: 1, title: 'title', important: false }
                 ],
                 completedTasks: [
-                    { id: 2, title: 'titlecompletedtasks' }
+                    { id: 2, title: 'titlecompletedtasks', important: false }
                 ]
             },
             {
                 id: 2,
                 groupName: 'important',
                 route: 'important',
-                tasksItems: []
+                tasksItems: [],
+                completedTasks: []
             },
             {
                 id: 3,
                 groupName: 'planned',
                 route: 'planned',
-                tasksItems: []
+                tasksItems: [],
+                completedTasks: []
             },
             {
                 id: 4,
                 groupName: 'assigned_to_me',
                 route: 'assigned_to_me',
-                tasksItems: []
+                tasksItems: [],
+                completedTasks: []
             }, {
                 id: 5,
                 groupName: 'inbox',
                 route: 'inbox',
-                tasksItems: []
+                tasksItems: [],
+                completedTasks: []
             },
             {
                 id: 6,
                 groupName: 'go-work',
                 route: 'go-work',
-                tasksItems: []
+                tasksItems: [],
+                completedTasks: []
             },
 
         ],
@@ -117,14 +122,27 @@ const profileReducer = (state = initialState, action: any) => {
 
             const getNeedGroupName = findInMainTasksGroup || findInCreatedTasksGroup
 
-            const deleteTaskById = getNeedGroupName.tasksItems.filter((el: any) => el.id !== action.payload.taskId)
+            const findNeedTaskInGroup = getNeedGroupName.tasksItems.find((el: any) => el.id === action.payload.taskId)
+
 
             // @ts-ignore
             const findIndexGroupTask = copyUser[defineTasksGroup(action)].findIndex((el: any) => el.groupName === action.payload.groupName)
 
 
+            let deleteTaskById = []
+
+            if (!findNeedTaskInGroup) {
+                deleteTaskById = getNeedGroupName.completedTasks.filter((el: any) => el.id !== action.payload.taskId)
+                // @ts-ignore
+                copyUser[defineTasksGroup(action)][findIndexGroupTask].completedTasks = [...deleteTaskById]
+            } else {
+                deleteTaskById = getNeedGroupName.tasksItems.filter((el: any) => el.id !== action.payload.taskId)
+                // @ts-ignore
+                copyUser[defineTasksGroup(action)][findIndexGroupTask].tasksItems = [...deleteTaskById]
+            }
+
+
             // @ts-ignore
-            copyUser[defineTasksGroup(action)][findIndexGroupTask].tasksItems = [...deleteTaskById]
             localStorage.setItem('user', JSON.stringify({ ...state }))
 
             return {
@@ -139,18 +157,55 @@ const profileReducer = (state = initialState, action: any) => {
             // @ts-ignore
             const findTaskGroup = copyStore[defineTasksGroup(action)].find((el: any) => el.groupName === action.payload.groupName)
 
-            findTaskGroup.tasksItems.push({ id: action.payload.id, title: action.payload.title })
+            findTaskGroup.tasksItems.push({ id: action.payload.id, title: action.payload.title, important: false })
 
             localStorage.setItem('user', JSON.stringify({ ...state }))
             return {
                 ...state,
                 user: { ...copyStore }
             }
+        case ProfileStateEnum.ADD_TASK_IN_IMPORTANT:
+
+            const cop = {...state.user}
+
+            // @ts-ignore
+            const findTaskGrp = cop[defineTasksGroup(action)].find((el: any) => el.groupName === action.payload.groupName)
+
+            let fndTask = findTaskGrp.tasksItems.find((el: any) => el.id === action.payload.taskId)
+
+
+            if (fndTask) {
+                if (fndTask.important) {
+                    fndTask.important = false
+                    cop.mainTasksGroup[1].tasksItems.filter((el: any) => el.id !== fndTask.id)
+                    cop.mainTasksGroup[1].tasksItems = cop.mainTasksGroup[1].tasksItems.filter((el: any) => el.id !== fndTask.id)
+
+                } else {
+                    fndTask.important = true
+                    cop.mainTasksGroup[1].tasksItems.push(fndTask)
+                }
+            } else {
+                let fndTask = findTaskGrp.completedTasks.find((el: any) => el.id === action.payload.taskId)
+                fndTask.important = !fndTask.important;
+            }
+
+            localStorage.setItem('user', JSON.stringify({ ...state }))
+            return {
+                ...state,
+                user: { ...cop }
+            }
         case ProfileStateEnum.GET_INFO_CURRENT_TASK:
             // @ts-ignore
             const getTasksGroup = state.user[defineTasksGroup(action)].find((el: any) => el.groupName === action.payload.groupName)
 
-            const getInfoAboutTask = getTasksGroup.tasksItems.find((el: any) => el.id === action.payload.taskId)
+            // @ts-ignore
+
+            let getInfoAboutTask = getTasksGroup.tasksItems.find((el: any) => el.id === action.payload.taskId)
+
+
+            if (!getInfoAboutTask) {
+                getInfoAboutTask = getTasksGroup.completedTasks.find((el: any) => el.id === action.payload.taskId)
+            }
 
             return {
                 ...state,
@@ -169,10 +224,16 @@ const profileReducer = (state = initialState, action: any) => {
 
             const getGrpName = getTasksGrp.find((el: any) => el.groupName === action.payload.groupName)
 
-            const changeTitleTask = getGrpName.tasksItems.find((el: any) => el.id === action.payload.taskId)
+
+            let changeTitleTask = getGrpName.tasksItems.find((el: any) => el.id === action.payload.taskId)
+
+            if (!changeTitleTask) {
+                changeTitleTask = getGrpName.completedTasks.find((el: any) => el.id === action.payload.taskId)
+            }
 
 
             changeTitleTask.title = action.payload.title
+
 
             localStorage.setItem('user', JSON.stringify({ ...state }))
 

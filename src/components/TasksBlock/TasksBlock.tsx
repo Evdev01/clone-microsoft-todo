@@ -25,7 +25,7 @@ const TasksBlock: FC = () => {
 
     return (
         <div className="tasks__block">
-            <div className="tasks__block-wrapper">
+            <div className="tasks__block-wrapper" >
                 { getItemsFromGroup.tasksItems.map((task: Task) => <TaskItem key={ task.id } task={ task }/>) }
             </div>
             <TasksBlockCollapsed completedTaskLength={ getItemsFromGroup.completedTasks.length }

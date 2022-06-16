@@ -3,7 +3,7 @@ import './TaskItem.scss'
 import IconStar from "../svg/IconStar"
 import ChevronDown from "../svg/ChevronDown"
 import { useDispatch } from "react-redux"
-import { getInfoCurrentTask, toggleCompletedTask } from "../../store/reducers/profile/action-creators"
+import { addTaskImportant, getInfoCurrentTask, toggleCompletedTask } from "../../store/reducers/profile/action-creators"
 import { Task } from "../../types/task"
 import CustomContextMenu from "../CustomContextmenu/CustomContextMenu"
 import contextMenuItems from './ContextMenuItems'
@@ -16,7 +16,7 @@ interface TTaskItemProps {
 }
 
 
-const TaskItem: FC<TTaskItemProps> = ({ task }) => {
+const TaskItem: FC<TTaskItemProps> = ({ task  }) => {
 
     const { title, category } = task
 
@@ -43,6 +43,9 @@ const TaskItem: FC<TTaskItemProps> = ({ task }) => {
       dispatch(toggleCompletedTask({ groupName: routerPath, taskId: task.id }))
     }
 
+    const addTaskInImportant = (taskId: number) => {
+        dispatch(addTaskImportant({taskId, groupName: routerPath}))
+    }
 
     return (
         <div id={ `customContextmenuArea${ task.id }` } className="task__item" onClick={ (e) => toggleShowTaskInfo(e) }>
@@ -69,7 +72,7 @@ const TaskItem: FC<TTaskItemProps> = ({ task }) => {
                 </div>
             </div>
 
-            <div className="task__icon-favorite">
+            <div className={task.important ? 'task__icon-favorite-active' : 'task__icon-favorite'} onClick={() => addTaskInImportant(task.id)}>
                 <IconStar/>
             </div>
         </div>

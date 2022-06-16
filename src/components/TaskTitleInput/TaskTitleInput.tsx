@@ -38,7 +38,7 @@ const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron 
         let taskItem = { ...currentTask }
         taskItem.title = taskTitle
         dispatch(changeInfoTask({ groupName: routerPath, taskId: currentTask.id, title: taskTitle }))
-    }, [currentTask])
+    }, [currentTask, taskTitle])
 
 
     return (
