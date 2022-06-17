@@ -103,3 +103,17 @@
     font-size: 13px;
   }
 }
+
+@media (max-width: 480px) {
+  .auth__pop_up {
+    width: 350px;
+  }
+
+  .auth__pop_up-wrapper {
+    padding: 15px;
+  }
+
+  .auth__page-footer {
+    padding: 0 15px;
+  }
+}

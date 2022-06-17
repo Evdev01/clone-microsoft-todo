@@ -20,37 +20,47 @@ const AuthPopUp: FC<TAuthPopUpProps> = ({ signInError, entryAllowed, typePopUpAu
     // @ts-ignore
     const {headerTitle, title, subTitle, popUpName, errorMessage, placeholder} = InfoForDifferentPopUp.find((el: any) => el.popUpName === typePopUpAuth)
 
+    const onFormSubmit = (e: any) => {
+        e.preventDefault();
+        popUpAction()
+    }
 
     return (
-        <div className="auth__pop_up">
-            <div className="auth__pop_up-wrapper">
-                <MicrosoftIcon/>
-                <h6>{ headerTitle }</h6>
-                { signInError
-                    ? <div
-                        className="auth__pop_up-error">{ signInError ? errorMessage : null }</div>
-                    : null
-                }
-                <input value={popUpInputValue} onChange={ e => setPopUpInputValue(e.target.value)} type="text" placeholder={placeholder}/>
-                <div className="auth__pop_up-links">
-                    {popUpName === 'signIn' ? <p>Нет учетной записи?</p> : null }
-                    <a target="_blank" onClick={popUpName === 'signIn' ? createNewUser : null}>
-                        {title}
-                    </a>
-                </div>
-                <IntelligenceMenuItem title={ subTitle } link={ '' }/>
-                { entryAllowed
-                    ? <div className="auth__pop_up-buttons">
-                        <button className="primary__blue">Вход</button>
-                    </div>
-                    : <div className="auth__pop_up-buttons">
-                        {popUpName === 'signIn' ? <button>Назад</button> : null}
-                        <button className="primary__blue" onClick={popUpAction}>{popUpName === 'checkPassword' ? 'Вход' : 'Далее'}</button>
-                    </div>
-                }
 
+        <form onSubmit={onFormSubmit}>
+            <div className="auth__pop_up">
+                <div className="auth__pop_up-wrapper">
+                    <MicrosoftIcon/>
+                    <h6>{ headerTitle }</h6>
+                    { signInError
+                        ? <div
+                            className="auth__pop_up-error">{ signInError ? errorMessage : null }</div>
+                        : null
+                    }
+                    <input value={ popUpInputValue } onChange={ e => setPopUpInputValue(e.target.value) } type="text"
+                           placeholder={ placeholder }/>
+                    <div className="auth__pop_up-links">
+                        { popUpName === 'signIn' ? <p>Нет учетной записи?</p> : null }
+                        <a target="_blank" onClick={ popUpName === 'signIn' ? createNewUser : null }>
+                            { title }
+                        </a>
+                    </div>
+                    <IntelligenceMenuItem title={ subTitle } link={ '' }/>
+                    { entryAllowed
+                        ? <div className="auth__pop_up-buttons">
+                            <button className="primary__blue">Вход</button>
+                        </div>
+                        : <div className="auth__pop_up-buttons">
+                            { popUpName === 'signIn' ? <button>Назад</button> : null }
+                            <button className="primary__blue"
+                                    type="submit"
+                                    onClick={ onFormSubmit }>{ popUpName === 'checkPassword' ? 'Вход' : 'Далее' }</button>
+                        </div>
+                    }
+
+                </div>
             </div>
-        </div>
+        </form>
     )
 }
 
