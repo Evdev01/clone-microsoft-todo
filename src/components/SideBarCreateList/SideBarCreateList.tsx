@@ -1,4 +1,4 @@
-import React, { FC, FocusEventHandler, useEffect, useState } from 'react'
+import React, { FC, FocusEventHandler, useState } from 'react'
 import './SideBarCreateList.scss'
 import AddIcon from '../svg/AddIcon'
 import AddGroupIcon from '../svg/AddGroupIcon'
@@ -23,7 +23,8 @@ const SideBarCreateList: FC = () => {
             id: new Date().getUTCMilliseconds(),
             groupName: taskGroupTitle,
             route: taskGroupTitle,
-            tasksItems: []
+            tasksItems: [],
+            completedTasks: []
         }
 
         if ((e.key === 'Enter' || e.type === 'click') && taskGroupTitle.length) {

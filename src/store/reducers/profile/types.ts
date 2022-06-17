@@ -32,7 +32,8 @@ export enum ProfileStateEnum {
     CREATE_NEW_GROUP_TASK = "CREATE_NEW_GROUP_TASK",
     MOVE_TASK_GROUP = "MOVE_TASK_GROUP",
     TASK_IS_DONE = "TASK_IS_DONE",
-    ADD_TASK_IN_IMPORTANT = "ADD_TASK_IN_IMPORTANT"
+    ADD_TASK_IN_IMPORTANT = "ADD_TASK_IN_IMPORTANT",
+    DELETE_TASK_GROUP = "DELETE_TASK_GROUP"
 }
 
 export interface GetInfoAboutProfile {
@@ -81,6 +82,11 @@ export interface AddTaskInImportant {
     payload?: {}
 }
 
+export interface DeleteTaskGroup {
+    type: ProfileStateEnum.DELETE_TASK_GROUP
+    payload?: number
+}
+
 
 export type ProfileStateAction =
     GetInfoAboutProfile
@@ -92,3 +98,4 @@ export type ProfileStateAction =
     | MoveTaskGroup
     | CompleteTask
     | AddTaskInImportant
+    | DeleteTaskGroup

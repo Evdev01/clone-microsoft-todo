@@ -40,3 +40,8 @@ export const addTaskImportant = (task: {}) => (dispatch: Dispatch<ProfileStateAc
     dispatch({ type: ProfileStateEnum.ADD_TASK_IN_IMPORTANT, payload: task })
 }
 
+
+export const deleteTaskGroup = (groupId: number) => (dispatch: Dispatch<ProfileStateAction>) => {
+    dispatch({ type: ProfileStateEnum.DELETE_TASK_GROUP, payload: groupId })
+}
+

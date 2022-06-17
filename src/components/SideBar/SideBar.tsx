@@ -23,7 +23,6 @@ const SideBar: FC<TSideBarProps> = ({ openBurgerMenu, setIsShowSideBar }) => {
     const getGroupTasks = user.createdTasksGroup
 
 
-
     useOutsideAlerter(wrapperRef)
 
     function useOutsideAlerter(ref: any) {

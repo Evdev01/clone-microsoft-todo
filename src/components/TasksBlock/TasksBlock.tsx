@@ -3,7 +3,7 @@ import './TasksBlock.scss'
 import TaskItem from "../TaskItem/TaskItem"
 import TasksBlockCollapsed from "../TasksBlockCollapsed/TasksBlockCollapsed"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
-import { Task } from "../../types/task"
+import { Task } from "../../types"
 import useRouterPath from "../../hooks/UseRouterPath"
 
 const TasksBlock: FC = () => {
@@ -15,12 +15,19 @@ const TasksBlock: FC = () => {
 
     const routerPath = useRouterPath()
 
-    const checkRoutePath = routerPath || user.mainTasksGroup[0]
+
+    let searchFromNeedGroup = []
 
     const findFromMainTasksGroup = user.mainTasksGroup.find((el: any) => el.groupName === routerPath)
-    const findFromCreatedTasksGroup = user.createdTasksGroup.find((el: any) => el.groupName === routerPath)
 
-    const getItemsFromGroup = findFromMainTasksGroup || findFromCreatedTasksGroup || checkRoutePath
+    if (findFromMainTasksGroup) {
+        searchFromNeedGroup = user.mainTasksGroup.find((el: any) => el.groupName === routerPath)
+    } else {
+        searchFromNeedGroup = user.createdTasksGroup.find((el: any) => el.groupName === routerPath)
+    }
+
+
+    const getItemsFromGroup = findFromMainTasksGroup || searchFromNeedGroup || user.mainTasksGroup[0]
 
 
     return (

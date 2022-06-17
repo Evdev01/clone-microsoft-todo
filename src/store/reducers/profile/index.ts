@@ -1,5 +1,4 @@
-import { ProfileState, ProfileStateEnum, TTaskGroup } from "./types"
-import { statSync } from "fs"
+import { ProfileState, ProfileStateEnum } from "./types"
 
 const defineTasksGroup = (action: any) => {
 
@@ -166,7 +165,7 @@ const profileReducer = (state = initialState, action: any) => {
             }
         case ProfileStateEnum.ADD_TASK_IN_IMPORTANT:
 
-            const cop = {...state.user}
+            const cop = { ...state.user }
 
             // @ts-ignore
             const findTaskGrp = cop[defineTasksGroup(action)].find((el: any) => el.groupName === action.payload.groupName)
@@ -186,7 +185,7 @@ const profileReducer = (state = initialState, action: any) => {
                 }
             } else {
                 let fndTask = findTaskGrp.completedTasks.find((el: any) => el.id === action.payload.taskId)
-                fndTask.important = !fndTask.important;
+                fndTask.important = !fndTask.important
             }
 
             localStorage.setItem('user', JSON.stringify({ ...state }))
@@ -274,15 +273,27 @@ const profileReducer = (state = initialState, action: any) => {
         case ProfileStateEnum.CREATE_NEW_GROUP_TASK:
 
 
-            const copyStat = { ...state.user }
+            const copyStat = { ...state }
 
-            copyStat.createdTasksGroup = [...state.user.createdTasksGroup, { ...action.payload }]
+            copyStat.user.createdTasksGroup = [...state.user.createdTasksGroup, { ...action.payload }]
 
-            localStorage.setItem('user', JSON.stringify({ ...state }))
+            localStorage.setItem('user', JSON.stringify({ ...copyStat }))
 
             return {
                 ...state,
-                user: { ...copyStat }
+                user: { ...copyStat.user }
+            }
+        case ProfileStateEnum.DELETE_TASK_GROUP:
+
+            const copp = { ...state }
+
+            copp.user.createdTasksGroup = copp.user.createdTasksGroup.filter((el: any) => el.id !== action.payload)
+
+            localStorage.setItem('user', JSON.stringify({ ...copp }))
+
+            return {
+                ...state,
+                user: { ...copp.user }
             }
         case ProfileStateEnum.MOVE_TASK_GROUP:
 

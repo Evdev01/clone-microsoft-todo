@@ -26,7 +26,6 @@ const MainContent: FC = () => {
         setIsShowSideBar(!isShowSideBar)
     }, [isShowSideBar])
 
-
     const renderComponent = useCallback(() => {
         let renderComponent = null
 
