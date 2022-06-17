@@ -6,6 +6,7 @@ import LightIcon from "../svg/LightIcon"
 import ContentBarIcon from "../ContentBarIcon/ContentBarIcon"
 import SortMenu from "../SortMenu/SortMenu"
 import MenuWrapper from "../MenuWrapper/MenuWrapper"
+import useRouterPath from "../../hooks/UseRouterPath"
 
 interface TMainContentTopProps {
     openBurgerMenu: () => void
@@ -17,6 +18,7 @@ const MainContentTop: FC<TMainContentTopProps> = ({ openBurgerMenu, isShowSideBa
 
 
     const [isShowSortMenu, setIsShowSortMenu] = useState<boolean>(false)
+    const routerPath = useRouterPath()
 
     const toggleSortMenu = () => {
         setIsShowSortMenu(!isShowSortMenu)
@@ -37,7 +39,7 @@ const MainContentTop: FC<TMainContentTopProps> = ({ openBurgerMenu, isShowSideBa
                             ? <BurgerMenu openBurgerMenu={ openBurgerMenu }/>
                             : null
                     }
-                    <p className="content__left-my-day">{ title }</p>
+                    <p className="content__left-my-day">{ title || routerPath }</p>
                     <p className="content__left-dots">...</p>
                 </div>
 

@@ -11,7 +11,6 @@ interface TIntelligenceMenuItemProps {
 
 const IntelligenceMenuItem: FC<TIntelligenceMenuItemProps> = ({ icon, title, boldText, boldLink, link }) => {
     return (
-        // todo need check it
         <div className={ !!icon ? 'intelligence__menu-item-icon' : 'intelligence__menu-item' }>
             <div className="intelligence__menu-item-wrapper">
                 { !!icon ? <div className="intelligence__menu-item-icon-svg">{ icon }</div> : null }

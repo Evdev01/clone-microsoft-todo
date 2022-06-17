@@ -19,7 +19,6 @@ const ContextMenuInnerItem:FC<TContextMenuItemProps> = ({title, classes, groupId
     const { currentSideBarItem }: any = useTypedSelector(state => state.sideBar)
 
 
-
     const moveTaskGrp= () => {
         dispatch(moveTaskGroup({groupId: currentSideBarItem.id, taskId, moveGroupId: groupId}))
     }

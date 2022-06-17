@@ -49,6 +49,7 @@ const ContextMenuItem: FC<IContextMenuItemProps> = ({
             dispatch(openTaskInfoAbout(false))
         } else if (id === 16) { // id 11 - deletes the task group
             dispatch(deleteTaskGroup(taskGroupId))
+
         }
     }
 
