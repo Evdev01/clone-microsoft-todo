@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useCallback, useEffect, useRef, useState } fro
 import { NavLink } from 'react-router-dom'
 import './SideBarItem.scss'
 import FormatListIcon from '../svg/FormatListIcon'
-import { getSideBarItemInfo, getSideBarItemName } from "../../store/reducers/side-bar/action-creators"
+import { getSideBarItemInfo } from "../../store/reducers/side-bar/action-creators"
 import { useDispatch } from "react-redux"
 import contextMenuItems from './SideBarContextItems'
 import ContextMenuItem from "../ContextMenuItem.tsx/ContextMenuItem"
@@ -21,11 +21,9 @@ const SideBarItem: FC<TSideBarItemProps> = ({ icon, title, route, id, taskGroup 
 
     const dispatch = useDispatch()
     const [anchorPoint, setAnchorPoint] = useState({ visible: false, x: 0, y: 0 })
-    // const [show, setShow] = useState(false)
 
     const getSideBarItemTitle = (id: number) => {
         dispatch(getSideBarItemInfo({ id }))
-        dispatch(getSideBarItemName(title))
     }
 
     const ref: any = useRef()

@@ -92,7 +92,7 @@ const profileReducer = (state = initialState, action: any) => {
                 // @ts-ignore
                 copyStateUser(state)[defineTasksGroup(action)][findIndexGroupTask].completedTasks = [...deleteTaskById]
             } else {
-                deleteTaskById = filterCompletedItemsById(state, action)
+                deleteTaskById = filterTaskItemsById(state, action)
                 // @ts-ignore
                 copyStateUser(state)[defineTasksGroup(action)][findIndexGroupTask].tasksItems = [...deleteTaskById]
             }

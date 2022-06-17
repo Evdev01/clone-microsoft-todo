@@ -8,15 +8,9 @@ export type SideBarItem = {
 }
 
 export enum SideBarItemEnum {
-    GET_SIDE_BAR_ITEM_TITLE = "GET_SIDE_BAR_ITEM_TITLE",
     IS_SHOW_PROFILE_MENU = "IS_SHOW_PROFILE_MENU",
     OPEN_SIDEBAR_ITEM = "OPEN_SIDEBAR_ITEM",
     GET_SIDE_BAR_ITEM_INF0 = "GET_SIDE_BAR_ITEM_INF0"
-}
-
-export interface GetItemTitle {
-    type: SideBarItemEnum.GET_SIDE_BAR_ITEM_TITLE
-    payload: string
 }
 
 export interface OpenUserSetting {
@@ -34,4 +28,4 @@ export interface GetSideBarItemInfo {
     payload: {}
 }
 
-export type SideBarItemAction = GetItemTitle | OpenUserSetting | IsShowProfileMenu | GetSideBarItemInfo
+export type SideBarItemAction = OpenUserSetting | IsShowProfileMenu | GetSideBarItemInfo
