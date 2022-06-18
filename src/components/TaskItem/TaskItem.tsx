@@ -11,12 +11,12 @@ import useRouterPath from "../../hooks/UseRouterPath"
 import { openTaskInfoAbout } from "../../store/reducers/tasks/action-creators"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 
-interface TTaskItemProps {
+interface ITaskItemProps {
     task: Task
 }
 
 
-const TaskItem: FC<TTaskItemProps> = ({ task  }) => {
+const TaskItem: FC<ITaskItemProps> = ({ task  }) => {
 
     const { title, category } = task
 

@@ -8,16 +8,17 @@ import contextMenuItems from './SideBarContextItems'
 import ContextMenuItem from "../ContextMenuItem.tsx/ContextMenuItem"
 
 
-interface TSideBarItemProps {
+interface ISideBarItemProps {
     icon?: ReactElement | string
     title: string
     route: string
     id?: any
+    // todo change types
     taskGroup?: any
 }
 
 
-const SideBarItem: FC<TSideBarItemProps> = ({ icon, title, route, id, taskGroup }) => {
+const SideBarItem: FC<ISideBarItemProps> = ({ icon, title, route, id, taskGroup }) => {
 
     const dispatch = useDispatch()
     const [anchorPoint, setAnchorPoint] = useState({ visible: false, x: 0, y: 0 })
@@ -26,7 +27,7 @@ const SideBarItem: FC<TSideBarItemProps> = ({ icon, title, route, id, taskGroup 
         dispatch(getSideBarItemInfo({ id }))
     }
 
-    const ref: any = useRef()
+    const ref: any = useRef<HTMLInputElement>(null)
     const contextRef= useRef(null);
 
 

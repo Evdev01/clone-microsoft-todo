@@ -2,13 +2,13 @@ import React, { FC } from 'react'
 import './SelectCategoryItem.scss'
 import SelectCategoryCircle from "../SelectCategoryCircle/SelectCategoryCircle"
 
-interface TRepeatTaskMenuItemProps {
+interface IRepeatTaskMenuItemProps {
     title: string
     colorIcon: string
 
 }
 
-const SelectCategoryItem:FC<TRepeatTaskMenuItemProps> = ({title, colorIcon}) => {
+const SelectCategoryItem:FC<IRepeatTaskMenuItemProps> = ({title, colorIcon}) => {
 
 
     return (

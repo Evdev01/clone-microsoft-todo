@@ -2,12 +2,12 @@ import React, { FC } from 'react'
 import './UserSettingsItem.scss'
 import ToggleButton from "../ToggleButton/ToggleButton"
 
-interface TUserSittingItemProps {
+interface IUserSittingItemProps {
     title: string
     checked: boolean
 }
 
-const UserSettingsItem: FC<TUserSittingItemProps> = ({ title, checked }) => {
+const UserSettingsItem: FC<IUserSittingItemProps> = ({ title, checked }) => {
 
     return (
         <div className="user__setting-menu-item">

@@ -5,11 +5,13 @@ import TasksBlockCollapsed from "../TasksBlockCollapsed/TasksBlockCollapsed"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 import { Task } from "../../types"
 import useRouterPath from "../../hooks/UseRouterPath"
+import { TaskGroup } from "../../types/taskGroup"
 
 const TasksBlock: FC = () => {
 
-    const [isShowCollapsed, setIsShowCollapsed] = useState(false)
+    const [isShowCollapsed, setIsShowCollapsed] = useState<boolean>(false)
 
+    // todo change type
     const { user }: any = useTypedSelector(state => state.profile)
 
 
@@ -18,12 +20,12 @@ const TasksBlock: FC = () => {
 
     let searchFromNeedGroup = []
 
-    const findFromMainTasksGroup = user.mainTasksGroup.find((el: any) => el.groupName === routerPath)
+    const findFromMainTasksGroup = user.mainTasksGroup.find((el: TaskGroup) => el.groupName === routerPath)
 
     if (findFromMainTasksGroup) {
-        searchFromNeedGroup = user.mainTasksGroup.find((el: any) => el.groupName === routerPath)
+        searchFromNeedGroup = user.mainTasksGroup.find((el: TaskGroup) => el.groupName === routerPath)
     } else {
-        searchFromNeedGroup = user.createdTasksGroup.find((el: any) => el.groupName === routerPath)
+        searchFromNeedGroup = user.createdTasksGroup.find((el: TaskGroup) => el.groupName === routerPath)
     }
 
 

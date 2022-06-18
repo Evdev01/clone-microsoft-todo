@@ -1,7 +1,7 @@
-import React, { FC, useCallback, useEffect, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import './MainContent.scss'
 import SideBar from '../SideBar'
-import { Redirect, Route, Switch } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import MainContentWrapper from "../MainContentWrapper"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 import TaskInfoBlock from "../TaskInfoBlock"
@@ -9,9 +9,8 @@ import UserSettingMenu from "../UserSettingMenu"
 import CallBackMenu from "../CallBackMenu"
 import NewsPanelMenu from "../NewsPanelMenu"
 import ProfilePanelMenu from "../ProfilePanelMenu"
-import useRouterPath from "../../hooks/UseRouterPath"
 
-interface TMainContentProps {
+interface IMainContentProps {
 }
 
 const MainContent: FC = () => {
@@ -22,7 +21,6 @@ const MainContent: FC = () => {
     const { isShowSidebarMenu } = useTypedSelector(state => state.sideBar)
 
     const [isShowSideBar, setIsShowSideBar] = useState<boolean>(false)
-    const routerPath = useRouterPath()
 
     const openBurgerMenu = useCallback(() => {
         setIsShowSideBar(!isShowSideBar)
@@ -74,5 +72,5 @@ const MainContent: FC = () => {
     )
 }
 
-export type { TMainContentProps }
+export type { IMainContentProps }
 export default MainContent

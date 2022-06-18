@@ -1,4 +1,4 @@
-import MainContentTop, { TMainContentTopProps } from './MainContentTop'
+import MainContentTop, { IMainContentTopProps } from './MainContentTop'
 
-export type { TMainContentTopProps }
+export type { IMainContentTopProps }
 export default MainContentTop

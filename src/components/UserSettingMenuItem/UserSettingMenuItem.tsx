@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import './UserSettingMenuItem.scss'
 import UserSettingsItem from "../UserSettingsItem/UserSettingsItem"
 
-interface TUserSettingMenuItem {
+interface IUserSettingMenuItem {
     headerTitle: {
         general: string
         smartLists: string
@@ -11,7 +11,7 @@ interface TUserSettingMenuItem {
     }
 }
 
-const UserSettingMenuItem:FC<TUserSettingMenuItem> = ({headerTitle:{general, smartLists, connectedApp, notifications}}) => {
+const UserSettingMenuItem:FC<IUserSettingMenuItem> = ({headerTitle:{general, smartLists, connectedApp, notifications}}) => {
     return (
         <div className="user__setting-menu">
             <h4>{general}</h4>

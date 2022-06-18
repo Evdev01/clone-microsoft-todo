@@ -1,5 +1,5 @@
-import Main, { TMainProps } from './Main'
+import Main, { IMainProps } from './Main'
 import * as React from "react"
 
-export type { TMainProps }
+export type { IMainProps }
 export default React.memo(Main)

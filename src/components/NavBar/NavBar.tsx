@@ -12,7 +12,7 @@ import { useTypedSelector } from "../../hooks/useTypedSelector"
 
 const NavBar: FC = () => {
 
-    const navItemRef = useRef()
+    const navItemRef = useRef<any>(null)
     const dispatch = useDispatch()
     useEffect( () => {
         dispatch(refProfileMenuAction(navItemRef))

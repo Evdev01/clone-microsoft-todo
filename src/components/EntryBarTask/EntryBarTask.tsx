@@ -4,12 +4,12 @@ import CalendarIcon from "../svg/CalendarIcon"
 import NotificationIcon from "../svg/NotificationIcon"
 import RecurringIcon from "../svg/RecurringIcon"
 
-interface TEntryBarTaskProps {
+interface IEntryBarTaskProps {
     isActiveAddTaskButton: boolean
     creatTask: () => void
 }
 
-const EntryBarTask: FC<TEntryBarTaskProps> = ({ isActiveAddTaskButton, creatTask }) => {
+const EntryBarTask: FC<IEntryBarTaskProps> = ({ isActiveAddTaskButton, creatTask }) => {
     return <div className="add__task-panel-entrybar">
         <div className="add__task-panel-entrybar-icons">
             <CalendarIcon/>

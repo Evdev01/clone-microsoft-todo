@@ -7,15 +7,15 @@ import { useDispatch } from "react-redux"
 import { changeInfoTask } from "../../store/reducers/profile/action-creators"
 import useRouterPath from "../../hooks/UseRouterPath"
 
-interface TTaskTitleInput {
+interface ITaskTitleInput {
     isShowChevron: boolean
     toggleShowChevron: () => void
 }
 
-const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron }) => {
+const TaskTitleInput: FC<ITaskTitleInput> = ({ isShowChevron, toggleShowChevron }) => {
 
     const dispatch = useDispatch()
-    const [taskTitle, setTaskTitle] = useState('')
+    const [taskTitle, setTaskTitle] = useState<string>('')
     const { user: { currentTask } }: any = useTypedSelector(state => state.profile)
 
     const routerPath = useRouterPath()
@@ -26,7 +26,7 @@ const TaskTitleInput: FC<TTaskTitleInput> = ({ isShowChevron, toggleShowChevron 
     }, [currentTask])
 
 
-    const [isActiveInput, setIsActiveInput] = useState(false)
+    const [isActiveInput, setIsActiveInput] = useState<boolean>(false)
 
 
     const onFocusInput = useCallback(() => {

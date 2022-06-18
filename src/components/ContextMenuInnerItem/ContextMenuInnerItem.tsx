@@ -5,14 +5,14 @@ import { useDispatch } from "react-redux"
 import { moveTaskGroup } from "../../store/reducers/profile/action-creators"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 
-interface TContextMenuItemProps {
+interface IContextMenuItemProps {
     title: string
     classes: any
     groupId: number
     taskId: number
 }
 
-const ContextMenuInnerItem:FC<TContextMenuItemProps> = ({title, classes, groupId, taskId}) => {
+const ContextMenuInnerItem:FC<IContextMenuItemProps> = ({title, classes, groupId, taskId}) => {
 
     const dispatch = useDispatch()
 

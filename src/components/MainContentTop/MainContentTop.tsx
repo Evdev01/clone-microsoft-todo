@@ -8,13 +8,13 @@ import SortMenu from "../SortMenu/SortMenu"
 import MenuWrapper from "../MenuWrapper/MenuWrapper"
 import useRouterPath from "../../hooks/UseRouterPath"
 
-interface TMainContentTopProps {
+interface IMainContentTopProps {
     openBurgerMenu: () => void
     isShowSideBar: boolean
     title?: string
 }
 
-const MainContentTop: FC<TMainContentTopProps> = ({ openBurgerMenu, isShowSideBar, title }) => {
+const MainContentTop: FC<IMainContentTopProps> = ({ openBurgerMenu, isShowSideBar, title }) => {
 
 
     const [isShowSortMenu, setIsShowSortMenu] = useState<boolean>(false)
@@ -57,5 +57,5 @@ const MainContentTop: FC<TMainContentTopProps> = ({ openBurgerMenu, isShowSideBa
     )
 }
 
-export type { TMainContentTopProps }
+export type { IMainContentTopProps }
 export default MainContentTop

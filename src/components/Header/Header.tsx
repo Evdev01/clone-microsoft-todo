@@ -8,7 +8,7 @@ const Header: FC = () => {
 
 
 
-    const [activeInput, setActiveInput] = useState(false)
+    const [activeInput, setActiveInput] = useState<boolean>(false)
 
 
     const toggleFocusInput = useCallback(() => {

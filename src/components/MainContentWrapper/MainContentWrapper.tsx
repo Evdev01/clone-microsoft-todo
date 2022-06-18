@@ -3,13 +3,13 @@ import './MainContentWrapper.scss'
 import MainContentTop from "../MainContentTop"
 import TasksContent from "../TasksContent"
 
-interface TMainContentWrapperProps {
+interface IMainContentWrapperProps {
     openBurgerMenu: () => void
     isShowSideBar: boolean
     title?: string
 }
 
-const MainContentWrapper: FC<TMainContentWrapperProps> = ({ openBurgerMenu, isShowSideBar, title }) => {
+const MainContentWrapper: FC<IMainContentWrapperProps> = ({ openBurgerMenu, isShowSideBar, title }) => {
 
 
     return (

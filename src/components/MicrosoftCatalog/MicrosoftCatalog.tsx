@@ -4,11 +4,12 @@ import './MicrosoftCatalog.scss'
 import ArrowIcon from "../svg/ArrowIcon"
 import MicrosoftCatalogItems from "../MicrosoftCatalogItems/MicrosoftCatalogItems"
 
-interface TMicrosoftCatalogProps {
+interface IMicrosoftCatalogProps {
+    // todo change type
     toggleShowMicrosoftMenu: () => void
 }
 
-const MicrosoftCatalog:FC<TMicrosoftCatalogProps> = ({toggleShowMicrosoftMenu}) => {
+const MicrosoftCatalog:FC<IMicrosoftCatalogProps> = ({toggleShowMicrosoftMenu}) => {
 
 
     return (

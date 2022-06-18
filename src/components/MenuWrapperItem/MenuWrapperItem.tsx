@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 import './MenuWrapperItem.scss'
 
-interface TMenuWrapperItemProps {
+interface IMenuWrapperItemProps {
     icon: any
     title: string
     time?: string | any
 }
 
-const MenuWrapperItem:FC<TMenuWrapperItemProps> = ({icon, title, time}) => {
+const MenuWrapperItem:FC<IMenuWrapperItemProps> = ({icon, title, time}) => {
     return (
         <div className='menu-wrapper__item'>
             <div className="menu-wrapper__item-wrapper">

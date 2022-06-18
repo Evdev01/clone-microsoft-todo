@@ -1,19 +1,19 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, ReactNode, useEffect, useRef, useState } from 'react'
 import './MenuWrapper.scss'
 
-interface TMenuWrapperProps {
+interface IMenuWrapperProps {
     headerTitle?: string
-    children: any
+    children: ReactNode
     footerComponent?: any
     checkClickOutSide: any
 }
 
-const MenuWrapper: FC<TMenuWrapperProps> = ({ headerTitle, children, footerComponent, checkClickOutSide }) => {
+const MenuWrapper: FC<IMenuWrapperProps> = ({ headerTitle, children, footerComponent, checkClickOutSide }) => {
 
     const wrapperRef = useRef(null);
 
     useOutsideAlerter(wrapperRef);
-    const [chekOutSideClick, setChekOutSideClick] = useState('')
+    const [chekOutSideClick, setChekOutSideClick] = useState<string>('')
 
     useEffect(() => {
         checkClickOutSide(chekOutSideClick)

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import './IntelligenceMenuItem.scss'
 
-interface TIntelligenceMenuItemProps {
+interface IIntelligenceMenuItemProps {
     icon?: any
     title: string
     boldText?: string
@@ -9,7 +9,7 @@ interface TIntelligenceMenuItemProps {
     link?: string
 }
 
-const IntelligenceMenuItem: FC<TIntelligenceMenuItemProps> = ({ icon, title, boldText, boldLink, link }) => {
+const IntelligenceMenuItem: FC<IIntelligenceMenuItemProps> = ({ icon, title, boldText, boldLink, link }) => {
     return (
         <div className={ !!icon ? 'intelligence__menu-item-icon' : 'intelligence__menu-item' }>
             <div className="intelligence__menu-item-wrapper">

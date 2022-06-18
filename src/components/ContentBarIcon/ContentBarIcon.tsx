@@ -1,14 +1,14 @@
-import React, { FC } from 'react'
+import React, { Dispatch, FC, MouseEventHandler, SetStateAction } from 'react'
 import './ContentBarIcon.scss'
 
 
-interface TContentBarIconProps {
+interface IContentBarIconProps {
     title: string
-    toggleSortMenu?: () => void
+    toggleSortMenu?: MouseEventHandler<HTMLDivElement>
 }
 
 
-const ContentBarIcon: FC<TContentBarIconProps> = ({ children, title,toggleSortMenu }) => {
+const ContentBarIcon: FC<IContentBarIconProps> = ({ children, title,toggleSortMenu }) => {
     return (
         <div className="content__bar-icon" onClick={toggleSortMenu}>
             { children }

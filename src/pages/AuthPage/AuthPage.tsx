@@ -11,10 +11,10 @@ import {
 } from "../../store/reducers/auth/action-creators"
 import { useHistory } from "react-router-dom"
 
-interface TAuthPageProps {
+interface IAuthPageProps {
 }
 
-const AuthPage: FC<TAuthPageProps> = ({}) => {
+const AuthPage: FC<IAuthPageProps> = ({}) => {
 
     const [entryAllowed, setEntryAllowed] = useState<boolean>(false)
     const [typePopUpAuth, setTypePopUpAuth] = useState<string>('signIn')

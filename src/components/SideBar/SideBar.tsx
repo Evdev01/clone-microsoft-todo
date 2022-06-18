@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from 'react'
+import React, { Dispatch, FC, LegacyRef, SetStateAction, useEffect, useRef } from 'react'
 import './SideBar.scss'
 import BurgerMenu from '../BurgerMenu/BurgerMenu'
 import SideBarSortableItem from '../SideBarSortable/SideBarSortableItem'
@@ -7,16 +7,18 @@ import SideBarItem from '../SideBarItem/SideBarItem'
 import SideBarCreateList from '../SideBarCreateList/SideBarCreateList'
 import SideBarFooter from '../SideBarFooter/SideBarFooter'
 import { useTypedSelector } from "../../hooks/useTypedSelector"
+import { User } from "../../types"
 
-interface TSideBarProps {
+interface ISideBarProps {
     openBurgerMenu: () => void
-    setIsShowSideBar: any
+    setIsShowSideBar: Dispatch<SetStateAction<boolean>>
 }
 
-const SideBar: FC<TSideBarProps> = ({ openBurgerMenu, setIsShowSideBar }) => {
+const SideBar: FC<ISideBarProps> = ({ openBurgerMenu, setIsShowSideBar }) => {
 
     const wrapperRef = useRef(null)
 
+    // todo change types
     const { user }: any = useTypedSelector(state => state.profile)
 
 
@@ -25,7 +27,7 @@ const SideBar: FC<TSideBarProps> = ({ openBurgerMenu, setIsShowSideBar }) => {
 
     useOutsideAlerter(wrapperRef)
 
-    function useOutsideAlerter(ref: any) {
+    function useOutsideAlerter(ref: LegacyRef<HTMLLIElement> | undefined) {
         useEffect(() => {
             function handleClickOutside(event: any) {
                 // @ts-ignore

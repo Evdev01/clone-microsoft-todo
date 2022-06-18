@@ -1,15 +1,15 @@
-import React, { FC, useCallback } from 'react'
+import React, { FC, LegacyRef, useCallback } from 'react'
 import './NavBarItem.scss'
 import { useTypedSelector } from "../../../hooks/useTypedSelector"
 
-interface TNavBarItemProps {
+interface INavBarItemProps {
     title: string
     nameActiveSideBarMenu: string
     openSideMenu: (sideMenuName: string) => void
-    navItemRef?: any
+    navItemRef?: LegacyRef<HTMLLIElement> | undefined
 }
 
-const NavBarItem: FC<TNavBarItemProps> = ({ children, title, nameActiveSideBarMenu, openSideMenu, navItemRef }) => {
+const NavBarItem: FC<INavBarItemProps> = ({ children, title, nameActiveSideBarMenu, openSideMenu, navItemRef }) => {
 
     const { isShowSidebarMenu } = useTypedSelector(state => state.sideBar)
 

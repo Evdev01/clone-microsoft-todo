@@ -4,18 +4,17 @@ import MicrosoftIcon from "../svg/MicrosoftIcon"
 import IntelligenceMenuItem from "../IntelligenceMenuItem/IntelligenceMenuItem"
 import InfoForDifferentPopUp from './infoForDifferentPopUp'
 
-interface TAuthPopUpProps {
+interface IAuthPopUpProps {
     signInError: boolean
     entryAllowed: boolean
     typePopUpAuth: string
     popUpInputValue: string
     setPopUpInputValue: Dispatch<SetStateAction<string>>
-    popUpAction: any
+    popUpAction: () => void
     createNewUser: any
 }
 
-const AuthPopUp: FC<TAuthPopUpProps> = ({ signInError, entryAllowed, typePopUpAuth, popUpInputValue, setPopUpInputValue, popUpAction, createNewUser }) => {
-
+const AuthPopUp: FC<IAuthPopUpProps> = ({ signInError, entryAllowed, typePopUpAuth, popUpInputValue, setPopUpInputValue, popUpAction, createNewUser }) => {
 
     // @ts-ignore
     const {headerTitle, title, subTitle, popUpName, errorMessage, placeholder} = InfoForDifferentPopUp.find((el: any) => el.popUpName === typePopUpAuth)

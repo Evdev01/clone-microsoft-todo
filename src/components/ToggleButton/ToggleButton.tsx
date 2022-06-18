@@ -2,12 +2,12 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 import './ToggleButton.scss'
 
 
-interface TToggleButtonProps {
+interface IToggleButtonProps {
     checked: boolean
 }
 
 
-const ToggleButton:FC<TToggleButtonProps> = ({checked}) => {
+const ToggleButton:FC<IToggleButtonProps> = ({checked}) => {
 
     const onRefChange = useRef<any>()
     const [isCheckedInput, setIsCheckedInput] = useState<boolean>(false)

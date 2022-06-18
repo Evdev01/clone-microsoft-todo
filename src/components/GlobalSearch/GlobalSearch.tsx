@@ -1,24 +1,23 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC, FocusEventHandler, useCallback, useState } from 'react'
 import './GlobalSearch.scss'
 import SearchIcon from "../svg/SearchIcon"
 import useFocus from "../../hooks/useFocus"
 
-interface TGlobalSearchProps {
+interface IGlobalSearchProps {
     activeInput: boolean
-    toggleFocusInput: any
-    // toggleFocusInput: (event: FocusEventHandler<HTMLInputElement> | any) => void
+    toggleFocusInput: (event?: FocusEventHandler<HTMLInputElement> | any) => void
 }
 
-const GlobalSearch: FC<TGlobalSearchProps> = ({ activeInput, toggleFocusInput }) => {
+const GlobalSearch: FC<IGlobalSearchProps> = ({ activeInput, toggleFocusInput }) => {
 
     const [inputRef, setInputFocus] = useFocus()
     const [isMobileVersion, setIsMobileVersion] = useState<boolean>(false)
     const [globalSearchValue, setGlobalSearchValue] = useState<string>('')
 
-    const inputIsMobile = () => {
+    const inputIsMobile = useCallback(() => {
         setInputFocus()
         setIsMobileVersion(true)
-    }
+    }, [])
 
     const addTaskValue = useCallback((e) => {
          setGlobalSearchValue(e.target.value)

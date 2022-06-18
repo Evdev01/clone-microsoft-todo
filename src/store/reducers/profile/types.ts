@@ -3,6 +3,7 @@
 export type TTask = {
     id?: number
     title?: string
+    important?: boolean
 }
 
 export type TTaskGroup = {
@@ -10,6 +11,7 @@ export type TTaskGroup = {
     groupName?: string
     route?: string
     tasksItems?: TTask[]
+    completedTasks: TTask[]
 }
 
 export type ProfileState = {
@@ -18,8 +20,8 @@ export type ProfileState = {
         surName: string,
         email: string,
         currentTask?: {},
-        mainTasksGroup: any,
-        createdTasksGroup: any
+        mainTasksGroup: TTaskGroup[],
+        createdTasksGroup: TTaskGroup[]
     }
 }
 

@@ -7,7 +7,7 @@ import ContextMenuInnerItem from "../ContextMenuInnerItem/ContextMenuInnerItem"
 const MyCustomContextMenu= ({ targetId, options, classes, innerOptions, taskId }) => {
     const [contextData, setContextData]= useState({ visible:false, posX: 0, posY: 0});
     const contextRef= useRef(null);
-    const [isShowInnerMenu, setIsShowInnerMenu] = useState(false)
+    const [isShowInnerMenu, setIsShowInnerMenu] = useState<boolean>(false)
 
     useEffect(() => {
         {/*

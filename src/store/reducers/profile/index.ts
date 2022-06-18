@@ -1,4 +1,4 @@
-import { ProfileState, ProfileStateEnum } from "./types"
+import { ProfileState, ProfileStateEnum, TTask, TTaskGroup } from "./types"
 import {
     copyState,
     copyStateUser,
@@ -214,15 +214,18 @@ const profileReducer = (state = initialState, action: any) => {
 
             const findGroup = copy.createdTasksGroup.find((el: any) => el.id === action.payload.groupId)
 
-            const findTask = findGroup.tasksItems.find((el: any) => el.id === action.payload.taskId)
+            // @ts-ignore
+            const findTask: TTaskGroup = findGroup.tasksItems.find((el: any) => el.id === action.payload.taskId)
 
             const findMoveGroup = copy.createdTasksGroup.find((el: any) => el.id === action.payload.moveGroupId)
 
             const findCurrentGroupIndex = copy.createdTasksGroup.findIndex((el: any) => el.id === action.payload.groupId)
 
+            // @ts-ignore
             const removeTask = copy.createdTasksGroup[findCurrentGroupIndex].tasksItems.filter((el: any) => el.id !== action.payload.taskId)
             copy.createdTasksGroup[findCurrentGroupIndex].tasksItems = [...removeTask]
 
+            // @ts-ignore
             findMoveGroup.tasksItems.push(findTask)
 
             localStorage.setItem('user', JSON.stringify({ ...state }))

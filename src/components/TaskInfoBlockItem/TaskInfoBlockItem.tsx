@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react'
 import './TaskInfoBlockItem.scss'
 
-interface TTaskInfoBlockProps {
+interface ITaskInfoBlockProps {
     icon?: ReactElement | string
     title: string
     titleBlue?: boolean
@@ -11,7 +11,8 @@ interface TTaskInfoBlockProps {
 }
 
 
-const TaskInfoBlockItem: FC<TTaskInfoBlockProps> = ({ icon, title, titleBlue,unHover, isShowTaskMenu, menuName }) => {
+const TaskInfoBlockItem: FC<ITaskInfoBlockProps> = ({ icon, title, titleBlue,unHover, isShowTaskMenu, menuName }) => {
+
     return (
         <div className={unHover ? 'task__info-block-item' : 'task__info-block-item hover'} onClick={() => isShowTaskMenu ? isShowTaskMenu(menuName) : null}>
             <div className='task__info-block-item-icon'>{ icon }</div>
