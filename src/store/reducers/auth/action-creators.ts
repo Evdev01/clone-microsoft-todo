@@ -6,7 +6,6 @@ export const checkEmailInDb = (user: string) => (dispatch: Dispatch<AuthStateAct
 }
 
 export const checkEmail = (email: string) => (dispatch: Dispatch<AuthStateAction>) => {
-    console.log('email', email)
     dispatch({ type: AuthStateEnum.CHECK_USER_EMAIL, payload: email })
 }
 

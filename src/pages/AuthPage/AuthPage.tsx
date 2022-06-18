@@ -9,6 +9,7 @@ import {
     checkPassword,
     createNewUserAction,
 } from "../../store/reducers/auth/action-creators"
+import { useHistory } from "react-router-dom"
 
 interface TAuthPageProps {
 }
@@ -21,61 +22,65 @@ const AuthPage: FC<TAuthPageProps> = ({}) => {
     const [popUpInputValue, setPopUpInputValue] = useState<string>('')
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
-    const { isEmailExists, isError, isNewUser }: any = useTypedSelector(state => state.auth)
+
+    const { isEmailExists, isError, isNewUser, currentEmail, isAuth }: any = useTypedSelector(state => state.auth)
+
 
     useEffect( () => {
-        console.log('isEmailExists', isEmailExists)
-        popUpAction()
-    }, [isEmailExists])
+        if (isEmailExists) {
+            setTypePopUpAuth('checkPassword')
+        }
+
+        if (isAuth) {
+            history.push('tasks/myday')
+        }
+
+        if (isNewUser) {
+            setTypePopUpAuth('checkPassword')
+        }
+
+
+
+    }, [isEmailExists, isAuth])
+
 
     const popUpAction = useCallback(() => {
-        // if (typePopUpAuth === 'signIn') {
-        // dispatch(checkEmail(popUpInputValue))
-        //     console.log('isEmailExists', isEmailExists)
-        //
-        //     if (isEmailExists) {
-        //         console.log('isEmailExists')
-        //         setTypePopUpAuth('checkPassword')
-        //         setPopUpInputValue('')
-        //     }
-        // } else if (typePopUpAuth === 'checkPassword') {
-        //
-        //     if (isEmailExists) {
-        //         dispatch(checkPassword(popUpInputValue))
-        //     } else if (isNewUser) {
-        //         dispatch(createNewUserAction(popUpInputValue))
-        //     }
-        //
-        // } else if (typePopUpAuth === 'createAccount') {
-        //
-        //     dispatch(checkEmailInDb(popUpInputValue))
-        //
-        //     if (isNewUser) {
-        //         setTypePopUpAuth('checkPassword')
-        //         setPopUpInputValue('')
-        //     }
-        //
-        // } else {
-        //     console.error('error')
-        // }
-    }, [popUpInputValue])
+        if (typePopUpAuth === 'signIn') {
+            dispatch(checkEmail(popUpInputValue))
+        } else if (typePopUpAuth === 'checkPassword') {
+
+            if (isEmailExists) {
+                dispatch(checkPassword(popUpInputValue))
+                setTypePopUpAuth('checkPassword')
+            } else if (isNewUser) {
+                dispatch(createNewUserAction(popUpInputValue))
+                history.push('tasks/myday')
+            }
+
+        } else if (typePopUpAuth === 'createAccount') {
+            dispatch(checkEmailInDb(popUpInputValue))
+        } else {
+            console.error('error')
+        }
+    }, [popUpInputValue, isEmailExists, isNewUser])
 
 
-    // const createNewUser = useCallback(() => {
-    //     setTypePopUpAuth('createAccount')
-    // }, [typePopUpAuth])
+    const createNewUser = useCallback(() => {
+        setTypePopUpAuth('createAccount')
+    }, [typePopUpAuth])
 
     return (
         <div className="auth__page">
-            {/*<AuthPopUp signInError={ isError } entryAllowed={ entryAllowed } typePopUpAuth={ typePopUpAuth }*/}
-            {/*           popUpInputValue={ popUpInputValue } setPopUpInputValue={ setPopUpInputValue }*/}
-            {/*           popUpAction={ popUpAction } createNewUser={ createNewUser }/>*/}
-            {/*<div className="auth__page-footer">*/}
-            {/*    <p>Условия использования</p>*/}
-            {/*    <p>Конфиденциальность и файлы cookie</p>*/}
-            {/*    <p>...</p>*/}
-            {/*</div>*/}
+            <AuthPopUp signInError={ isError } entryAllowed={ entryAllowed } typePopUpAuth={ typePopUpAuth }
+                       popUpInputValue={ popUpInputValue } setPopUpInputValue={ setPopUpInputValue }
+                       popUpAction={ popUpAction } createNewUser={ createNewUser }/>
+            <div className="auth__page-footer">
+                <p>Условия использования</p>
+                <p>Конфиденциальность и файлы cookie</p>
+                <p>...</p>
+            </div>
         </div>
     )
 }
