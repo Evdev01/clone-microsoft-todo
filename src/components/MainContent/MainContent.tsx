@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import './MainContent.scss'
 import SideBar from '../SideBar'
 import { Redirect, Route, Switch } from "react-router-dom"
@@ -9,6 +9,7 @@ import UserSettingMenu from "../UserSettingMenu"
 import CallBackMenu from "../CallBackMenu"
 import NewsPanelMenu from "../NewsPanelMenu"
 import ProfilePanelMenu from "../ProfilePanelMenu"
+import useRouterPath from "../../hooks/UseRouterPath"
 
 interface TMainContentProps {
 }
@@ -17,10 +18,12 @@ const MainContent: FC = () => {
 
 
     const { title } = useTypedSelector(state => state.sideBar)
+    const a = useTypedSelector(state => state.sideBar)
     const { isShowBlock } = useTypedSelector(state => state.tasks)
     const { isShowSidebarMenu } = useTypedSelector(state => state.sideBar)
 
     const [isShowSideBar, setIsShowSideBar] = useState<boolean>(false)
+    const routerPath = useRouterPath()
 
     const openBurgerMenu = useCallback(() => {
         setIsShowSideBar(!isShowSideBar)
@@ -52,16 +55,10 @@ const MainContent: FC = () => {
                 <div className="content__wrapper-content-sidebar">
 
                     <Switch>
-                        <Route exact path={ '/' }
-                               component={ () => <MainContentWrapper openBurgerMenu={ openBurgerMenu }
-                                                                     isShowSideBar={ isShowSideBar }
-                                                                     title={ 'Мой день' }/> }/>
-
                         <Route path={ '' }
                                component={ () => <MainContentWrapper openBurgerMenu={ openBurgerMenu }
                                                                      isShowSideBar={ isShowSideBar }
                                                                      title={ title }/> }/>
-                        <Redirect to="/"/>
                     </Switch>
                 </div>
                 { isShowBlock ? <TaskInfoBlock/> : null }

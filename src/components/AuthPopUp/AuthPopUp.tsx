@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, MouseEventHandler, SetStateAction } from 'react'
+import React, { Dispatch, FC, MouseEventHandler, SetStateAction, useCallback, useEffect } from 'react'
 import './AuthPopUp.scss'
 import MicrosoftIcon from "../svg/MicrosoftIcon"
 import IntelligenceMenuItem from "../IntelligenceMenuItem/IntelligenceMenuItem"
@@ -16,18 +16,12 @@ interface TAuthPopUpProps {
 
 const AuthPopUp: FC<TAuthPopUpProps> = ({ signInError, entryAllowed, typePopUpAuth, popUpInputValue, setPopUpInputValue, popUpAction, createNewUser }) => {
 
-
     // @ts-ignore
     const {headerTitle, title, subTitle, popUpName, errorMessage, placeholder} = InfoForDifferentPopUp.find((el: any) => el.popUpName === typePopUpAuth)
 
-    const onFormSubmit = (e: any) => {
-        e.preventDefault();
-        popUpAction()
-    }
 
     return (
 
-        <form onSubmit={onFormSubmit}>
             <div className="auth__pop_up">
                 <div className="auth__pop_up-wrapper">
                     <MicrosoftIcon/>
@@ -37,7 +31,7 @@ const AuthPopUp: FC<TAuthPopUpProps> = ({ signInError, entryAllowed, typePopUpAu
                             className="auth__pop_up-error">{ signInError ? errorMessage : null }</div>
                         : null
                     }
-                    <input value={ popUpInputValue } onChange={ e => setPopUpInputValue(e.target.value) } type="text"
+                    <input value={ popUpInputValue } onChange={ (e) => setPopUpInputValue(e.target.value) } type="text"
                            placeholder={ placeholder }/>
                     <div className="auth__pop_up-links">
                         { popUpName === 'signIn' ? <p>Нет учетной записи?</p> : null }
@@ -53,14 +47,12 @@ const AuthPopUp: FC<TAuthPopUpProps> = ({ signInError, entryAllowed, typePopUpAu
                         : <div className="auth__pop_up-buttons">
                             { popUpName === 'signIn' ? <button>Назад</button> : null }
                             <button className="primary__blue"
-                                    type="submit"
-                                    onClick={ onFormSubmit }>{ popUpName === 'checkPassword' ? 'Вход' : 'Далее' }</button>
+                                    onClick={ popUpAction }>{ popUpName === 'checkPassword' ? 'Вход' : 'Далее' }</button>
                         </div>
                     }
 
                 </div>
             </div>
-        </form>
     )
 }
 

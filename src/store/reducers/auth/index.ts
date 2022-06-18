@@ -69,11 +69,16 @@ const authReducer = (state = initialState, action: AuthStateAction) => {
 
             const checkUserInDb = state.imitationDb.find((el: any) => el.email === action.payload)
 
-            if (checkUserInDb) {
-                return { ...state, isEmailExists: true, isError: false, currentEmail: checkUserInDb.email}
-            } else {
-                return { ...state, isError: true}
-            }
+            console.log('checkUserInDb', checkUserInDb)
+            console.log('action.payload', action.payload)
+
+            // if (checkUserInDb) {
+            //     return { ...state, isEmailExists: true, isError: false, currentEmail: checkUserInDb.email}
+            // } else {
+            //     return { ...state, isError: true}
+            // }
+
+            return {...state}
         case AuthStateEnum.CHECK_USER_PASSWORD:
 
             const checkUserPassword = state.imitationDb.find((el: any) => el.password === action.payload)

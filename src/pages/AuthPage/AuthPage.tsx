@@ -15,7 +15,6 @@ interface TAuthPageProps {
 
 const AuthPage: FC<TAuthPageProps> = ({}) => {
 
-
     const [entryAllowed, setEntryAllowed] = useState<boolean>(false)
     const [typePopUpAuth, setTypePopUpAuth] = useState<string>('signIn')
 
@@ -25,59 +24,58 @@ const AuthPage: FC<TAuthPageProps> = ({}) => {
 
     const { isEmailExists, isError, isNewUser }: any = useTypedSelector(state => state.auth)
 
-    useEffect(() => {
+    useEffect( () => {
+        console.log('isEmailExists', isEmailExists)
         popUpAction()
-    }, [isEmailExists, isNewUser])
+    }, [isEmailExists])
+
+    const popUpAction = useCallback(() => {
+        // if (typePopUpAuth === 'signIn') {
+        // dispatch(checkEmail(popUpInputValue))
+        //     console.log('isEmailExists', isEmailExists)
+        //
+        //     if (isEmailExists) {
+        //         console.log('isEmailExists')
+        //         setTypePopUpAuth('checkPassword')
+        //         setPopUpInputValue('')
+        //     }
+        // } else if (typePopUpAuth === 'checkPassword') {
+        //
+        //     if (isEmailExists) {
+        //         dispatch(checkPassword(popUpInputValue))
+        //     } else if (isNewUser) {
+        //         dispatch(createNewUserAction(popUpInputValue))
+        //     }
+        //
+        // } else if (typePopUpAuth === 'createAccount') {
+        //
+        //     dispatch(checkEmailInDb(popUpInputValue))
+        //
+        //     if (isNewUser) {
+        //         setTypePopUpAuth('checkPassword')
+        //         setPopUpInputValue('')
+        //     }
+        //
+        // } else {
+        //     console.error('error')
+        // }
+    }, [popUpInputValue])
 
 
-
-    const popUpAction = () => {
-        if (popUpInputValue.length) {
-            if (typePopUpAuth === 'signIn') {
-                dispatch(checkEmail(popUpInputValue))
-
-                if (isEmailExists) {
-                    setTypePopUpAuth('checkPassword')
-                    setPopUpInputValue('')
-                }
-            } else if (typePopUpAuth === 'checkPassword') {
-
-                if (isEmailExists) {
-                    dispatch(checkPassword(popUpInputValue))
-                } else if (isNewUser) {
-                    dispatch(createNewUserAction(popUpInputValue))
-                }
-
-            } else if (typePopUpAuth === 'createAccount') {
-
-                dispatch(checkEmailInDb(popUpInputValue))
-
-                if (isNewUser) {
-                    setTypePopUpAuth('checkPassword')
-                    setPopUpInputValue('')
-                }
-
-            } else {
-                console.error('error')
-            }
-        }
-    }
-
-
-    const createNewUser = useCallback(() => {
-        setTypePopUpAuth('createAccount')
-    }, [typePopUpAuth])
+    // const createNewUser = useCallback(() => {
+    //     setTypePopUpAuth('createAccount')
+    // }, [typePopUpAuth])
 
     return (
         <div className="auth__page">
-            <AuthPopUp signInError={ isError } entryAllowed={ entryAllowed } typePopUpAuth={ typePopUpAuth }
-                       popUpInputValue={ popUpInputValue } setPopUpInputValue={ setPopUpInputValue }
-                       popUpAction={ popUpAction } createNewUser={ createNewUser }/>
-            <div className="auth__page-footer">
-                <p>Условия использования</p>
-                <p>Конфиденциальность и файлы cookie</p>
-                <p>...</p>
-            </div>
+            {/*<AuthPopUp signInError={ isError } entryAllowed={ entryAllowed } typePopUpAuth={ typePopUpAuth }*/}
+            {/*           popUpInputValue={ popUpInputValue } setPopUpInputValue={ setPopUpInputValue }*/}
+            {/*           popUpAction={ popUpAction } createNewUser={ createNewUser }/>*/}
+            {/*<div className="auth__page-footer">*/}
+            {/*    <p>Условия использования</p>*/}
+            {/*    <p>Конфиденциальность и файлы cookie</p>*/}
+            {/*    <p>...</p>*/}
+            {/*</div>*/}
         </div>
     )
 }

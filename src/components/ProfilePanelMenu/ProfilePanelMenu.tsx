@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux"
 import { openSideBarMenu } from "../../store/reducers/side-bar/action-creators"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
 import { logOutProfile } from "../../store/reducers/auth/action-creators"
+import { useHistory } from "react-router-dom"
 
 const ProfilePanelMenu: FC = () => {
 
@@ -33,9 +34,12 @@ const ProfilePanelMenu: FC = () => {
         }, [ref])
     }
 
+    const history = useHistory()
+
     const logOut = () => {
         dispatch(logOutProfile(false))
         dispatch(openSideBarMenu(''))
+        history.push('/login')
     }
 
     return (
