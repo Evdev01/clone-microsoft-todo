@@ -31,7 +31,7 @@ const AuthPopUp: FC<TAuthPopUpProps> = ({ signInError, entryAllowed, typePopUpAu
                         className="auth__pop_up-error">{ signInError ? errorMessage : null }</div>
                     : null
                 }
-                <input value={popUpInputValue} onChange={ e => setPopUpInputValue(e.target.value)} type="text" placeholder={placeholder}/>
+                <input value={popUpInputValue} onChange={ e => setPopUpInputValue(e.target.value)} type={popUpName === 'checkPassword' ? 'password' : 'text'} placeholder={placeholder}/>
                 <div className="auth__pop_up-links">
                     {popUpName === 'signIn' ? <p>Нет учетной записи?</p> : null }
                     <a target="_blank" onClick={popUpName === 'signIn' ? createNewUser : null}>

@@ -18,7 +18,6 @@ const MainContent: FC = () => {
 
 
     const { title } = useTypedSelector(state => state.sideBar)
-    const a = useTypedSelector(state => state.sideBar)
     const { isShowBlock } = useTypedSelector(state => state.tasks)
     const { isShowSidebarMenu } = useTypedSelector(state => state.sideBar)
 

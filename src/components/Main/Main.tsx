@@ -16,12 +16,6 @@ const Main: FC = () => {
     return (
         <div>
             <Switch>
-                <Route exact path={ '/' }
-                       component={ () => <div>
-                           <Header/>
-                           <MainContent/>
-                       </div> }/>
-
                 <Route path={ '/tasks/:group?' }
                        component={ () => <div>
                            <Header/>
@@ -29,7 +23,9 @@ const Main: FC = () => {
 
                 <Route path={ '/login' }
                        component={ () => <AuthPage/> }/>
-                <Redirect to="/"/>
+
+                <Route exact path={ '/' }
+                       component={ () => <Redirect to="/tasks/myday"/> }/>
             </Switch>
         </div>
     )
