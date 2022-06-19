@@ -11,23 +11,21 @@ const TasksBlock: FC = () => {
 
     const [isShowCollapsed, setIsShowCollapsed] = useState<boolean>(false)
 
+    // todo change type
     const { user }: any = useTypedSelector(state => state.profile)
 
 
     const routerPath = useRouterPath()
 
-    const defineTaskGroup = (taskGroup: TaskGroup) => {
-        return user.taskGroup.find((el: TaskGroup) => el.groupName === routerPath)
-    }
 
     let searchFromNeedGroup = []
 
     const findFromMainTasksGroup = user.mainTasksGroup.find((el: TaskGroup) => el.groupName === routerPath)
 
     if (findFromMainTasksGroup) {
-        searchFromNeedGroup = defineTaskGroup(user.mainTasksGroup)
+        searchFromNeedGroup = user.mainTasksGroup.find((el: TaskGroup) => el.groupName === routerPath)
     } else {
-        searchFromNeedGroup = defineTaskGroup(user.createdTasksGroup)
+        searchFromNeedGroup = user.createdTasksGroup.find((el: TaskGroup) => el.groupName === routerPath)
     }
 
 
