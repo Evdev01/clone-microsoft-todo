@@ -21,12 +21,8 @@ const initialState: ProfileState = {
                 id: 1,
                 groupName: 'myday',
                 route: 'mydaymyday',
-                tasksItems: [
-                    { id: 1, title: 'title', important: false }
-                ],
-                completedTasks: [
-                    { id: 2, title: 'titlecompletedtasks', important: false }
-                ]
+                tasksItems: [],
+                completedTasks: []
             },
             {
                 id: 2,
