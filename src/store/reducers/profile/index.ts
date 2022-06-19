@@ -215,9 +215,9 @@ const profileReducer = (state = initialState, action: any) => {
             const findGroup = copy.createdTasksGroup.find((el: any) => el.id === action.payload.groupId)
 
             // @ts-ignore
-            const findTask: TTaskGroup = findGroup.tasksItems.find((el: any) => el.id === action.payload.taskId)
+            const findTask: TTaskGroup = findGroup.tasksItems.find((el: TTask) => el.id === action.payload.taskId)
 
-            const findMoveGroup = copy.createdTasksGroup.find((el: any) => el.id === action.payload.moveGroupId)
+            const findMoveGroup = copy.createdTasksGroup.find((el: TTaskGroup) => el.id === action.payload.moveGroupId)
 
             const findCurrentGroupIndex = copy.createdTasksGroup.findIndex((el: any) => el.id === action.payload.groupId)
 
