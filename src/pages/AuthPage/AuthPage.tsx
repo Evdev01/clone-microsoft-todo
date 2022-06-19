@@ -24,13 +24,13 @@ const AuthPage: FC<IAuthPageProps> = ({}) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-
     const { isEmailExists, isError, isNewUser, currentEmail, isAuth }: any = useTypedSelector(state => state.auth)
 
 
     useEffect( () => {
         if (isEmailExists) {
             setTypePopUpAuth('checkPassword')
+            setPopUpInputValue('')
         }
 
         if (isAuth) {
@@ -39,11 +39,10 @@ const AuthPage: FC<IAuthPageProps> = ({}) => {
 
         if (isNewUser) {
             setTypePopUpAuth('checkPassword')
+            setPopUpInputValue('')
         }
 
-
-
-    }, [isEmailExists, isAuth])
+    }, [isEmailExists, isAuth, isNewUser])
 
 
     const popUpAction = useCallback(() => {

@@ -8,14 +8,11 @@ import { createNewTaskGroup } from "../../store/reducers/profile/action-creators
 const SideBarCreateList: FC = () => {
 
     const [isActiveInput, setIsActiveInput] = useState(false)
-
-
+    const [taskGroupTitle, setTaskGroupTitle] = useState<string>('')
 
     const toggleFocusInput = useCallback(() => {
         setIsActiveInput(!isActiveInput)
     }, [])
-
-    const [taskGroupTitle, setTaskGroupTitle] = useState<string>('')
 
     const dispatch = useDispatch()
 
@@ -47,6 +44,7 @@ const SideBarCreateList: FC = () => {
                 { !isActiveInput ? <p onClick={ () => setIsActiveInput(!isActiveInput) }>Создать список</p> :
                     <div className="side__bar-add-menu-wrapper"><input type="text"
                                                                        onKeyDown={ e => handleKeyDown(e) }
+                                                                       value={taskGroupTitle}
                                                                        onChange={ (e) => setTaskGroupTitle(e.target.value) }
                                                                        className="side__bar-input active"
                                                                        ref={ input => input && input.focus() }

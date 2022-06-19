@@ -51,6 +51,7 @@ const authReducer = (state = initialState, action: AuthStateAction) => {
             let checkEmailInDb = {}
 
             if (state.imitationDb.length) {
+                // @ts-ignore
                 checkEmailInDb = state.imitationDb.find((el: any) => el.email === action.payload)
             }
 
@@ -88,7 +89,7 @@ const authReducer = (state = initialState, action: AuthStateAction) => {
 
             localStorage.setItem('isAuth', 'false')
 
-            return {...state, isAuth: false, isError: false}
+            return {...state, isAuth: false, isError: false, isEmailExists: false, isNewUser: false}
 
         default:
             return state
