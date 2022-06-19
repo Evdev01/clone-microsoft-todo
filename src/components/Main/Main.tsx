@@ -22,7 +22,7 @@ const Main: FC = () => {
                        component={ () => <AuthPage/> }/>
 
                 <Route exact path={ '/' }
-                       component={ () => <Redirect to="/tasks/myday"/> }/>
+                       component={ () => <Redirect to="/login"/> }/>
             </Switch>
         </div>
     )
